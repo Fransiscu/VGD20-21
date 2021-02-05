@@ -417,8 +417,10 @@ InitTestScene*.unity
 
 # My stuff
 
+Assets/BayatGames 
+
 # Heavy assets folder
-Assets/assets
+Assets/heavyassets
 
 /[Ll]ibrary/
 /[Tt]emp/
