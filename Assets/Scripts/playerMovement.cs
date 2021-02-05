@@ -6,8 +6,9 @@ public class playerMovement : MonoBehaviour
 {
     public int playerSpeed = 10; 
     private bool facingRight = true;
-    public int playerJumpPower = 350; // to change/powerup
+    public int playerJumpPower = 50; // to change/powerup
     private float horizontalMovement;
+    public bool touchingGround; 
 
     void Start()
     {
@@ -26,16 +27,16 @@ public class playerMovement : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && touchingGround)
         {
-            Jump(); // TODO
+            Jump(); 
         }
 
         if (horizontalMovement > 0.0f && facingRight == false)   // moving right
         {
-            FlipPlayer(); // TODO
+            FlipPlayer(); 
         }
         else if (horizontalMovement < 0.0f && facingRight == true)   // moving left
         {
-            FlipPlayer(); // TODO
+            FlipPlayer(); 
         }
 
         /* 
@@ -54,6 +55,26 @@ public class playerMovement : MonoBehaviour
         
     }
 
+    public void FlipPlayer()
+    {
+        facingRight = !facingRight;
+        Vector2 localScale = gameObject.transform.localScale;
+        localScale.x *= -1;
+        transform.localScale = localScale;
+    }
 
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.tag == "Ground")
+        {
+            touchingGround = true;
+        }
+    }
+
+    public void Jump()
+    {
+        GetComponent<Rigidbody2D>().AddForce(Vector2.up * playerJumpPower);
+        touchingGround = false;
+    }
 
 }
