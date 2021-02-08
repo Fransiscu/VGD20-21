@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
+  - Start
+  - CheckPoint
+  - Bonus
+  - Finishline
   layers:
   - Default
   - TransparentFX

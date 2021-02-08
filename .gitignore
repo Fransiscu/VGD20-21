@@ -428,7 +428,10 @@ InitTestScene*.unity
 
 # My stuff
 
+
 Assets/BayatGames 
+Assets/Palettes
+Assets/Palettes/*
 
 # Heavy assets folder
 Assets/heavyassets
