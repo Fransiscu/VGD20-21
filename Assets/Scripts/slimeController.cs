@@ -1,16 +1,22 @@
-﻿using System.Collections;
+using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
+using Random = System.Random;
 
-public class playerMovement : MonoBehaviour
+public class slimeController : MonoBehaviour
 {
-    private float playerMovementDirection;
-    public int playerSpeed = 10; 
-    public int playerJumpPower = 50; // to change/powerup
-    private bool facingRight = true;
+    private float slimeMovementDirection;
+    private float latestDirectionChangeTime;
+    private readonly float directionChangeTime = .1f;
+    public int slimeSpeed = 5;
+    public int slimeJumpPower = 50; // to change/powerup
+    public bool facingRight = false;
     public bool touchingGround; 
 
     private Animator animator;
+    
 
     void Start()
     {
@@ -21,15 +27,39 @@ public class playerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        MovePlayer();
+        if (Time.time - latestDirectionChangeTime > directionChangeTime)
+        {
+            MoveSlime();
+            latestDirectionChangeTime = Time.time;
+        }
     }
 
-    public void MovePlayer() 
+    /* 
+    0 -> idle
+    1 -> left
+    2 -> right
+    3 -> Jump 
+    */
+    public void MoveSlime()
     {
-        playerMovementDirection = Input.GetAxis("Horizontal");
+        Vector2 movement;
+        //Random dice = new Random();
+        //slimeMovementDirection = dice.Next(0, 4);
+        slimeMovementDirection = 3;
+        //Debug.Log(slimeMovementDirection);
+        movement = new Vector2();
 
-        if (playerMovementDirection == 0)    // if the character is not moving
+        float horizontalMovement = Input.GetAxis("Horizontal");
+        if (Input.GetButtonDown("Jump") && touchingGround)
         {
+            animator.SetBool("isIdle", false);
+            animator.SetBool("isJumping", true);
+            SlimeJump();
+        }
+
+        if (slimeMovementDirection == 0)    // if the slime is not moving
+        {
+            movement = new Vector2(0 * slimeSpeed, gameObject.GetComponent<Rigidbody2D>().velocity.y);
             if (!touchingGround)    // and is jumping
             {
                 animator.SetBool("isIdle", false);
@@ -40,8 +70,8 @@ public class playerMovement : MonoBehaviour
                 animator.SetBool("isIdle", true);
                 animator.SetBool("isWalking", false);
             }
-        } 
-        else    // if the character is moving
+        }
+        else    // if the slime is moving
         {
             if (!animator.GetBool("isWalking")) // and if is not already walking
             {
@@ -55,15 +85,17 @@ public class playerMovement : MonoBehaviour
             }
         }
 
-        if (Input.GetButtonDown("Jump") && touchingGround)
+        if (slimeMovementDirection == 3 && touchingGround)  // jumping
         {
+            GetComponent<Rigidbody2D>().AddForce(Vector2.up * slimeJumpPower);
             animator.SetBool("isIdle", false);
             animator.SetBool("isJumping", true);
-            Jump(); 
+            SlimeJump();
         }
 
-        if (playerMovementDirection > 0.0f && facingRight == false)   // moving right
+        if (slimeMovementDirection == 2 && !facingRight)   // moving right
         {
+            movement = new Vector2(1 * slimeSpeed, gameObject.GetComponent<Rigidbody2D>().velocity.y);
             animator.SetBool("isIdle", false);
             animator.SetBool("isWalking", true);
             animator.SetBool("isJumping", false);
@@ -71,19 +103,21 @@ public class playerMovement : MonoBehaviour
             {
                 animator.SetBool("isWalking", false);
             }
-            FlipPlayer(); 
+            FlipSlime();
         }
-        else if (playerMovementDirection < 0.0f && facingRight == true)   // moving left
+        else if (slimeMovementDirection == 1 && facingRight)   // moving left
         {
+            movement = new Vector2(-1 * slimeSpeed, gameObject.GetComponent<Rigidbody2D>().velocity.y);
             animator.SetBool("isIdle", false);
             animator.SetBool("isWalking", true);
             animator.SetBool("isJumping", false);
-            
+
             if (!touchingGround)
             {
                 animator.SetBool("isWalking", false);
             }
-            FlipPlayer(); 
+
+            FlipSlime();
         }
 
         /* 
@@ -95,20 +129,10 @@ public class playerMovement : MonoBehaviour
         It should work just fine.
         */
 
-        Vector2 movement = new Vector2(playerMovementDirection * playerSpeed, gameObject.GetComponent<Rigidbody2D>().velocity.y);  
-
+        //movement = new Vector2(slimeMovementDirection * slimeSpeed, gameObject.GetComponent<Rigidbody2D>().velocity.y);
         gameObject.GetComponent<Rigidbody2D>().velocity = movement;
-        
-    }
 
-    public void FlipPlayer()
-    {
-        facingRight = !facingRight;
-        Vector2 localScale = gameObject.transform.localScale;
-        localScale.x *= -1;
-        transform.localScale = localScale;
-    }
-
+    }   
     void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.tag == "Ground")
@@ -118,9 +142,17 @@ public class playerMovement : MonoBehaviour
         }
     }
 
-    public void Jump()
+    public void FlipSlime()
     {
-        GetComponent<Rigidbody2D>().AddForce(Vector2.up * playerJumpPower);
+        facingRight = !facingRight;
+        Vector2 localScale = gameObject.transform.localScale;
+        localScale.x *= -1;
+        transform.localScale = localScale;
+    }
+
+    public void SlimeJump()
+    {
+        GetComponent<Rigidbody2D>().AddForce(Vector2.up * slimeJumpPower);
         touchingGround = false;
     }
 
