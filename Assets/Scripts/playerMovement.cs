@@ -5,8 +5,8 @@ using UnityEngine;
 public class playerMovement : MonoBehaviour
 {
     private float playerMovementDirection;
-    public int playerSpeed = 10; 
-    public int playerJumpPower = 50; // to change/powerup
+    public int playerSpeed; 
+    public int playerJumpPower; // to change/powerup
     private bool facingRight = true;
     public bool touchingGround; 
 
@@ -26,6 +26,7 @@ public class playerMovement : MonoBehaviour
 
     public void MovePlayer() 
     {
+        playerMovementDirection = 0;
         playerMovementDirection = Input.GetAxis("Horizontal");
 
         if (playerMovementDirection == 0)    // if the character is not moving
@@ -59,7 +60,7 @@ public class playerMovement : MonoBehaviour
         {
             animator.SetBool("isIdle", false);
             animator.SetBool("isJumping", true);
-            Jump(); 
+            PlayerJump(); 
         }
 
         if (playerMovementDirection > 0.0f && facingRight == false)   // moving right
@@ -118,9 +119,9 @@ public class playerMovement : MonoBehaviour
         }
     }
 
-    public void Jump()
+    public void PlayerJump()
     {
-        GetComponent<Rigidbody2D>().AddForce(Vector2.up * playerJumpPower);
+        gameObject.GetComponent<Rigidbody2D>().AddForce(Vector3.up * playerJumpPower);
         touchingGround = false;
     }
 

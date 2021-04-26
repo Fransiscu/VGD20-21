@@ -9,6 +9,7 @@ TagManager:
   - CheckPoint
   - Bonus
   - Finishline
+  - Enemy
   layers:
   - Default
   - TransparentFX

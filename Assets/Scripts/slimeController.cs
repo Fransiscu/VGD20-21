@@ -7,16 +7,17 @@ using Random = System.Random;
 
 public class slimeController : MonoBehaviour
 {
-    private float slimeMovementDirection;
-    private float latestDirectionChangeTime;
-    private readonly float directionChangeTime = .1f;
-    public int slimeSpeed = 5;
-    public int slimeJumpPower = 50; // to change/powerup
+    public float slimeSpeed;
     public bool facingRight = false;
-    public bool touchingGround; 
+    public Transform groundDetection;
+    private float latestDirectionChangeTime;
+    private readonly double directionChangeTime = 1.5;
+    private float slimeMovementDirection;
+    public int slimeJumpPower; // to change/powerup
+    public bool touchingGround;
 
     private Animator animator;
-    
+
 
     void Start()
     {
@@ -29,8 +30,8 @@ public class slimeController : MonoBehaviour
     {
         if (Time.time - latestDirectionChangeTime > directionChangeTime)
         {
-            MoveSlime();
-            latestDirectionChangeTime = Time.time;
+        MoveSlime();
+          latestDirectionChangeTime = Time.time;
         }
     }
 
@@ -42,83 +43,93 @@ public class slimeController : MonoBehaviour
     */
     public void MoveSlime()
     {
-        Vector2 movement;
-        //Random dice = new Random();
-        //slimeMovementDirection = dice.Next(0, 4);
-        slimeMovementDirection = 3;
-        //Debug.Log(slimeMovementDirection);
-        movement = new Vector2();
+        Vector2 movement = new Vector2();
+        Random dice = new Random();
+        slimeMovementDirection = dice.Next(0, 4);
+        //slimeMovementDirection = 3;
 
-        float horizontalMovement = Input.GetAxis("Horizontal");
-        if (Input.GetButtonDown("Jump") && touchingGround)
-        {
-            animator.SetBool("isIdle", false);
-            animator.SetBool("isJumping", true);
-            SlimeJump();
-        }
+        Debug.Log(slimeMovementDirection);
 
-        if (slimeMovementDirection == 0)    // if the slime is not moving
+        if (slimeMovementDirection == 3)  // result == jump
         {
-            movement = new Vector2(0 * slimeSpeed, gameObject.GetComponent<Rigidbody2D>().velocity.y);
-            if (!touchingGround)    // and is jumping
+            if (touchingGround) // if slime on the ground
             {
                 animator.SetBool("isIdle", false);
-                animator.SetBool("isWalking", false);
+                animator.SetBool("isJumping", true);
+                SlimeJump();
             }
-            else    // and is not jumping
+            else // if not on the ground
             {
-                animator.SetBool("isIdle", true);
-                animator.SetBool("isWalking", false);
+                // TODO: add here double jump code
+                //animator.SetBool("isIdle", false);
+                //animator.SetBool("isWalking", false);
+                //animator.SetBool("isJumping", true);
             }
+            return;
         }
-        else    // if the slime is moving
+        else
         {
-            if (!animator.GetBool("isWalking")) // and if is not already walking
+            if (slimeMovementDirection == 0)    // result == idle
             {
-                animator.SetBool("isIdle", false);
-                animator.SetBool("isWalking", true);
+                if (!touchingGround)    // if is jumping
+                {
+                    animator.SetBool("isIdle", true);
+                    animator.SetBool("isWalking", false);
+                    animator.SetBool("isJumping", false);
+                }
+                else    // if is not jumping
+                {
+                    animator.SetBool("isIdle", true);
+                    animator.SetBool("isWalking", false);
+                }
+
+                //movement = new Vector2(0 * slimeSpeed, gameObject.GetComponent<Rigidbody2D>().velocity.y);
             }
 
-            if (!touchingGround)
+            if (slimeMovementDirection == 2)   // moving right
             {
-                animator.SetBool("isWalking", false);
+                if (!facingRight)
+                {
+                    FlipSlime();
+                    animator.SetBool("isIdle", false);
+                    animator.SetBool("isJumping", false);
+                }
+
+                if (!touchingGround)
+                {
+                    animator.SetBool("isWalking", false);
+                }
+                else
+                {
+                    animator.SetBool("isWalking", true);
+                }
+
+                movement = new Vector2(1 * slimeSpeed, gameObject.GetComponent<Rigidbody2D>().velocity.y);
             }
-        }
-
-        if (slimeMovementDirection == 3 && touchingGround)  // jumping
-        {
-            GetComponent<Rigidbody2D>().AddForce(Vector2.up * slimeJumpPower);
-            animator.SetBool("isIdle", false);
-            animator.SetBool("isJumping", true);
-            SlimeJump();
-        }
-
-        if (slimeMovementDirection == 2 && !facingRight)   // moving right
-        {
-            movement = new Vector2(1 * slimeSpeed, gameObject.GetComponent<Rigidbody2D>().velocity.y);
-            animator.SetBool("isIdle", false);
-            animator.SetBool("isWalking", true);
-            animator.SetBool("isJumping", false);
-            if (!touchingGround)
+            else if (slimeMovementDirection == 1)   // moving left
             {
-                animator.SetBool("isWalking", false);
-            }
-            FlipSlime();
-        }
-        else if (slimeMovementDirection == 1 && facingRight)   // moving left
-        {
-            movement = new Vector2(-1 * slimeSpeed, gameObject.GetComponent<Rigidbody2D>().velocity.y);
-            animator.SetBool("isIdle", false);
-            animator.SetBool("isWalking", true);
-            animator.SetBool("isJumping", false);
+                if (facingRight)
+                {
+                    FlipSlime();
+                    animator.SetBool("isIdle", false);
+                    animator.SetBool("isJumping", false);
+                }
 
-            if (!touchingGround)
-            {
-                animator.SetBool("isWalking", false);
+                if (!touchingGround)
+                {
+                    animator.SetBool("isWalking", false);
+                }
+                else
+                {
+                    animator.SetBool("isWalking", true);
+                }
+
+                movement = new Vector2(-1 * slimeSpeed, gameObject.GetComponent<Rigidbody2D>().velocity.x);
             }
 
-            FlipSlime();
+            gameObject.GetComponent<Rigidbody2D>().velocity = movement;
         }
+
 
         /* 
         https://forum.unity.com/threads/velocity-time-deltatime.91518/
@@ -128,11 +139,8 @@ public class slimeController : MonoBehaviour
         So, just set rigidbody.velocity equal to Vector3(0,0,speed). 
         It should work just fine.
         */
+    }
 
-        //movement = new Vector2(slimeMovementDirection * slimeSpeed, gameObject.GetComponent<Rigidbody2D>().velocity.y);
-        gameObject.GetComponent<Rigidbody2D>().velocity = movement;
-
-    }   
     void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.tag == "Ground")
@@ -152,7 +160,9 @@ public class slimeController : MonoBehaviour
 
     public void SlimeJump()
     {
-        GetComponent<Rigidbody2D>().AddForce(Vector2.up * slimeJumpPower);
+        //gameObject.GetComponent<Rigidbody2D>().velocity = Vector3.up * slimeJumpPower;
+        gameObject.GetComponent<Rigidbody2D>().AddForce(Vector3.up * slimeJumpPower); // vector 3 or 2?
+        //gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * slimeJumpPower);
         touchingGround = false;
     }
 
