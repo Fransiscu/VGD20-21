@@ -14,9 +14,12 @@ public class slimeController : MonoBehaviour
     private bool mustTurn;
     public Transform groundCheckpos;
     public LayerMask groundLayer;
+    private Animator animator;
     void Start()
     {
-        transform.localScale = new Vector2(transform.localScale.x * -1, transform.localScale.y); // flipping default slime at start
+        facingRight = true;
+        animator = GetComponent<Animator>();
+        transform.localScale = new Vector2(transform.localScale.x * -1, transform.localScale.y); // flipping default slime at start 
         mustPatrol = true;
     }
 
@@ -26,20 +29,30 @@ public class slimeController : MonoBehaviour
         {
             Patrol();
         }
+        else if (!mustPatrol)
+        {
+            animator.SetBool("isWalking", false);
+        }
 
     }
     void FixedUpdate()
     {
         if (mustPatrol)
         {
+            animator.SetBool("isWalking", true);
             Debug.Log("in fixed update");
             mustTurn = !Physics2D.OverlapCircle(groundCheckpos.position, 0.1f, groundLayer);
+        }
+        else if (!mustPatrol)
+        {
+            animator.SetBool("isWalking", false);
         }
     }
     void Patrol()
     {
         if (mustTurn)
         {
+            animator.SetBool("isWalking", true);
             Debug.Log("Turning");
             Flip();
         }
