@@ -57,10 +57,6 @@ public class slimeController : MonoBehaviour
     {
         if (needsFlipping || slimeCollider.IsTouchingLayers(wallsLayerMask))
         {
-            if (slimeCollider.IsTouchingLayers(wallsLayerMask))
-            {
-                Debug.Log("touching walls");
-            }
             FlipSlime();
         }
         rigidBody.velocity = new Vector2(slimeSpeed * Time.fixedDeltaTime, rigidBody.velocity.y);
