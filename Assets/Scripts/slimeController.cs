@@ -14,7 +14,9 @@ public class slimeController : MonoBehaviour
     private bool needsFlipping;
     public Transform groundPresenceChecker;
     public LayerMask groundLayerMask;
+    public LayerMask wallsLayerMask;
     private Animator animator;
+    public Collider2D slimeCollider;
 
     void Start()
     {
@@ -53,8 +55,12 @@ public class slimeController : MonoBehaviour
     }
     void Patrol()
     {
-        if (needsFlipping)
+        if (needsFlipping || slimeCollider.IsTouchingLayers(wallsLayerMask))
         {
+            if (slimeCollider.IsTouchingLayers(wallsLayerMask))
+            {
+                Debug.Log("touching walls");
+            }
             FlipSlime();
         }
         rigidBody.velocity = new Vector2(slimeSpeed * Time.fixedDeltaTime, rigidBody.velocity.y);
