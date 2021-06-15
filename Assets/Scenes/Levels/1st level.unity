@@ -14764,7 +14764,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2054199922}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8.554, y: 1.904, z: -10.714461}
+  m_LocalPosition: {x: 8.554, y: 2.154, z: -10.714461}
   m_LocalScale: {x: 2.105573, y: 2.2744575, z: 1}
   m_Children:
   - {fileID: 1589102260}
@@ -14784,11 +14784,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7aba4907622990458ede42bb52c1b61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 100
-  mustPatrol: 1
+  slimeSpeed: 100
+  onPatrolDuty: 0
   facingRight: 0
-  rb: {fileID: 2054199924}
-  groundCheckpos: {fileID: 1589102260}
-  groundLayer:
+  rigidBody: {fileID: 2054199924}
+  groundPresenceChecker: {fileID: 1589102260}
+  groundLayerMask:
     serializedVersion: 2
     m_Bits: 64

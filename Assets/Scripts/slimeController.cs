@@ -7,29 +7,30 @@ using Random = System.Random;
 
 public class slimeController : MonoBehaviour
 {
-    public float walkSpeed;
-    public bool mustPatrol;
+    public float slimeSpeed;
+    public bool onPatrolDuty;
     public bool facingRight;
-    public Rigidbody2D rb;
-    private bool mustTurn;
-    public Transform groundCheckpos;
-    public LayerMask groundLayer;
+    public Rigidbody2D rigidBody;
+    private bool needsFlipping;
+    public Transform groundPresenceChecker;
+    public LayerMask groundLayerMask;
     private Animator animator;
+
     void Start()
     {
         facingRight = true;
         animator = GetComponentInChildren<Animator>();
         transform.localScale = new Vector2(transform.localScale.x * -1, transform.localScale.y); // flipping default slime at start 
-        mustPatrol = true;
+        onPatrolDuty = true;
     }
 
     void Update()
     {
-        if (mustPatrol)
+        if (onPatrolDuty)
         {
             Patrol();
         }
-        else if (!mustPatrol)
+        else if (!onPatrolDuty)
         {
             animator.SetBool("isWalking", false);
             animator.SetBool("isIdle", true);
@@ -38,13 +39,13 @@ public class slimeController : MonoBehaviour
     }
     void FixedUpdate()
     {
-        if (mustPatrol)
+        if (onPatrolDuty)
         {
             animator.SetBool("isWalking", true);
             animator.SetBool("isIdle", false);
-            mustTurn = !Physics2D.OverlapCircle(groundCheckpos.position, 0.1f, groundLayer);
+            needsFlipping = !Physics2D.OverlapCircle(groundPresenceChecker.position, 0.1f, groundLayerMask);
         }
-        else if (!mustPatrol)
+        else if (!onPatrolDuty)
         {
             animator.SetBool("isWalking", false);
             animator.SetBool("isIdle", true);
@@ -52,19 +53,18 @@ public class slimeController : MonoBehaviour
     }
     void Patrol()
     {
-        if (mustTurn)
+        if (needsFlipping)
         {
-            animator.SetBool("isWalking", true);
-            Flip();
+            FlipSlime();
         }
-        rb.velocity = new Vector2(walkSpeed * Time.fixedDeltaTime, rb.velocity.y);
+        rigidBody.velocity = new Vector2(slimeSpeed * Time.fixedDeltaTime, rigidBody.velocity.y);
     }
-    void Flip()
+    void FlipSlime()
     {
-        mustPatrol = false;
+        onPatrolDuty = false;
         facingRight = !facingRight;
         transform.localScale = new Vector2(transform.localScale.x * -1, transform.localScale.y);
-        walkSpeed *= -1;
-        mustPatrol = true;
+        slimeSpeed *= -1;
+        onPatrolDuty = true;
     }
 }
