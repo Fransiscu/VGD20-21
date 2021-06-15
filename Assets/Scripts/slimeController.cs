@@ -32,7 +32,7 @@ public class slimeController : MonoBehaviour
         else if (!mustPatrol)
         {
             animator.SetBool("isWalking", false);
-            animator.SetBool("isStanding", true);
+            animator.SetBool("isIdle", true);
         }
 
     }
@@ -41,13 +41,13 @@ public class slimeController : MonoBehaviour
         if (mustPatrol)
         {
             animator.SetBool("isWalking", true);
-            animator.SetBool("isStanding", false);
+            animator.SetBool("isIdle", false);
             mustTurn = !Physics2D.OverlapCircle(groundCheckpos.position, 0.1f, groundLayer);
         }
         else if (!mustPatrol)
         {
             animator.SetBool("isWalking", false);
-            animator.SetBool("isStanding", true);
+            animator.SetBool("isIdle", true);
         }
     }
     void Patrol()
