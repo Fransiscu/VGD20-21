@@ -18,7 +18,7 @@ public class slimeController : MonoBehaviour
     void Start()
     {
         facingRight = true;
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
         transform.localScale = new Vector2(transform.localScale.x * -1, transform.localScale.y); // flipping default slime at start 
         mustPatrol = true;
     }
@@ -32,6 +32,7 @@ public class slimeController : MonoBehaviour
         else if (!mustPatrol)
         {
             animator.SetBool("isWalking", false);
+            animator.SetBool("isStanding", true);
         }
 
     }
@@ -40,12 +41,13 @@ public class slimeController : MonoBehaviour
         if (mustPatrol)
         {
             animator.SetBool("isWalking", true);
-            Debug.Log("in fixed update");
+            animator.SetBool("isStanding", false);
             mustTurn = !Physics2D.OverlapCircle(groundCheckpos.position, 0.1f, groundLayer);
         }
         else if (!mustPatrol)
         {
             animator.SetBool("isWalking", false);
+            animator.SetBool("isStanding", true);
         }
     }
     void Patrol()
@@ -53,11 +55,9 @@ public class slimeController : MonoBehaviour
         if (mustTurn)
         {
             animator.SetBool("isWalking", true);
-            Debug.Log("Turning");
             Flip();
         }
         rb.velocity = new Vector2(walkSpeed * Time.fixedDeltaTime, rb.velocity.y);
-        Debug.Log("Moving");
     }
     void Flip()
     {
