@@ -10,6 +10,7 @@ public class slimeController : MonoBehaviour
     public float slimeSpeed;
     public bool onPatrolDuty;
     public bool facingRight;
+    public float hitDamage;
     public Rigidbody2D rigidBody;
     private bool needsFlipping;
     public Transform groundPresenceChecker;
@@ -24,6 +25,7 @@ public class slimeController : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
         transform.localScale = new Vector2(transform.localScale.x * -1, transform.localScale.y); // flipping default slime at start 
         onPatrolDuty = true;
+        hitDamage = SETTINGS.slimeHitDamage;
     }
 
     void Update()
@@ -68,5 +70,13 @@ public class slimeController : MonoBehaviour
         transform.localScale = new Vector2(transform.localScale.x * -1, transform.localScale.y);
         slimeSpeed *= -1;
         onPatrolDuty = true;
+    }
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            Debug.Log("Slime colliding with player");
+            collision.gameObject.GetComponent<playerController>().EditLives(hitDamage);
+        }   
     }
 }
