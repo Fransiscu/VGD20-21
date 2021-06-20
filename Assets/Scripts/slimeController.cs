@@ -70,13 +70,32 @@ public class slimeController : MonoBehaviour
         transform.localScale = new Vector2(transform.localScale.x * -1, transform.localScale.y);
         slimeSpeed *= -1;
         onPatrolDuty = true;
+        needsFlipping = false;
     }
-    public void OnCollisionEnter2D(Collision2D collision)
+    public void OnCollisionEnter2D(Collision2D col)
     {
-        if (collision.gameObject.tag == "Player")
+        if (col.gameObject.tag == "Player")
         {
             Debug.Log("Slime colliding with player");
-            collision.gameObject.GetComponent<playerController>().EditLives(hitDamage);
+
+            float approachDirection = col.transform.position.x - transform.position.x;
+
+            // slime won't flip unless it damages the player on its front
+            if (approachDirection < 0 && facingRight)  // player to its left
+            {
+                needsFlipping = false;
+            } 
+            else if (approachDirection > 0 && !facingRight)  // player to its right
+            {
+                needsFlipping = false;
+            }
+            else 
+            {
+                needsFlipping = true;
+            }
+
+            // dealing damage
+            col.gameObject.GetComponent<playerController>().EditLives(hitDamage);
         }   
     }
 }

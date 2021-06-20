@@ -427,7 +427,10 @@ InitTestScene*.unity.meta
 InitTestScene*.unity
 
 # My stuff
-
+[Aa]ssets/TextMesh*Pro/
+Assets/Text\ Mesh\ Pro
+Assets/TextMesh*Pro
+Assets/Resources
 Assets/BayatGames 
 Assets/Palettes
 Assets/Palettes/*
