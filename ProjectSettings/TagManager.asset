@@ -12,6 +12,7 @@ TagManager:
   - Enemy
   - Obstacle
   - Coin
+  - Score
   layers:
   - Default
   - TransparentFX

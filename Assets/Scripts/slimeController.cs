@@ -7,17 +7,17 @@ using Random = System.Random;
 
 public class slimeController : MonoBehaviour
 {
-    public float slimeSpeed;
-    public bool onPatrolDuty;
-    public bool facingRight;
-    public float hitDamage;
-    public Rigidbody2D rigidBody;
-    private bool needsFlipping;
     public Transform groundPresenceChecker;
     public LayerMask groundLayerMask;
     public LayerMask wallsLayerMask;
-    private Animator animator;
     public Collider2D slimeCollider;
+    public Rigidbody2D rigidBody;
+    private Animator animator;
+    private bool needsFlipping;
+    public bool onPatrolDuty;
+    public float slimeSpeed;
+    public bool facingRight;
+    public float hitDamage;
 
     void Start()
     {
