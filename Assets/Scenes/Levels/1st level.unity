@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 73768289}
   m_Layer: 7
   m_Name: Background
-  m_TagString: Untagged
+  m_TagString: DoubleJump
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -665,6 +665,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d2694ced0e394546b9f8cef7135f6f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coinPickupSound: {fileID: 8300000, guid: 24a99dd453755c647b9ab3d9e18880c8, type: 3}
   coinValue: 0
   pickedUp: 0
 --- !u!61 &157436020
@@ -873,6 +874,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d2694ced0e394546b9f8cef7135f6f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coinPickupSound: {fileID: 8300000, guid: 24a99dd453755c647b9ab3d9e18880c8, type: 3}
   coinValue: 0
   pickedUp: 0
 --- !u!111 &223054849
@@ -995,8 +997,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -110, y: -80}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: -137.7052, y: -110.78357}
+  m_SizeDelta: {x: 255.4104, y: 111.5672}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &227833910
 MonoBehaviour:
@@ -1081,7 +1083,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: -110.8208, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1168,6 +1170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d2694ced0e394546b9f8cef7135f6f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coinPickupSound: {fileID: 8300000, guid: 24a99dd453755c647b9ab3d9e18880c8, type: 3}
   coinValue: 0
   pickedUp: 0
 --- !u!111 &250292861
@@ -1329,6 +1332,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d2694ced0e394546b9f8cef7135f6f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coinPickupSound: {fileID: 8300000, guid: 24a99dd453755c647b9ab3d9e18880c8, type: 3}
   coinValue: 0
   pickedUp: 0
 --- !u!111 &254184720
@@ -1772,6 +1776,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d2694ced0e394546b9f8cef7135f6f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coinPickupSound: {fileID: 8300000, guid: 24a99dd453755c647b9ab3d9e18880c8, type: 3}
   coinValue: 0
   pickedUp: 0
 --- !u!111 &293092413
@@ -4181,6 +4186,58 @@ MonoBehaviour:
   slimeSpeed: 100
   facingRight: 0
   hitDamage: 0
+--- !u!1 &548062238
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 548062239}
+  - component: {fileID: 548062241}
+  m_Layer: 0
+  m_Name: Powerups
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &548062239
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 548062238}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1491555834}
+  - {fileID: 2128300523}
+  m_Father: {fileID: 1099333098}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &548062241
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 548062238}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7fcf4648a599662458071e90ee61525f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &552661544
 GameObject:
   m_ObjectHideFlags: 0
@@ -4798,6 +4855,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d2694ced0e394546b9f8cef7135f6f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coinPickupSound: {fileID: 8300000, guid: 24a99dd453755c647b9ab3d9e18880c8, type: 3}
   coinValue: 0
   pickedUp: 0
 --- !u!111 &577478729
@@ -4959,6 +5017,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d2694ced0e394546b9f8cef7135f6f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coinPickupSound: {fileID: 8300000, guid: 24a99dd453755c647b9ab3d9e18880c8, type: 3}
   coinValue: 0
   pickedUp: 0
 --- !u!111 &598024101
@@ -5120,6 +5179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d2694ced0e394546b9f8cef7135f6f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coinPickupSound: {fileID: 8300000, guid: 24a99dd453755c647b9ab3d9e18880c8, type: 3}
   coinValue: 0
   pickedUp: 0
 --- !u!111 &601380106
@@ -5281,6 +5341,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d2694ced0e394546b9f8cef7135f6f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coinPickupSound: {fileID: 8300000, guid: 24a99dd453755c647b9ab3d9e18880c8, type: 3}
   coinValue: 0
   pickedUp: 0
 --- !u!111 &612314609
@@ -6004,6 +6065,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d2694ced0e394546b9f8cef7135f6f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coinPickupSound: {fileID: 8300000, guid: 24a99dd453755c647b9ab3d9e18880c8, type: 3}
   coinValue: 0
   pickedUp: 0
 --- !u!111 &658936069
@@ -6396,7 +6458,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 671078244}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -6424,8 +6486,8 @@ Transform:
   - {fileID: 612314606}
   - {fileID: 1800948767}
   - {fileID: 1407290614}
-  m_Father: {fileID: 1349910744}
-  m_RootOrder: 1
+  m_Father: {fileID: 1099333098}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &677849236
 GameObject:
@@ -6632,6 +6694,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d2694ced0e394546b9f8cef7135f6f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coinPickupSound: {fileID: 8300000, guid: 24a99dd453755c647b9ab3d9e18880c8, type: 3}
   coinValue: 0
   pickedUp: 0
 --- !u!111 &715570492
@@ -7481,6 +7544,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d2694ced0e394546b9f8cef7135f6f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coinPickupSound: {fileID: 8300000, guid: 24a99dd453755c647b9ab3d9e18880c8, type: 3}
   coinValue: 0
   pickedUp: 0
 --- !u!111 &881853268
@@ -8259,6 +8323,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d2694ced0e394546b9f8cef7135f6f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coinPickupSound: {fileID: 8300000, guid: 24a99dd453755c647b9ab3d9e18880c8, type: 3}
   coinValue: 0
   pickedUp: 0
 --- !u!111 &939945128
@@ -8420,6 +8485,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d2694ced0e394546b9f8cef7135f6f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coinPickupSound: {fileID: 8300000, guid: 24a99dd453755c647b9ab3d9e18880c8, type: 3}
   coinValue: 0
   pickedUp: 0
 --- !u!111 &947946857
@@ -9022,6 +9088,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d2694ced0e394546b9f8cef7135f6f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coinPickupSound: {fileID: 8300000, guid: 24a99dd453755c647b9ab3d9e18880c8, type: 3}
   coinValue: 0
   pickedUp: 0
 --- !u!111 &1007688074
@@ -10459,6 +10526,38 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &1099333097
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1099333098}
+  m_Layer: 0
+  m_Name: Consumables
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1099333098
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1099333097}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 671078245}
+  - {fileID: 548062239}
+  m_Father: {fileID: 1349910744}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1119365330
 GameObject:
   m_ObjectHideFlags: 0
@@ -10864,6 +10963,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d2694ced0e394546b9f8cef7135f6f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coinPickupSound: {fileID: 8300000, guid: 24a99dd453755c647b9ab3d9e18880c8, type: 3}
   coinValue: 0
   pickedUp: 0
 --- !u!111 &1159362943
@@ -11115,8 +11215,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSpeed: 11
-  playerJumpPower: 600
+  playerJumpPower: 500
   touchingGround: 1
+  doubleJumpActive: 0
+  isInvincible: 0
+  inputFrozen: 0
 --- !u!95 &1174348960
 Animator:
   serializedVersion: 3
@@ -11174,7 +11277,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fc217ca18aa5d240a4d91555ec6819a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  graphicsController: {fileID: 0}
 --- !u!1 &1209767508
 GameObject:
   m_ObjectHideFlags: 0
@@ -11380,6 +11482,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d2694ced0e394546b9f8cef7135f6f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coinPickupSound: {fileID: 8300000, guid: 24a99dd453755c647b9ab3d9e18880c8, type: 3}
   coinValue: 0
   pickedUp: 0
 --- !u!111 &1225670505
@@ -11751,6 +11854,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d2694ced0e394546b9f8cef7135f6f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coinPickupSound: {fileID: 8300000, guid: 24a99dd453755c647b9ab3d9e18880c8, type: 3}
   coinValue: 0
   pickedUp: 0
 --- !u!111 &1256439548
@@ -12569,7 +12673,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 499187810}
-  - {fileID: 671078245}
+  - {fileID: 1099333098}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -13274,6 +13378,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d2694ced0e394546b9f8cef7135f6f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coinPickupSound: {fileID: 8300000, guid: 24a99dd453755c647b9ab3d9e18880c8, type: 3}
   coinValue: 0
   pickedUp: 0
 --- !u!111 &1407290617
@@ -14323,6 +14428,132 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &1491555833
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1491555834}
+  - component: {fileID: 1491555837}
+  - component: {fileID: 1491555836}
+  - component: {fileID: 1491555835}
+  m_Layer: 0
+  m_Name: Double Jump ground
+  m_TagString: DoubleJump
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1491555834
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1491555833}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 110.26, y: -3.69, z: 11.580913}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_Children: []
+  m_Father: {fileID: 548062239}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1491555835
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1491555833}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.037303567, y: -0.11191094}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.28, y: 1.28}
+    newSize: {x: 1.28, y: 1.28}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.2053928, y: 1.0561781}
+  m_EdgeRadius: 0
+--- !u!111 &1491555836
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1491555833}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 0962404ef80916143a8af1d3fa30be15, type: 2}
+  m_Animations: []
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
+--- !u!212 &1491555837
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1491555833}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 362380441
+  m_SortingLayer: -1
+  m_SortingOrder: 3
+  m_Sprite: {fileID: 21300000, guid: 64e7f25d7be09b9418eb2bd630919d64, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1.28, y: 1.28}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &1492537307
 GameObject:
   m_ObjectHideFlags: 0
@@ -17343,6 +17574,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d2694ced0e394546b9f8cef7135f6f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coinPickupSound: {fileID: 8300000, guid: 24a99dd453755c647b9ab3d9e18880c8, type: 3}
   coinValue: 0
   pickedUp: 0
 --- !u!111 &1728164220
@@ -18512,6 +18744,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d2694ced0e394546b9f8cef7135f6f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coinPickupSound: {fileID: 8300000, guid: 24a99dd453755c647b9ab3d9e18880c8, type: 3}
   coinValue: 0
   pickedUp: 0
 --- !u!111 &1792138430
@@ -18703,6 +18936,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d2694ced0e394546b9f8cef7135f6f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coinPickupSound: {fileID: 8300000, guid: 24a99dd453755c647b9ab3d9e18880c8, type: 3}
   coinValue: 0
   pickedUp: 0
 --- !u!111 &1800948770
@@ -20452,6 +20686,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d2694ced0e394546b9f8cef7135f6f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coinPickupSound: {fileID: 8300000, guid: 24a99dd453755c647b9ab3d9e18880c8, type: 3}
   coinValue: 0
   pickedUp: 0
 --- !u!111 &1947902925
@@ -22601,6 +22836,132 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &2128300522
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2128300523}
+  - component: {fileID: 2128300525}
+  - component: {fileID: 2128300524}
+  - component: {fileID: 2128300526}
+  m_Layer: 0
+  m_Name: Double Jump 8
+  m_TagString: DoubleJump
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2128300523
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2128300522}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 14.84, y: 2.77, z: 11.580913}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_Children: []
+  m_Father: {fileID: 548062239}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!111 &2128300524
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2128300522}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 0962404ef80916143a8af1d3fa30be15, type: 2}
+  m_Animations: []
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
+--- !u!212 &2128300525
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2128300522}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 362380441
+  m_SortingLayer: -1
+  m_SortingOrder: 3
+  m_Sprite: {fileID: 21300000, guid: 64e7f25d7be09b9418eb2bd630919d64, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1.28, y: 1.28}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!61 &2128300526
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2128300522}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.037303567, y: -0.11191094}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.28, y: 1.28}
+    newSize: {x: 1.28, y: 1.28}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.2053928, y: 1.0561781}
+  m_EdgeRadius: 0
 --- !u!1 &2128892382
 GameObject:
   m_ObjectHideFlags: 0
@@ -22674,6 +23035,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d2694ced0e394546b9f8cef7135f6f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coinPickupSound: {fileID: 8300000, guid: 24a99dd453755c647b9ab3d9e18880c8, type: 3}
   coinValue: 0
   pickedUp: 0
 --- !u!111 &2128892386

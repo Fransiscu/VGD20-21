@@ -38,6 +38,7 @@ public class SETTINGS
 
     // powerups
     public static readonly float speedBoost = 1.2f;
+    public static readonly float doubleJumpBuffDuration = 3f;
 
     // powedowns
     public static readonly float speedDeficit = 1.2f;

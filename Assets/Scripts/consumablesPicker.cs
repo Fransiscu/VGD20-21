@@ -12,11 +12,12 @@ public class consumablesPicker : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D col)
     {
         Debug.Log("Picking consumable");
+        playerController = gameObject.GetComponent<playerController>();
+        
         if (col.gameObject.tag == "Coin" && !col.GetComponent<coinController>().pickedUp)
         {
             Debug.Log("Picked coin's value = " + col.GetComponent<coinController>().coinValue);
 
-            playerController = gameObject.GetComponent<playerController>();
             coin = col.GetComponent<coinController>();
 
             coinValue = coin.coinValue;
@@ -30,6 +31,7 @@ public class consumablesPicker : MonoBehaviour
         else if (col.gameObject.tag == "DoubleJump")
         {
             Destroy(col.gameObject);
+            playerController.DoubleJumpEnabler();
         }
         else if (col.gameObject.tag == "SpeedUp") 
         {

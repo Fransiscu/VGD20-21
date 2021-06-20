@@ -17,18 +17,17 @@ public class playerController : MonoBehaviour
 
     private float lives;
     private float score;
+    private int jumpCounter;
+
+    public bool doubleJumpActive;
     public bool isInvincible;
     public bool inputFrozen;
 
     void Start()
     {
         Debug.Log("Starting player controller");
-        touchingGround = true;
-        animator = GetComponent<Animator>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
         player = LoadPlayer();
         SetupCurrentGamePlayer();
-        inputFrozen = false;
     }
 
     void Update()
@@ -71,7 +70,7 @@ public class playerController : MonoBehaviour
             }
         }
 
-        if (Input.GetButtonDown("Jump") && touchingGround)
+        if (Input.GetButtonDown("Jump"))
         {
             animator.SetBool("isIdle", false);
             animator.SetBool("isJumping", true);
@@ -125,11 +124,19 @@ public class playerController : MonoBehaviour
         transform.localScale = localScale;
     }
 
+    private void OnCollisionExit2D(Collision2D col)
+    {
+        if (col.gameObject.tag == "Ground")
+        {
+            touchingGround = false;
+        }
+    }
     void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.tag == "Ground")
         {
             touchingGround = true;
+            jumpCounter = 0;
             animator.SetBool("isJumping", false); // back to the ground
         }
         else if (col.gameObject.tag == "Enemy")
@@ -185,8 +192,18 @@ public class playerController : MonoBehaviour
 
     public void PlayerJump()
     {
-        gameObject.GetComponent<Rigidbody2D>().AddForce(Vector3.up * playerJumpPower);
-        touchingGround = false;
+        Debug.Log("jump counter = " + jumpCounter);
+        if (doubleJumpActive && jumpCounter < 1 && !touchingGround)
+        {
+            gameObject.GetComponent<Rigidbody2D>().AddForce(Vector3.up * playerJumpPower);
+            touchingGround = false;
+            jumpCounter++;
+        }
+        else if (touchingGround)
+        {
+            gameObject.GetComponent<Rigidbody2D>().AddForce(Vector3.up * playerJumpPower);
+            touchingGround = false;
+        }
     }
 
     private IEnumerator GiveInvincibilityFrames()
@@ -227,7 +244,26 @@ public class playerController : MonoBehaviour
         }
     }
 
+    private IEnumerator EnableDoubleJump()
+    {
+        doubleJumpActive = true;
+        Debug.Log("double jump on");
+        
+        for (float i = 0; i < SETTINGS.doubleJumpBuffDuration; i += 1f)
+        {
+            yield return new WaitForSeconds(1f);
+        }
+
+        Debug.Log("double jump off");
+        doubleJumpActive = false;
+    }
+
     // other methods
+
+    public void DoubleJumpEnabler()
+    {
+        StartCoroutine("EnableDoubleJump");
+    }
 
     private Player LoadPlayer()
     {
@@ -243,6 +279,15 @@ public class playerController : MonoBehaviour
 
     public void SetupCurrentGamePlayer()
     {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
+
+        jumpCounter = 0;
+        
+        touchingGround = true;
+        inputFrozen = false;
+
+
         EditLives(SETTINGS.startingLives);
         EditScore(0);
     }
