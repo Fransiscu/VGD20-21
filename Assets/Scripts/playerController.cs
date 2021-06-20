@@ -12,6 +12,7 @@ public class playerController : MonoBehaviour
     private bool facingRight = true;
     public bool touchingGround; 
     private Animator animator;
+    private SpriteRenderer spriteRenderer;
     Player player;
 
     private float lives;
@@ -24,6 +25,7 @@ public class playerController : MonoBehaviour
         Debug.Log("Starting player controller");
         touchingGround = true;
         animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         player = LoadPlayer();
         SetupCurrentGamePlayer();
         inputFrozen = false;
@@ -176,6 +178,7 @@ public class playerController : MonoBehaviour
                 touchingGround = false;
             }
         }
+        StartCoroutine("FlashOnHit");
         StartCoroutine("GiveInvincibilityFrames");
         StartCoroutine("FreezeInput");
     }
@@ -189,12 +192,13 @@ public class playerController : MonoBehaviour
     private IEnumerator GiveInvincibilityFrames()
     {
         isInvincible = true;
-        Debug.Log("inv");
-        for (float i = 0; i < SETTINGS.invincibilityFramesDurationSeconds; i += SETTINGS.invincibilityFramesDeltaTime)
+
+        for (float i = 0;
+            i < SETTINGS.invincibilityFramesDurationSeconds; i += SETTINGS.invincibilityFramesDeltaTime)
         {
             yield return new WaitForSeconds(SETTINGS.invincibilityFramesDeltaTime);
         }
-        Debug.Log("not inv");
+
         isInvincible = false;
     }
 
@@ -208,6 +212,19 @@ public class playerController : MonoBehaviour
         }
 
         inputFrozen = false;
+    }
+
+    private IEnumerator FlashOnHit()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            Color currentColor = spriteRenderer.material.color;
+            spriteRenderer.material.color = Color.red;
+            yield return new WaitForSeconds(SETTINGS.invincibilityFramesDeltaTime);
+            spriteRenderer.material.color = Color.clear;
+            yield return new WaitForSeconds(SETTINGS.invincibilityFramesDeltaTime);
+            spriteRenderer.material.color = currentColor;
+        }
     }
 
     // other methods
