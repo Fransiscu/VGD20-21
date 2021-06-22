@@ -188,7 +188,7 @@ public class playerController : MonoBehaviour
                 touchingGround = false;
             }
         }
-        StartCoroutine("FlashOnHit");
+        StartCoroutine("CharacterFlash", "hit");
         StartCoroutine("GiveInvincibilityFrames");
         StartCoroutine("FreezeInput");
     }
@@ -233,17 +233,37 @@ public class playerController : MonoBehaviour
         inputFrozen = false;
     }
 
-    private IEnumerator FlashOnHit()
+    private IEnumerator CharacterFlash(String trigger)
     {
+        Color startingColor = spriteRenderer.material.color;
+        Color flashingColor;
+
+        switch (trigger)
+        {
+            case "hit":
+                flashingColor = Color.red;
+                break;
+            case "speedUp":
+                flashingColor = Color.cyan;
+                break;
+            case "doubleJump":
+                flashingColor = Color.magenta;
+                break;
+            default:
+                flashingColor = Color.black;
+                break;
+        }
+
         for (int i = 0; i < 5; i++)
         {
-            Color currentColor = spriteRenderer.material.color;
-            spriteRenderer.material.color = Color.red;
+            spriteRenderer.material.color = flashingColor;
             yield return new WaitForSeconds(SETTINGS.invincibilityFramesDeltaTime);
             spriteRenderer.material.color = Color.clear;
             yield return new WaitForSeconds(SETTINGS.invincibilityFramesDeltaTime);
-            spriteRenderer.material.color = currentColor;
+            spriteRenderer.material.color = startingColor;
         }
+
+        spriteRenderer.material.color = startingColor;
     }
 
     private IEnumerator EnableSpeedBoost(bool speedModifier)
@@ -290,10 +310,20 @@ public class playerController : MonoBehaviour
     public void SpeedEditEnabler(bool modifier)
     {
         StartCoroutine("EnableSpeedBoost", modifier);
+        
+        if (modifier) // if speed up
+        {
+            StartCoroutine("CharacterFlash", "speedUp");
+        }
+        else
+        {
+            StartCoroutine("CharacterFlash", "speedDown");
+        }
     }
 
     public void DoubleJumpEnabler()
     {
+        StartCoroutine("CharacterFlash", "doubleJump");
         StartCoroutine("EnableDoubleJump");
     }
 

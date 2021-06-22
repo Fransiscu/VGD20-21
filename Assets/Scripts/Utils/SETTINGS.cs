@@ -27,7 +27,6 @@ public class SETTINGS
     public static readonly float knockBackDistance = 300.0f;
 
     // player
-    public static readonly float invincibilityHitTime = 1.0f;
     public static readonly float startingLives = 3.0f;
     public static readonly float basePlayerSpeed = 10f;
     public static readonly int basePlayerJumpPower = 500;

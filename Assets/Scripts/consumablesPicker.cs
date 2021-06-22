@@ -8,6 +8,8 @@ public class consumablesPicker : MonoBehaviour
     
     coinController coin;
     playerController playerController;
+    doubleJumpController doubleJumpController;
+    speedUpController speedUpController;
     public GUIController graphicsController;
     
     public AudioClip doubleJumpPickupSound;
@@ -35,18 +37,24 @@ public class consumablesPicker : MonoBehaviour
 
             Destroy(col.gameObject);
         }
-        else if (col.gameObject.tag == "DoubleJump")
+        else if (col.gameObject.tag == "DoubleJump" || !col.GetComponent<doubleJumpController>().pickedUp)
         {
             AudioSource.PlayClipAtPoint(doubleJumpPickupSound, transform.position);
             playerController.DoubleJumpEnabler();
-            
+
+            doubleJumpController = col.GetComponent<doubleJumpController>();
+            doubleJumpController.pickedUp = true;
+
             Destroy(col.gameObject);
         }
-        else if (col.gameObject.tag == "SpeedUp") 
+        else if (col.gameObject.tag == "SpeedUp" || !col.GetComponent<speedUpController>().pickedUp) 
         {
             AudioSource.PlayClipAtPoint(speedUpPickupSoung, transform.position);
             playerController.SpeedEditEnabler(true);  // speed up -> true
-            
+
+            speedUpController = col.GetComponent<speedUpController>();
+            speedUpController.pickedUp = true;
+
             Destroy(col.gameObject);
         }
 
