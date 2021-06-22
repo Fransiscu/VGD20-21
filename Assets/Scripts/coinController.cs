@@ -23,6 +23,6 @@ public class coinController : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        AudioSource.PlayClipAtPoint(coinPickupSound, transform.position);
+       // AudioSource.PlayClipAtPoint(coinPickupSound, transform.position);
     }
 }

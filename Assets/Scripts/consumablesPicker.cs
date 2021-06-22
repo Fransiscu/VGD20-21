@@ -8,6 +8,8 @@ public class consumablesPicker : MonoBehaviour
     coinController coin;
     playerController playerController;
     public GUIController graphicsController;
+    public AudioClip coinPickupSound;
+    public AudioClip doubleJumpPickupSound;
 
     private void OnTriggerEnter2D(Collider2D col)
     {
@@ -17,6 +19,8 @@ public class consumablesPicker : MonoBehaviour
         if (col.gameObject.tag == "Coin" && !col.GetComponent<coinController>().pickedUp)
         {
             Debug.Log("Picked coin's value = " + col.GetComponent<coinController>().coinValue);
+
+            AudioSource.PlayClipAtPoint(coinPickupSound, transform.position);
 
             coin = col.GetComponent<coinController>();
 
@@ -30,8 +34,10 @@ public class consumablesPicker : MonoBehaviour
         }
         else if (col.gameObject.tag == "DoubleJump")
         {
-            Destroy(col.gameObject);
+            AudioSource.PlayClipAtPoint(doubleJumpPickupSound, transform.position);
             playerController.DoubleJumpEnabler();
+            
+            Destroy(col.gameObject);
         }
         else if (col.gameObject.tag == "SpeedUp") 
         {
