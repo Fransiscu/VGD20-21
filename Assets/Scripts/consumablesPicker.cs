@@ -37,7 +37,7 @@ public class consumablesPicker : MonoBehaviour
 
             Destroy(col.gameObject);
         }
-        else if (col.gameObject.tag == "DoubleJump" || !col.GetComponent<doubleJumpController>().pickedUp)
+        else if (col.gameObject.tag == "DoubleJump" && !col.GetComponent<doubleJumpController>().pickedUp)
         {
             AudioSource.PlayClipAtPoint(doubleJumpPickupSound, transform.position);
             playerController.DoubleJumpEnabler();
@@ -47,7 +47,7 @@ public class consumablesPicker : MonoBehaviour
 
             Destroy(col.gameObject);
         }
-        else if (col.gameObject.tag == "SpeedUp" || !col.GetComponent<speedUpController>().pickedUp) 
+        else if (col.gameObject.tag == "SpeedUp" && !col.GetComponent<speedUpController>().pickedUp) 
         {
             AudioSource.PlayClipAtPoint(speedUpPickupSoung, transform.position);
             playerController.SpeedEditEnabler(true);  // speed up -> true
