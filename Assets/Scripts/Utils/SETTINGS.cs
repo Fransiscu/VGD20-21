@@ -29,6 +29,8 @@ public class SETTINGS
     // player
     public static readonly float invincibilityHitTime = 1.0f;
     public static readonly float startingLives = 3.0f;
+    public static readonly float basePlayerSpeed = 10f;
+    public static readonly int basePlayerJumpPower = 500;
     
     public static readonly float invincibilityFramesDurationSeconds = 1.5f;
     public static readonly float invincibilityFramesDeltaTime = 0.15f;
@@ -37,11 +39,12 @@ public class SETTINGS
     public static readonly float playerHitInputFreezeFramesDeltaTime = .1f;
 
     // powerups
-    public static readonly float speedBoost = 1.2f;
-    public static readonly float doubleJumpBuffDuration = 3f;
+    public static readonly float speedBoost = 1.4f;
+    public static readonly float doubleJumpBuffDuration = 5f;
+    public static readonly float speedBoostBuffDuration = 5f;
 
     // powedowns
-    public static readonly float speedDeficit = 1.2f;
+    public static readonly float speedDeficit = .3f;
 
     // levels
 

@@ -6,18 +6,21 @@ using UnityEngine;
 
 public class playerController : MonoBehaviour
 {
-    private float playerMovementDirection;
-    public int playerSpeed; 
-    public int playerJumpPower; // to change/powerup
-    private bool facingRight = true;
-    public bool touchingGround; 
     private Animator animator;
     private SpriteRenderer spriteRenderer;
-    Player player;
 
+    Player player;
+    
+    private float playerMovementDirection;
+    public float playerMovementSpeed; 
+    public int playerJumpPower;
+    
+    private bool facingRight = true;
+    public bool touchingGround; 
+
+    private int jumpCounter;
     private float lives;
     private float score;
-    private int jumpCounter;
 
     public bool doubleJumpActive;
     public bool isInvincible;
@@ -110,7 +113,7 @@ public class playerController : MonoBehaviour
         It should work just fine.
         */
 
-        Vector2 movement = new Vector2(playerMovementDirection * playerSpeed, gameObject.GetComponent<Rigidbody2D>().velocity.y);  
+        Vector2 movement = new Vector2(playerMovementDirection * playerMovementSpeed, gameObject.GetComponent<Rigidbody2D>().velocity.y);  
 
         gameObject.GetComponent<Rigidbody2D>().velocity = movement;
         
@@ -192,7 +195,6 @@ public class playerController : MonoBehaviour
 
     public void PlayerJump()
     {
-        Debug.Log("jump counter = " + jumpCounter);
         if (doubleJumpActive && jumpCounter < 1 && !touchingGround)
         {
             gameObject.GetComponent<Rigidbody2D>().AddForce(Vector3.up * playerJumpPower);
@@ -244,6 +246,31 @@ public class playerController : MonoBehaviour
         }
     }
 
+    private IEnumerator EnableSpeedBoost(bool speedModifier)
+    {
+        Debug.Log("Speed boost on");
+
+        if (speedModifier)  // true -> speed up
+        {
+            Debug.Log("Speed up");
+            playerMovementSpeed *= SETTINGS.speedBoost;
+        } 
+        else
+        {
+            Debug.Log("Speed down");
+            playerMovementSpeed *= SETTINGS.speedDeficit;
+        }
+
+        for (float i = 0; i < SETTINGS.speedBoostBuffDuration; i+= 1f)
+        {
+            yield return new WaitForSeconds(1f);
+        }
+
+        playerMovementSpeed = SETTINGS.basePlayerSpeed;
+
+        Debug.Log("Speed boost off");
+    }
+
     private IEnumerator EnableDoubleJump()
     {
         doubleJumpActive = true;
@@ -259,6 +286,11 @@ public class playerController : MonoBehaviour
     }
 
     // other methods
+
+    public void SpeedEditEnabler(bool modifier)
+    {
+        StartCoroutine("EnableSpeedBoost", modifier);
+    }
 
     public void DoubleJumpEnabler()
     {
@@ -282,6 +314,8 @@ public class playerController : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
 
+        playerMovementSpeed = SETTINGS.basePlayerSpeed;
+        playerJumpPower = SETTINGS.basePlayerJumpPower;
         jumpCounter = 0;
         
         touchingGround = true;

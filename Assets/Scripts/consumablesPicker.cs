@@ -5,11 +5,14 @@ using UnityEngine;
 public class consumablesPicker : MonoBehaviour
 {
     int coinValue;
+    
     coinController coin;
     playerController playerController;
     public GUIController graphicsController;
-    public AudioClip coinPickupSound;
+    
     public AudioClip doubleJumpPickupSound;
+    public AudioClip speedUpPickupSoung;
+    public AudioClip coinPickupSound;
 
     private void OnTriggerEnter2D(Collider2D col)
     {
@@ -41,6 +44,9 @@ public class consumablesPicker : MonoBehaviour
         }
         else if (col.gameObject.tag == "SpeedUp") 
         {
+            AudioSource.PlayClipAtPoint(speedUpPickupSoung, transform.position);
+            playerController.SpeedEditEnabler(true);  // speed up -> true
+            
             Destroy(col.gameObject);
         }
 
