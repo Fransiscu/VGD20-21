@@ -76,8 +76,6 @@ public class slimeController : MonoBehaviour
     {
         if (col.gameObject.tag == "Player")
         {
-            Debug.Log("Slime colliding with player");
-
             float approachDirection = col.transform.position.x - transform.position.x;
 
             // slime won't flip unless it damages the player on its front

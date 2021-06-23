@@ -7,7 +7,13 @@ using UnityEngine;
 public class playerController : MonoBehaviour
 {
     private Animator animator;
-    private SpriteRenderer spriteRenderer;
+    private SpriteRenderer characterSprite;
+
+    public AudioClip jumpSound;
+    public AudioClip hitSound;
+    public AudioClip deathSound;
+    public AudioClip checkpointSound;
+    public AudioClip victorySound;
 
     Player player;
     
@@ -26,11 +32,11 @@ public class playerController : MonoBehaviour
     public bool isInvincible;
     public bool inputFrozen;
 
-    void Start()
+    public void Start()
     {
         Debug.Log("Starting player controller");
         player = LoadPlayer();
-        SetupCurrentGamePlayer();
+        SetupCurrentGame();
     }
 
     void Update()
@@ -146,6 +152,7 @@ public class playerController : MonoBehaviour
         {
             if (!isInvincible)
             {
+                AudioSource.PlayClipAtPoint(hitSound, transform.position);  // playing sound on hit
                 knockBackPlayer(col, false);
             }
         }
@@ -153,6 +160,7 @@ public class playerController : MonoBehaviour
         {
             if (!isInvincible)
             {
+                AudioSource.PlayClipAtPoint(hitSound, transform.position);  // playing sound on hit
                 knockBackPlayer(col, true);   // knocking always to the right
             }
             else
@@ -160,6 +168,12 @@ public class playerController : MonoBehaviour
                 touchingGround = true;
                 animator.SetBool("isJumping", false); 
             }
+        }
+        else if (col.gameObject.tag == "CheckPoint")
+        {
+            AudioSource.PlayClipAtPoint(checkpointSound, transform.position);
+            Debug.Log("Checkpoint reached");
+            // do stuff 
         }
     }
 
@@ -200,11 +214,13 @@ public class playerController : MonoBehaviour
             gameObject.GetComponent<Rigidbody2D>().AddForce(Vector3.up * playerJumpPower);
             touchingGround = false;
             jumpCounter++;
+            AudioSource.PlayClipAtPoint(jumpSound, transform.position);
         }
         else if (touchingGround)
         {
             gameObject.GetComponent<Rigidbody2D>().AddForce(Vector3.up * playerJumpPower);
             touchingGround = false;
+            AudioSource.PlayClipAtPoint(jumpSound, transform.position);
         }
     }
 
@@ -235,7 +251,7 @@ public class playerController : MonoBehaviour
 
     private IEnumerator CharacterFlash(String trigger)
     {
-        Color startingColor = spriteRenderer.material.color;
+        Color startingColor = characterSprite.material.color;
         Color flashingColor;
 
         switch (trigger)
@@ -256,14 +272,14 @@ public class playerController : MonoBehaviour
 
         for (int i = 0; i < 5; i++)
         {
-            spriteRenderer.material.color = flashingColor;
+            characterSprite.material.color = flashingColor;
             yield return new WaitForSeconds(SETTINGS.invincibilityFramesDeltaTime);
-            spriteRenderer.material.color = Color.clear;
+            characterSprite.material.color = Color.clear;
             yield return new WaitForSeconds(SETTINGS.invincibilityFramesDeltaTime);
-            spriteRenderer.material.color = startingColor;
+            characterSprite.material.color = startingColor;
         }
 
-        spriteRenderer.material.color = startingColor;
+        characterSprite.material.color = startingColor;
     }
 
     private IEnumerator EnableSpeedBoost(bool speedModifier)
@@ -339,9 +355,9 @@ public class playerController : MonoBehaviour
         return player;
     }
 
-    public void SetupCurrentGamePlayer()
+    public void SetupCurrentGame()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        characterSprite = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
 
         playerMovementSpeed = SETTINGS.basePlayerSpeed;
@@ -351,14 +367,18 @@ public class playerController : MonoBehaviour
         touchingGround = true;
         inputFrozen = false;
 
-
         EditLives(SETTINGS.startingLives);
         EditScore(0);
     }
 
     public void EditLives(float change)
     {
-        this.lives += change;
+        Debug.LogWarning(isInvincible);
+            Debug.LogWarning("got hit ");
+        if(!isInvincible)
+        {
+            this.lives += change;
+        }
     }
 
     public void EditScore(int amount)
