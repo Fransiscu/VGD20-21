@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class playerController : MonoBehaviour
 {
-    private Animator animator;
+    private Animator playerAnimator;
     private SpriteRenderer characterSprite;
 
     public AudioClip jumpSound;
@@ -56,56 +56,56 @@ public class playerController : MonoBehaviour
         {
             if (!touchingGround)    // and is jumping
             {
-                animator.SetBool("isIdle", false);
-                animator.SetBool("isWalking", false);
+                playerAnimator.SetBool("isIdle", false);
+                playerAnimator.SetBool("isWalking", false);
             }
             else    // and is not jumping
             {
-                animator.SetBool("isIdle", true);
-                animator.SetBool("isWalking", false);
+                playerAnimator.SetBool("isIdle", true);
+                playerAnimator.SetBool("isWalking", false);
             }
         } 
         else    // if the character is moving
         {
-            if (!animator.GetBool("isWalking")) // and if is not already walking
+            if (!playerAnimator.GetBool("isWalking")) // and if is not already walking
             {
-                animator.SetBool("isIdle", false);
-                animator.SetBool("isWalking", true);
+                playerAnimator.SetBool("isIdle", false);
+                playerAnimator.SetBool("isWalking", true);
             }
 
             if (!touchingGround)
             {
-                animator.SetBool("isWalking", false);
+                playerAnimator.SetBool("isWalking", false);
             }
         }
 
         if (Input.GetButtonDown("Jump"))
         {
-            animator.SetBool("isIdle", false);
-            animator.SetBool("isJumping", true);
+            playerAnimator.SetBool("isIdle", false);
+            playerAnimator.SetBool("isJumping", true);
             PlayerJump(); 
         }
 
         if (playerMovementDirection > 0.0f && facingRight == false)   // moving right
         {
-            animator.SetBool("isIdle", false);
-            animator.SetBool("isWalking", true);
-            animator.SetBool("isJumping", false);
+            playerAnimator.SetBool("isIdle", false);
+            playerAnimator.SetBool("isWalking", true);
+            playerAnimator.SetBool("isJumping", false);
             if (!touchingGround)
             {
-                animator.SetBool("isWalking", false);
+                playerAnimator.SetBool("isWalking", false);
             }
             FlipPlayer(); 
         }
         else if (playerMovementDirection < 0.0f && facingRight == true)   // moving left
         {
-            animator.SetBool("isIdle", false);
-            animator.SetBool("isWalking", true);
-            animator.SetBool("isJumping", false);
+            playerAnimator.SetBool("isIdle", false);
+            playerAnimator.SetBool("isWalking", true);
+            playerAnimator.SetBool("isJumping", false);
             
             if (!touchingGround)
             {
-                animator.SetBool("isWalking", false);
+                playerAnimator.SetBool("isWalking", false);
             }
             FlipPlayer(); 
         }
@@ -146,7 +146,7 @@ public class playerController : MonoBehaviour
         {
             touchingGround = true;
             jumpCounter = 0;
-            animator.SetBool("isJumping", false); // back to the ground
+            playerAnimator.SetBool("isJumping", false); // back to the ground
         }
         else if (col.gameObject.tag == "Enemy")
         {
@@ -166,7 +166,7 @@ public class playerController : MonoBehaviour
             else
             {
                 touchingGround = true;
-                animator.SetBool("isJumping", false); 
+                playerAnimator.SetBool("isJumping", false); 
             }
         }
         else if (col.gameObject.tag == "CheckPoint")
@@ -184,7 +184,7 @@ public class playerController : MonoBehaviour
         if (knockForward)
         {
             gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector3(+SETTINGS.knockBackStrength, SETTINGS.knockBackDistance, 0));
-            animator.SetBool("isJumping", true);
+            playerAnimator.SetBool("isJumping", true);
             touchingGround = false;
         }
         else
@@ -192,13 +192,13 @@ public class playerController : MonoBehaviour
             if (approachDirection > 0) // > 0 enemy is to the right 
             {
                 gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector3(-SETTINGS.knockBackStrength, SETTINGS.knockBackDistance, 0));
-                animator.SetBool("isJumping", true);
+                playerAnimator.SetBool("isJumping", true);
                 touchingGround = false;
             }
             else if (approachDirection < 0) // < 0 enemy is to the left
             {
                 gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector3(+SETTINGS.knockBackStrength, SETTINGS.knockBackDistance, 0));
-                animator.SetBool("isJumping", true);
+                playerAnimator.SetBool("isJumping", true);
                 touchingGround = false;
             }
         }
@@ -358,7 +358,7 @@ public class playerController : MonoBehaviour
     public void SetupCurrentGame()
     {
         characterSprite = GetComponent<SpriteRenderer>();
-        animator = GetComponent<Animator>();
+        playerAnimator = GetComponent<Animator>();
 
         playerMovementSpeed = SETTINGS.basePlayerSpeed;
         playerJumpPower = SETTINGS.basePlayerJumpPower;
@@ -373,8 +373,6 @@ public class playerController : MonoBehaviour
 
     public void EditLives(float change)
     {
-        Debug.LogWarning(isInvincible);
-            Debug.LogWarning("got hit ");
         if(!isInvincible)
         {
             this.lives += change;

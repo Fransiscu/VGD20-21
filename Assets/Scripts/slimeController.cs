@@ -21,11 +21,7 @@ public class slimeController : MonoBehaviour
 
     void Start()
     {
-        facingRight = true;
-        animator = GetComponentInChildren<Animator>();
-        transform.localScale = new Vector2(transform.localScale.x * -1, transform.localScale.y); // flipping default slime at start 
-        onPatrolDuty = true;
-        hitDamage = SETTINGS.slimeHitDamage;
+        SetupSlime();
     }
 
     void Update()
@@ -95,5 +91,14 @@ public class slimeController : MonoBehaviour
             // dealing damage
             col.gameObject.GetComponent<playerController>().EditLives(hitDamage);
         }   
+    }
+
+    private void SetupSlime()
+    {
+        facingRight = true;
+        animator = GetComponentInChildren<Animator>();
+        transform.localScale = new Vector2(transform.localScale.x * -1, transform.localScale.y); // flipping default slime at start 
+        onPatrolDuty = true;
+        hitDamage = SETTINGS.slimeHitDamage;
     }
 }

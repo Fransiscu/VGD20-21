@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class cameraController : MonoBehaviour
 {
-    public GameObject player;
+    public Transform player;
     public float xMin;   
     public float xMax;   
     public float yMin;
@@ -12,7 +12,6 @@ public class cameraController : MonoBehaviour
 
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     void Update()
