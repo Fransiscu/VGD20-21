@@ -18,17 +18,22 @@ public class SETTINGS
     public static readonly int bonusLevelMaxCoinScore = 10;
 
     // enemies
+    public static readonly float slimeSpeed = 200f;
+    public static readonly float snailSpeed = 200f;
+    public static readonly float wildBoarSpeed = 200f;
+
     public static readonly float slimeHitDamage = 0.5f;
     public static readonly float snailDamage = 0.5f;
+    public static readonly float wildBoarDamage = 0.5f;
+
     public static readonly float spikesDamage = 1.0f;
-    public static readonly float empressDamage = 1.0f;
     
     public static readonly float knockBackStrength = 200.0f;
     public static readonly float knockBackDistance = 300.0f;
 
     // cygnus
-
-    public static readonly float cygnusSpeed = 8f;
+    public static readonly float cygnusSpeed = 150f;
+    public static readonly float cygnusDamage = 1.0f;
 
     // player
     public static readonly float startingLives = 3.0f;
