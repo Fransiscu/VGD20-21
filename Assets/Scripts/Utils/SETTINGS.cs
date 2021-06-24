@@ -28,16 +28,19 @@ public class SETTINGS
 
     public static readonly float spikesDamage = 1.0f;
     
-    public static readonly float knockBackStrength = 200.0f;
-    public static readonly float knockBackDistance = 300.0f;
+    public static readonly float knockBackStrength = 250.0f;
+    public static readonly float knockBackDistance = 150.0f;
 
     // cygnus
-    public static readonly float cygnusSpeed = 150f;
+    public static readonly float cygnusSpeed = 200f;
     public static readonly float cygnusDamage = 1.0f;
+
+    public static readonly float cygnusKnockBackStrength = 500.0f;
+    public static readonly float cygnusKnockBackDistance = 400.0f;
 
     // player
     public static readonly float startingLives = 3.0f;
-    public static readonly float basePlayerSpeed = 10f;
+    public static readonly float basePlayerSpeed = 5f;
     public static readonly int basePlayerJumpPower = 500;
     
     public static readonly float invincibilityFramesDurationSeconds = 1.5f;
@@ -47,7 +50,7 @@ public class SETTINGS
     public static readonly float playerHitInputFreezeFramesDeltaTime = .1f;
 
     // powerups
-    public static readonly float speedBoost = 1.4f;
+    public static readonly float speedBoost = 1.7f;
     public static readonly float doubleJumpBuffDuration = 5f;
     public static readonly float speedBoostBuffDuration = 5f;
 

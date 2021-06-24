@@ -90,7 +90,11 @@ public class slimeController : MonoBehaviour
 
             // dealing damage
             col.gameObject.GetComponent<playerController>().EditLives(hitDamage);
-        }   
+        }
+        else if (col.gameObject.tag == "Obstacle")
+        {
+            Physics2D.IgnoreCollision(slimeCollider, col.collider);
+        }
     }
 
     private void SetupSlime()

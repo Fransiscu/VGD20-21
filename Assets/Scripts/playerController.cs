@@ -156,6 +156,14 @@ public class playerController : MonoBehaviour
                 knockBackPlayer(col, false);
             }
         }
+        else if (col.gameObject.tag == "Cygnus")
+        {
+            if (!isInvincible)
+            {
+                AudioSource.PlayClipAtPoint(hitSound, transform.position);  // playing sound on hit
+                knockBackPlayer(col, false);
+            }
+        }
         else if (col.gameObject.tag == "Obstacle")
         {
             if (!isInvincible)
@@ -166,14 +174,8 @@ public class playerController : MonoBehaviour
             else
             {
                 touchingGround = true;
-                playerAnimator.SetBool("isJumping", false); 
+                playerAnimator.SetBool("isJumping", false);
             }
-        }
-        else if (col.gameObject.tag == "CheckPoint")
-        {
-            AudioSource.PlayClipAtPoint(checkpointSound, transform.position);
-            Debug.Log("Checkpoint reached");
-            // do stuff 
         }
     }
 
@@ -197,9 +199,16 @@ public class playerController : MonoBehaviour
             }
             else if (approachDirection < 0) // < 0 enemy is to the left
             {
-                gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector3(+SETTINGS.knockBackStrength, SETTINGS.knockBackDistance, 0));
-                playerAnimator.SetBool("isJumping", true);
-                touchingGround = false;
+                if (col.gameObject.tag == "Cygnus") // cygnus knocks back harder
+                {
+                    gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector3(+SETTINGS.cygnusKnockBackStrength, SETTINGS.cygnusKnockBackDistance, 0));
+                }
+                else
+                {
+                    gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector3(+SETTINGS.knockBackStrength, SETTINGS.knockBackDistance, 0));
+                    playerAnimator.SetBool("isJumping", true);
+                    touchingGround = false;
+                }
             }
         }
         StartCoroutine("CharacterFlash", "hit");
