@@ -51,7 +51,7 @@ public class slimeController : MonoBehaviour
             animator.SetBool("isIdle", true);
         }
     }
-    void Patrol()
+    private void Patrol()
     {
         if (needsFlipping || slimeCollider.IsTouchingLayers(wallsLayerMask))
         {
@@ -59,7 +59,7 @@ public class slimeController : MonoBehaviour
         }
         rigidBody.velocity = new Vector2(slimeSpeed * Time.fixedDeltaTime, rigidBody.velocity.y);
     }
-    void FlipSlime()
+    private void FlipSlime()
     {
         onPatrolDuty = false;
         facingRight = !facingRight;
@@ -68,7 +68,7 @@ public class slimeController : MonoBehaviour
         onPatrolDuty = true;
         needsFlipping = false;
     }
-    public void OnCollisionEnter2D(Collision2D col)
+    private void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.tag == "Player")
         {

@@ -30,7 +30,7 @@ public class playerController : MonoBehaviour
 
     public bool doubleJumpActive;
     public bool isInvincible;
-    public bool inputFrozen;
+    public bool inputFrozen = true;
 
     public void Start()
     {
@@ -237,6 +237,11 @@ public class playerController : MonoBehaviour
         isInvincible = false;
     }
 
+    public void PlayerFreezeToggle()
+    {
+        inputFrozen = !inputFrozen;
+    }
+
     private IEnumerator FreezeInput()
     {
         inputFrozen = true;
@@ -365,7 +370,6 @@ public class playerController : MonoBehaviour
         jumpCounter = 0;
         
         touchingGround = true;
-        inputFrozen = false;
 
         EditLives(SETTINGS.startingLives);
         EditScore(0);

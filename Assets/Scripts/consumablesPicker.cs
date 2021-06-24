@@ -10,7 +10,7 @@ public class consumablesPicker : MonoBehaviour
     playerController playerController;
     doubleJumpController doubleJumpController;
     speedUpController speedUpController;
-    public GUIController graphicsController;
+    public GUIController GUIController;
     
     public AudioClip doubleJumpPickupSound;
     public AudioClip speedUpPickupSoung;
@@ -32,7 +32,7 @@ public class consumablesPicker : MonoBehaviour
             coinValue = coin.coinValue;
             coin.pickedUp = true;
 
-            graphicsController.changeGUIScore(coinValue);
+            GUIController.changeGUIScore(coinValue);
             playerController.EditScore(coinValue);
 
             Destroy(col.gameObject);
