@@ -30,12 +30,15 @@ public class menuController : MonoBehaviour
 
     void Start()
     {
+        Debug.LogWarning(PlayerPrefs.GetString("save_data"));
         if (PlayerPrefs.GetString("save_data").Equals("")) // if we have no playerdata saved yet
         {
+            Debug.LogWarning("not found player");
             FirstStart();   
         }
         else
         {
+            Debug.LogWarning("found player");
             player = new Player();
             player = Player.LoadPlayer();
 
@@ -47,9 +50,9 @@ public class menuController : MonoBehaviour
     public void SetupNewPlayer()
     {
         Player player = new Player();
-        if (newPlayerNameInputField.text.Length < 8)
+        if (newPlayerNameInputField.text.Length < 8 && newPlayerNameInputField.text.Length > 2)
         {
-            player.Name = newPlayerNameInputField.text;
+            player = new Player(newPlayerNameInputField.text);
         }
         else
         {
@@ -95,7 +98,11 @@ public class menuController : MonoBehaviour
         playerNameScore.enabled = true;
         playerNameScore.SetText(player.Name + " - " + player.LifeTimeScore);  // nullpointer 
 
+        // levels menu buttons
         continueButton.interactable = player.AtCheckpoint;
+        level1Button.interactable = true;
+        level2Button.interactable = player.unlockedLevels.Contains(2);
+        level3Button.interactable = player.unlockedLevels.Contains(3);
     }
 
     public void QuitGame()
@@ -113,9 +120,6 @@ public class menuController : MonoBehaviour
     public void OnPlayButtonPress()
     {
         mainMenu.SetActive(false);
-        // TODO check what levels are unlocked or not
-        level2Button.interactable = false;
-        level3Button.interactable = false;
     }
 
     public void OnLevel1ButtonPress()

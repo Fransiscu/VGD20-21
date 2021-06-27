@@ -32,7 +32,7 @@ public class Player
         this.atCheckpoint = false;
         this.lifeTimeScore = 0;
         this.finishedGame = false;
-        this.unlockedLevels.Add(1);
+        this.unlockedLevels = new List<int>() { 1 };
     }
 
     /*
