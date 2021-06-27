@@ -8,12 +8,10 @@ public class GUIController : MonoBehaviour
     public TextMeshProUGUI textcoins;
     public TextMeshProUGUI countDown;
 
-    bool countDownOver;
     int currentScore;
     
     void Start()
     {
-        countDownOver = false;
         currentScore = 0;
         textcoins.SetText(currentScore.ToString());
     }
