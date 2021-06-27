@@ -47,7 +47,14 @@ public class menuController : MonoBehaviour
     public void SetupNewPlayer()
     {
         Player player = new Player();
-        player.Name = newPlayerNameInputField.text;
+        if (newPlayerNameInputField.text.Length < 8)
+        {
+            player.Name = newPlayerNameInputField.text;
+        }
+        else
+        {
+            return;
+        }
 
         nameInputMenu.SetActive(false); // hiding the name input menu
         settingsMenu.SetActive(true);   // showing main menu 
