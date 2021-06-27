@@ -40,8 +40,14 @@ public class Player
      *  Saving player data as a json string and loading it into the PlayerPrefs.
      *  Will restore it through a jsonread
      */
-    public string SavePlayer()
+    public void SavePlayer()
     {
-        return "saved";
+        PlayerPrefs.SetString("save_data", JsonUtility.ToJson(this));
     }
+
+    public static Player LoadPlayer()
+    {
+        return JsonUtility.FromJson<Player>(PlayerPrefs.GetString("save_data"));
+    }
+
 }
