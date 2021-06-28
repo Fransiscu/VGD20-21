@@ -8169,6 +8169,7 @@ MonoBehaviour:
   cygnus: {fileID: 781010786}
   player: {fileID: 1174348953}
   GUIController: {fileID: 1860570469}
+  checkpoint: {fileID: 427385983}
 --- !u!4 &869845315
 Transform:
   m_ObjectHideFlags: 0

@@ -9,6 +9,9 @@ public class GameController : MonoBehaviour
     public GameObject player;
     public GameObject GUIController;
 
+    public Transform checkpoint;
+
+    Player playerObject;
     void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -26,7 +29,19 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
+        playerObject = new Player();
+        playerObject = Player.LoadPlayer();
         
+        /*
+         * If player at checkpoint move the position to the checkpoint sign post
+         */
+        if (playerObject.AtCheckpoint)  
+        {
+            player.transform.position = checkpoint.transform.position;
+            cygnus.transform.position = new Vector3(player.transform.position.x - 10, cygnus.transform.position.y, cygnus.transform.position.z);
+            StartCoroutine("SetupEntities");
+        }
+
     }
 
     void Update()
