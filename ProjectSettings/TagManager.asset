@@ -18,6 +18,7 @@ TagManager:
   - CountDown
   - Cygnus
   - MenuBackgroundImage
+  - MenuController
   layers:
   - Default
   - TransparentFX

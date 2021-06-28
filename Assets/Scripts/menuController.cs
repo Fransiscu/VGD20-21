@@ -18,11 +18,6 @@ public class menuController : MonoBehaviour
 
     public TMP_InputField newPlayerNameInputField;
     public TextMeshProUGUI playerNameScore;
-
-    public Button continueButton;
-    public Button level1Button;
-    public Button level2Button;
-    public Button level3Button;
     
     Animator cygnusAnimator;
 
@@ -30,18 +25,14 @@ public class menuController : MonoBehaviour
 
     void Start()
     {
-        Debug.LogWarning(PlayerPrefs.GetString("save_data"));
         if (PlayerPrefs.GetString("save_data").Equals("")) // if we have no playerdata saved yet
         {
-            Debug.LogWarning("not found player");
             FirstStart();   
         }
         else
         {
-            Debug.LogWarning("found player");
             player = new Player();
             player = Player.LoadPlayer();
-
             SetupInterface(player);
         }
         
@@ -85,6 +76,7 @@ public class menuController : MonoBehaviour
     private void SetupInterface(Player player)
     {
         cygnusAnimator = cygnus.GetComponentInChildren<Animator>();
+        cygnusAnimator.Play("cygnus_stand");
 
         gameStatsResetMenu.SetActive(false);    // turning the game stats menu off at start
         settingsMenu.SetActive(false);  // turning the settings menu off at start
@@ -96,13 +88,8 @@ public class menuController : MonoBehaviour
         cygnusAnimator.SetBool("cygnus_stand", true);
 
         playerNameScore.enabled = true;
-        playerNameScore.SetText(player.Name + " - " + player.LifeTimeScore);  // nullpointer 
+        playerNameScore.SetText(player.Name + " - " + player.LifeTimeScore); 
 
-        // levels menu buttons
-        continueButton.interactable = player.AtCheckpoint;
-        level1Button.interactable = true;
-        level2Button.interactable = player.unlockedLevels.Contains(2);
-        level3Button.interactable = player.unlockedLevels.Contains(3);
     }
 
     public void QuitGame()
@@ -119,19 +106,7 @@ public class menuController : MonoBehaviour
 
     public void OnPlayButtonPress()
     {
-        mainMenu.SetActive(false);
-    }
-
-    public void OnLevel1ButtonPress()
-    {
-        FadeTransition fadeToLevel = new FadeTransition()
-        {
-            nextScene = 1,
-            fadedDelay = .5f,
-            duration = 1.5f,
-            fadeToColor = Color.white
-        };
-        TransitionKit.instance.transitionWithDelegate(fadeToLevel);
+        SceneManager.LoadScene(1);
     }
  
     public IEnumerator StartingGameAnimation()
@@ -164,4 +139,5 @@ public class menuController : MonoBehaviour
         };
         TransitionKit.instance.transitionWithDelegate(fadeToLevel);
     }
+
 }

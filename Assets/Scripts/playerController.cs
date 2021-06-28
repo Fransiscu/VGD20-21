@@ -359,9 +359,7 @@ public class playerController : MonoBehaviour
 
     private Player LoadPlayer()
     {
-        // Load player from savefile if present
-        // player.name = "ciao";
-        return new Player();
+        return Player.LoadPlayer();
     }
 
     public Player getPlayer()
@@ -388,14 +386,14 @@ public class playerController : MonoBehaviour
     {
         if(!isInvincible)
         {
-            this.lives += change;
+            player.CurrentLives -= change;
         }
     }
 
     public void EditScore(int amount)
     {
-        score += amount;
-        player.lifeTimeScore += amount;
+        player.CurrentScore += amount;
+        player.LifeTimeScore += amount;
         Debug.Log("total score = " + score);
     }
 }

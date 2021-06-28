@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -8,9 +9,24 @@ public class GameController : MonoBehaviour
     public GameObject player;
     public GameObject GUIController;
 
-    void Start()
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode) // setting up entities before game start
     {
         StartCoroutine("SetupEntities");
+    }
+
+    void Start()
+    {
+        
     }
 
     void Update()
