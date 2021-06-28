@@ -9,8 +9,6 @@ public class savePointsController : MonoBehaviour
     public RaycastHit2D raycastHit2D;
     public Transform milestonePoint;
 
-    menuController menu;
-
     public bool milestoneReached;
     public float distance = 50f;
     private int currentLevel;
@@ -20,8 +18,7 @@ public class savePointsController : MonoBehaviour
     void Start()
     {
         player = new Player();
-        player = Player.LoadPlayer();
-        currentLevel = SceneManager.GetActiveScene().buildIndex;
+        currentLevel = SceneManager.GetActiveScene().buildIndex - 1; // 2 scenes before the actual levels, so we subtract 1
         milestoneReached = false;  // player can only reach checkpoint once
     }
 
@@ -32,26 +29,36 @@ public class savePointsController : MonoBehaviour
         if (raycastHit2D.collider == true && raycastHit2D.collider.tag == "Player" && !milestoneReached)
         {
             milestoneReached = true; // cannot activate milestone more than once
+            player = Player.LoadPlayer();
 
             if (gameObject.tag == "CheckPoint") // check if at checkpoint or finishline
             {
                 player.CurrentLevel = currentLevel;
                 player.AtCheckpoint = true;
+
                 player.SavePlayer();
             }
             else if (gameObject.tag == "Finishline")
             {
-                if (player.CurrentLives > 0 )
+                if (currentLevel > 0 && currentLevel < 3 && !player.UnlockedLevels.Contains(currentLevel + 1))   // unlocking next level if necessary
                 {
-                    if (currentLevel > 0 && currentLevel < 3 && !player.UnlockedLevels.Contains(currentLevel))   // unlocking next level
-                    {
-                        player.UnlockedLevels.Add(currentLevel + 2);    // 2 are the scenes before the lvl 1
-                        player.LifeTimeScore += player.CurrentScore;
-                        player.SavePlayer();
-                        
-                        //menu = GameObject.FindGameObjectWithTag("MenuController").GetComponent<menuController>();
-                    }
+                    player.UnlockedLevels.Add(currentLevel + 1);  
                 }
+
+                player.LifeTimeScore += player.CurrentScore;
+                player.CurrentScore = 0;    // resetting current score
+                player.AtCheckpoint = false;
+                player.currentLives = SETTINGS.startingLives;   // resetting total lives for next level
+                player.SavePlayer();
+
+                FadeTransition fadeToLevel = new FadeTransition()   // returning to level selection menu
+                {
+                    nextScene = 1,
+                    fadedDelay = .5f,
+                    duration = 1.5f,
+                    fadeToColor = Color.white
+                };
+                TransitionKit.instance.transitionWithDelegate(fadeToLevel);
             }
             else if (gameObject.tag == "BonusLevelEntryPoint")
             {

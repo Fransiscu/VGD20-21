@@ -34,8 +34,8 @@ public class playerController : MonoBehaviour
 
     public void Start()
     {
-        Debug.Log("Starting player controller");
         player = LoadPlayer();
+        Debug.LogWarning(PlayerPrefs.GetString("save_data"));
         SetupCurrentGame();
     }
 
@@ -393,7 +393,7 @@ public class playerController : MonoBehaviour
     public void EditScore(int amount)
     {
         player.CurrentScore += amount;
-        player.LifeTimeScore += amount;
+        player.SavePlayer();
         Debug.Log("total score = " + score);
     }
 }

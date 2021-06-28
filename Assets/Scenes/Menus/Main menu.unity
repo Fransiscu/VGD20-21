@@ -1002,7 +1002,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Input new character name (8 char max):'
+  m_text: 'Input new character name (14 char max):'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: e73a58f6e2794ae7b1b7e50b7fb811b0, type: 2}
@@ -1029,7 +1029,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 44
+  m_fontSize: 42.65
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3201,10 +3201,6 @@ MonoBehaviour:
   cygnus: {fileID: 1765510372}
   newPlayerNameInputField: {fileID: 1419409437}
   playerNameScore: {fileID: 1839616789}
-  continueButton: {fileID: 584957250}
-  level1Button: {fileID: 773779004}
-  level2Button: {fileID: 234394883}
-  level3Button: {fileID: 1644221617}
 --- !u!4 &872862884
 Transform:
   m_ObjectHideFlags: 0

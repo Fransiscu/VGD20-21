@@ -35,13 +35,15 @@ public class menuController : MonoBehaviour
             player = Player.LoadPlayer();
             SetupInterface(player);
         }
+
+        Debug.LogWarning(PlayerPrefs.GetString("save_data"));
         
     }
 
     public void SetupNewPlayer()
     {
         Player player = new Player();
-        if (newPlayerNameInputField.text.Length < 8 && newPlayerNameInputField.text.Length > 2)
+        if (newPlayerNameInputField.text.Length < 15 && newPlayerNameInputField.text.Length > 2)
         {
             player = new Player(newPlayerNameInputField.text);
         }
