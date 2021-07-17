@@ -16,13 +16,13 @@ public class playerController : MonoBehaviour
     public AudioClip victorySound;
 
     Player player;
-    
+
     private float playerMovementDirection;
-    public float playerMovementSpeed; 
+    public float playerMovementSpeed;
     public int playerJumpPower;
-    
+
     private bool facingRight = true;
-    public bool touchingGround; 
+    public bool touchingGround;
 
     private int jumpCounter;
     private float lives;
@@ -47,10 +47,12 @@ public class playerController : MonoBehaviour
         }
     }
 
-    public void MovePlayer() 
+    public void MovePlayer()
     {
         playerMovementDirection = 0;
         playerMovementDirection = Input.GetAxis("Horizontal");
+
+        Debug.LogWarning(playerMovementDirection);
 
         if (playerMovementDirection == 0)    // if the character is not moving
         {
@@ -64,7 +66,7 @@ public class playerController : MonoBehaviour
                 playerAnimator.SetBool("isIdle", true);
                 playerAnimator.SetBool("isWalking", false);
             }
-        } 
+        }
         else    // if the character is moving
         {
             if (!playerAnimator.GetBool("isWalking")) // and if is not already walking
@@ -83,7 +85,7 @@ public class playerController : MonoBehaviour
         {
             playerAnimator.SetBool("isIdle", false);
             playerAnimator.SetBool("isJumping", true);
-            PlayerJump(); 
+            PlayerJump();
         }
 
         if (playerMovementDirection > 0.0f && facingRight == false)   // moving right
@@ -95,19 +97,19 @@ public class playerController : MonoBehaviour
             {
                 playerAnimator.SetBool("isWalking", false);
             }
-            FlipPlayer(); 
+            FlipPlayer();
         }
         else if (playerMovementDirection < 0.0f && facingRight == true)   // moving left
         {
             playerAnimator.SetBool("isIdle", false);
             playerAnimator.SetBool("isWalking", true);
             playerAnimator.SetBool("isJumping", false);
-            
+
             if (!touchingGround)
             {
                 playerAnimator.SetBool("isWalking", false);
             }
-            FlipPlayer(); 
+            FlipPlayer();
         }
 
         /* 
@@ -119,10 +121,10 @@ public class playerController : MonoBehaviour
         It should work just fine.
         */
 
-        Vector2 movement = new Vector2(playerMovementDirection * playerMovementSpeed, gameObject.GetComponent<Rigidbody2D>().velocity.y);  
+        Vector2 movement = new Vector2(playerMovementDirection * playerMovementSpeed, gameObject.GetComponent<Rigidbody2D>().velocity.y);
 
         gameObject.GetComponent<Rigidbody2D>().velocity = movement;
-        
+
     }
 
     public void FlipPlayer()
@@ -304,14 +306,14 @@ public class playerController : MonoBehaviour
         {
             Debug.Log("Speed up");
             playerMovementSpeed *= SETTINGS.speedBoost;
-        } 
+        }
         else
         {
             Debug.Log("Speed down");
             playerMovementSpeed *= SETTINGS.speedDeficit;
         }
 
-        for (float i = 0; i < SETTINGS.speedBoostBuffDuration; i+= 1f)
+        for (float i = 0; i < SETTINGS.speedBoostBuffDuration; i += 1f)
         {
             yield return new WaitForSeconds(1f);
         }
@@ -325,7 +327,7 @@ public class playerController : MonoBehaviour
     {
         doubleJumpActive = true;
         Debug.Log("double jump on");
-        
+
         for (float i = 0; i < SETTINGS.doubleJumpBuffDuration; i += 1f)
         {
             yield return new WaitForSeconds(1f);
@@ -340,7 +342,7 @@ public class playerController : MonoBehaviour
     public void SpeedEditEnabler(bool modifier)
     {
         StartCoroutine("EnableSpeedBoost", modifier);
-        
+
         if (modifier) // if speed up
         {
             StartCoroutine("CharacterFlash", "speedUp");
@@ -375,7 +377,7 @@ public class playerController : MonoBehaviour
         playerMovementSpeed = SETTINGS.basePlayerSpeed;
         playerJumpPower = SETTINGS.basePlayerJumpPower;
         jumpCounter = 0;
-        
+
         touchingGround = true;
 
         EditLives(SETTINGS.startingLives);
@@ -384,7 +386,7 @@ public class playerController : MonoBehaviour
 
     public void EditLives(float change)
     {
-        if(!isInvincible)
+        if (!isInvincible)
         {
             player.CurrentLives -= change;
         }

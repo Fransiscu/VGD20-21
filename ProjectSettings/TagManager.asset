@@ -3,22 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Ground
-  - Start
-  - CheckPoint
-  - Bonus
-  - Finishline
-  - Enemy
-  - Obstacle
-  - Coin
-  - Score
-  - DoubleJump
-  - SpeedUp
-  - CountDown
-  - Cygnus
-  - MenuBackgroundImage
-  - MenuController
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -26,8 +11,8 @@ TagManager:
   - 
   - Water
   - UI
-  - Ground
-  - Map borders
+  - 
+  - 
   - 
   - 
   - 
@@ -53,9 +38,6 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Front
-    uniqueID: 362380441
-    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
