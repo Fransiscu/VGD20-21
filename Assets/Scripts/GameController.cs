@@ -31,7 +31,7 @@ public class GameController : MonoBehaviour
     {
         playerObject = new Player();
         playerObject = Player.LoadPlayer();
-        
+
         /*
          * If player at checkpoint move the position to the checkpoint sign post
          */

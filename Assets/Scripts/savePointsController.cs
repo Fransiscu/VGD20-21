@@ -8,6 +8,8 @@ public class savePointsController : MonoBehaviour
 {
     public RaycastHit2D raycastHit2D;
     public Transform milestonePoint;
+    public AudioClip checkpointSound;
+    public AudioClip victorySound;
 
     public bool milestoneReached;
     public float distance = 50f;
@@ -36,6 +38,8 @@ public class savePointsController : MonoBehaviour
                 player.CurrentLevel = currentLevel;
                 player.AtCheckpoint = true;
 
+                AudioSource.PlayClipAtPoint(checkpointSound, transform.position);   // checkpoint sound
+
                 player.SavePlayer();
             }
             else if (gameObject.tag == "Finishline")
@@ -49,6 +53,9 @@ public class savePointsController : MonoBehaviour
                 player.CurrentScore = 0;    // resetting current score
                 player.AtCheckpoint = false;
                 player.currentLives = SETTINGS.startingLives;   // resetting total lives for next level
+
+                AudioSource.PlayClipAtPoint(victorySound, transform.position);  // finishline sound
+
                 player.SavePlayer();
 
                 FadeTransition fadeToLevel = new FadeTransition()   // returning to level selection menu

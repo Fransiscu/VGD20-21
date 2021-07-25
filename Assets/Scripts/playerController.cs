@@ -12,8 +12,6 @@ public class playerController : MonoBehaviour
     public AudioClip jumpSound;
     public AudioClip hitSound;
     public AudioClip deathSound;
-    public AudioClip checkpointSound;
-    public AudioClip victorySound;
 
     Player player;
 
@@ -51,8 +49,6 @@ public class playerController : MonoBehaviour
     {
         playerMovementDirection = 0;
         playerMovementDirection = Input.GetAxis("Horizontal");
-
-        Debug.LogWarning(playerMovementDirection);
 
         if (playerMovementDirection == 0)    // if the character is not moving
         {
