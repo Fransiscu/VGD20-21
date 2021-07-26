@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameController : MonoBehaviour
+public class gameController : MonoBehaviour
 {
     public GameObject cygnus;
     public GameObject player;
@@ -33,8 +33,9 @@ public class GameController : MonoBehaviour
         playerObject = Player.LoadPlayer();
 
         /*
-         * If player at checkpoint move the position to the checkpoint sign post
+         * If player at checkpoint at the start of the level, move the position to the checkpoint sign post
          */
+
         if (playerObject.AtCheckpoint)  
         {
             player.transform.position = checkpoint.transform.position;
@@ -59,4 +60,8 @@ public class GameController : MonoBehaviour
         cygnus.gameObject.GetComponent<cygnusController>().UnFreezeCygnus();    // unfreezing cygnus
     }
 
+    public static int GetCurrentGameLevel()
+    {
+        return SceneManager.GetActiveScene().buildIndex - 1; // 2 scenes before the actual levels, so we subtract 1
+    }
 }

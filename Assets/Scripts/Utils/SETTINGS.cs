@@ -18,13 +18,13 @@ public class SETTINGS
     public static readonly int bonusLevelMaxCoinScore = 10;
 
     // enemies
-    public static readonly float slimeSpeed = 200f;
-    public static readonly float snailSpeed = 200f;
-    public static readonly float wildBoarSpeed = 200f;
+    public static readonly float level1EnemySpeed = 120f;
+    public static readonly float level2EnemySpeed = 150f;
+    public static readonly float level3EnemySpeed = 180f;
 
-    public static readonly float slimeHitDamage = 0.5f;
-    public static readonly float snailDamage = 0.5f;
-    public static readonly float wildBoarDamage = 0.5f;
+    public static readonly float level1EnemyDamage = 0.5f;
+    public static readonly float level2EnemyDamage = 0.5f;
+    public static readonly float level3EnemyDamage = 0.5f;
 
     public static readonly float spikesDamage = 1.0f;
     

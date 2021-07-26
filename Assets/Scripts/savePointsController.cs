@@ -20,7 +20,7 @@ public class savePointsController : MonoBehaviour
     void Start()
     {
         player = new Player();
-        currentLevel = SceneManager.GetActiveScene().buildIndex - 1; // 2 scenes before the actual levels, so we subtract 1
+        currentLevel = gameController.GetCurrentGameLevel(); // 2 scenes before the actual levels, so we subtract 1
         milestoneReached = false;  // player can only reach checkpoint once
     }
 
@@ -28,6 +28,7 @@ public class savePointsController : MonoBehaviour
     void Update()
     {
         raycastHit2D = Physics2D.Raycast(milestonePoint.position, Vector2.up, distance);
+
         if (raycastHit2D.collider == true && raycastHit2D.collider.tag == "Player" && !milestoneReached)
         {
             milestoneReached = true; // cannot activate milestone more than once

@@ -278,6 +278,7 @@ public class playerController : MonoBehaviour
                 flashingColor = Color.magenta;
                 break;
             default:
+                Debug.LogWarning("???");
                 flashingColor = Color.black;
                 break;
         }
@@ -334,7 +335,6 @@ public class playerController : MonoBehaviour
     }
 
     // other methods
-
     public void SpeedEditEnabler(bool modifier)
     {
         StartCoroutine("EnableSpeedBoost", modifier);
