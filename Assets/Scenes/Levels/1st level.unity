@@ -2009,9 +2009,9 @@ GameObject:
   - component: {fileID: 73768286}
   - component: {fileID: 73768290}
   - component: {fileID: 73768289}
-  m_Layer: 7
+  m_Layer: 3
   m_Name: Background
-  m_TagString: Untagged
+  m_TagString: Map Borders
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -2444,7 +2444,7 @@ MonoBehaviour:
     m_Bits: 64
   wallsLayerMask:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 136
   enemyCollider: {fileID: 80367407}
   rigidBody: {fileID: 80367406}
   onPatrolDuty: 0
@@ -6625,7 +6625,7 @@ MonoBehaviour:
     m_Bits: 64
   wallsLayerMask:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 136
   enemyCollider: {fileID: 216028980}
   rigidBody: {fileID: 216028979}
   onPatrolDuty: 0
@@ -15247,7 +15247,7 @@ GameObject:
   m_Component:
   - component: {fileID: 431077104}
   - component: {fileID: 431077105}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Platforms
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15974,7 +15974,7 @@ Sprite:
         format: 0
         dimension: 0
       m_DataSize: 80
-      _typelessdata: 000000bf0000003f000000000000003f0000003f00000000000000bf000000bf000000000000003f000000bf000000000000000000000000000000000000000000000000000000000000000000000000
+      _typelessdata: 000000bf0000003f000000000000003f0000003f00000000000000bf000000bf000000000000003f000000bf00000000000000000000803f0000803f0000803f00000000000000000000803f00000000
     m_Bindpose: []
     textureRect:
       serializedVersion: 2
@@ -19884,7 +19884,7 @@ MonoBehaviour:
     m_Bits: 64
   wallsLayerMask:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 136
   enemyCollider: {fileID: 535490915}
   rigidBody: {fileID: 535490914}
   onPatrolDuty: 0
@@ -29372,7 +29372,7 @@ Sprite:
         format: 0
         dimension: 0
       m_DataSize: 80
-      _typelessdata: 000000bf0000003f000000000000003f0000003f00000000000000bf000000bf000000000000003f000000bf000000000000000000000000000000000000000000000000000000000000000000000000
+      _typelessdata: 000000bf0000003f000000000000003f0000003f00000000000000bf000000bf000000000000003f000000bf00000000000000000000803f0000803f0000803f00000000000000000000803f00000000
     m_Bindpose: []
     textureRect:
       serializedVersion: 2
@@ -31001,7 +31001,7 @@ Sprite:
         format: 0
         dimension: 0
       m_DataSize: 80
-      _typelessdata: 000000bf0000003f000000000000003f0000003f00000000000000bf000000bf000000000000003f000000bf000000000000000000000000000000000000000000000000000000000000000000000000
+      _typelessdata: 000000bf0000003f000000000000003f0000003f00000000000000bf000000bf000000000000003f000000bf00000000000000000000803f0000803f0000803f00000000000000000000803f00000000
     m_Bindpose: []
     textureRect:
       serializedVersion: 2
@@ -48139,7 +48139,7 @@ MonoBehaviour:
     m_Bits: 64
   wallsLayerMask:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 136
   enemyCollider: {fileID: 1242128810}
   rigidBody: {fileID: 1242128809}
   onPatrolDuty: 0
@@ -54733,7 +54733,7 @@ Sprite:
         format: 0
         dimension: 0
       m_DataSize: 80
-      _typelessdata: 000000bf0000003f000000000000003f0000003f00000000000000bf000000bf000000000000003f000000bf000000000000000000000000000000000000000000000000000000000000000000000000
+      _typelessdata: 000000bf0000003f000000000000003f0000003f00000000000000bf000000bf000000000000003f000000bf00000000000000000000803f0000803f0000803f00000000000000000000803f00000000
     m_Bindpose: []
     textureRect:
       serializedVersion: 2
@@ -56186,7 +56186,7 @@ MonoBehaviour:
     m_Bits: 64
   wallsLayerMask:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 136
   enemyCollider: {fileID: 1413424999}
   rigidBody: {fileID: 1413424998}
   onPatrolDuty: 0
@@ -58724,7 +58724,7 @@ MonoBehaviour:
     m_Bits: 64
   wallsLayerMask:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 136
   enemyCollider: {fileID: 1492537310}
   rigidBody: {fileID: 1492537309}
   onPatrolDuty: 0
@@ -68016,7 +68016,7 @@ Sprite:
         format: 0
         dimension: 0
       m_DataSize: 80
-      _typelessdata: 000000bf0000003f000000000000003f0000003f00000000000000bf000000bf000000000000003f000000bf000000000000000000000000000000000000000000000000000000000000000000000000
+      _typelessdata: 000000bf0000003f000000000000003f0000003f00000000000000bf000000bf000000000000003f000000bf00000000000000000000803f0000803f0000803f00000000000000000000803f00000000
     m_Bindpose: []
     textureRect:
       serializedVersion: 2
@@ -77704,7 +77704,7 @@ MonoBehaviour:
     m_Bits: 64
   wallsLayerMask:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 136
   enemyCollider: {fileID: 1918057572}
   rigidBody: {fileID: 1918057571}
   onPatrolDuty: 0
@@ -83417,7 +83417,7 @@ Sprite:
         format: 0
         dimension: 0
       m_DataSize: 80
-      _typelessdata: 000000bf0000003f000000000000003f0000003f00000000000000bf000000bf000000000000003f000000bf000000000000000000000000000000000000000000000000000000000000000000000000
+      _typelessdata: 000000bf0000003f000000000000003f0000003f00000000000000bf000000bf000000000000003f000000bf00000000000000000000803f0000803f0000803f00000000000000000000803f00000000
     m_Bindpose: []
     textureRect:
       serializedVersion: 2
@@ -84475,7 +84475,7 @@ MonoBehaviour:
     m_Bits: 64
   wallsLayerMask:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 136
   enemyCollider: {fileID: 2054199925}
   rigidBody: {fileID: 2054199924}
   onPatrolDuty: 0
@@ -86651,7 +86651,7 @@ Sprite:
         format: 0
         dimension: 0
       m_DataSize: 80
-      _typelessdata: 000000bf0000003f000000000000003f0000003f00000000000000bf000000bf000000000000003f000000bf000000000000000000000000000000000000000000000000000000000000000000000000
+      _typelessdata: 000000bf0000003f000000000000003f0000003f00000000000000bf000000bf000000000000003f000000bf00000000000000000000803f0000803f0000803f00000000000000000000803f00000000
     m_Bindpose: []
     textureRect:
       serializedVersion: 2

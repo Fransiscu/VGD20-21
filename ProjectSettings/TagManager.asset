@@ -15,11 +15,12 @@ TagManager:
   - Coin
   - DoubleJump
   - SpeedUp
+  - Map Borders
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Map Borders
   - Water
   - UI
   - Ground
