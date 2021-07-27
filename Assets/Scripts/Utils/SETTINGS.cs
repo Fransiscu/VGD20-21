@@ -41,7 +41,7 @@ public class SETTINGS
     // player
     public static readonly float startingLives = 3.0f;
     public static readonly float basePlayerSpeed = 5f;
-    public static readonly int basePlayerJumpPower = 500;
+    public static readonly int basePlayerJumpPower = 1150;
     
     public static readonly float invincibilityFramesDurationSeconds = 1.5f;
     public static readonly float invincibilityFramesDeltaTime = 0.15f;
