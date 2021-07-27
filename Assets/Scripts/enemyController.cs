@@ -75,7 +75,6 @@ public class enemyController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D col)
     {
-        Debug.LogWarning(col.gameObject.tag);
         if (col.gameObject.tag == "Player")
         {
             float approachDirection = col.transform.position.x - transform.position.x;
@@ -110,7 +109,7 @@ public class enemyController : MonoBehaviour
         transform.localScale = new Vector2(transform.localScale.x * -1, transform.localScale.y); // flipping default enemy at start 
         onPatrolDuty = true;
 
-        // calculating enemy damage for every level
+        // calculating enemy stats for the correct level
         switch (gameController.GetCurrentGameLevel())
         {
             case 1:
