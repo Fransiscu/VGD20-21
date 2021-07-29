@@ -16,6 +16,7 @@ TagManager:
   - DoubleJump
   - SpeedUp
   - Map Borders
+  - BonusLevelEntryPoint
   layers:
   - Default
   - TransparentFX

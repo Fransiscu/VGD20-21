@@ -70,7 +70,19 @@ public class savePointsController : MonoBehaviour
             }
             else if (gameObject.tag == "BonusLevelEntryPoint")
             {
-                // save stuff before bonus level
+
+                //TODO: implement scene saving to get back to the exact situation
+
+                FadeTransition fadeToLevel = new FadeTransition()   // returning to level selection menu
+                {
+                    nextScene = 5,  // bonus level scene index = 5
+                    fadedDelay = .5f,
+                    duration = 1.5f,
+                    fadeToColor = Color.cyan
+                };
+                TransitionKit.instance.transitionWithDelegate(fadeToLevel);
+
+                Debug.LogWarning("entering bonus level");
             }
         }
     }

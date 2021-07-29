@@ -26,6 +26,7 @@ public class playerController : MonoBehaviour
     private float lives;
     private float score;
 
+    private bool isFlashing = false;
     public bool doubleJumpActive;
     public bool isInvincible;
     public bool inputFrozen = true;
@@ -138,6 +139,7 @@ public class playerController : MonoBehaviour
             touchingGround = false;
         }
     }
+
     void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.tag == "Ground")
@@ -177,6 +179,7 @@ public class playerController : MonoBehaviour
         }
     }
 
+    // bool knockForward is used for some cases in which we force a forward knock no matter the direction of the hit
     public void knockBackPlayer(Collision2D col, bool knockForward)
     {
         float approachDirection = col.gameObject.transform.position.x - transform.position.x;
@@ -216,7 +219,7 @@ public class playerController : MonoBehaviour
 
     public void PlayerJump()
     {
-        if (doubleJumpActive && jumpCounter < 1 && !touchingGround)
+        if (doubleJumpActive && jumpCounter < 1 && !touchingGround) // checking if the jump counter is < 1 in case of a double jump active buff
         {
             gameObject.GetComponent<Rigidbody2D>().AddForce(Vector3.up * playerJumpPower);
             touchingGround = false;
@@ -266,33 +269,38 @@ public class playerController : MonoBehaviour
         Color startingColor = characterSprite.material.color;
         Color flashingColor;
 
-        switch (trigger)
+        if (!isFlashing)    // if the character is not already flashing
         {
-            case "hit":
-                flashingColor = Color.red;
-                break;
-            case "speedUp":
-                flashingColor = Color.cyan;
-                break;
-            case "doubleJump":
-                flashingColor = Color.magenta;
-                break;
-            default:
-                Debug.LogWarning("???");
-                flashingColor = Color.black;
-                break;
-        }
+            switch (trigger)
+            {
+                case "hit":
+                    flashingColor = Color.red;
+                    break;
+                case "speedUp":
+                    flashingColor = Color.cyan;
+                    break;
+                case "doubleJump":
+                    flashingColor = Color.magenta;
+                    break;
+                default:
+                    Debug.LogWarning("???");
+                    flashingColor = Color.black;
+                    break;
+            }
 
-        for (int i = 0; i < 5; i++)
-        {
-            characterSprite.material.color = flashingColor;
-            yield return new WaitForSeconds(SETTINGS.invincibilityFramesDeltaTime);
-            characterSprite.material.color = Color.clear;
-            yield return new WaitForSeconds(SETTINGS.invincibilityFramesDeltaTime);
-            characterSprite.material.color = startingColor;
-        }
+            for (int i = 0; i < 5; i++)
+            {
+                isFlashing = true;  // toggling isFlashing in case of other events trying to make the character flash
+                characterSprite.material.color = flashingColor;
+                yield return new WaitForSeconds(SETTINGS.invincibilityFramesDeltaTime);
+                characterSprite.material.color = Color.clear;
+                yield return new WaitForSeconds(SETTINGS.invincibilityFramesDeltaTime);
+                characterSprite.material.color = startingColor;
+                isFlashing = false; // toggling isFlashing again
+            }
 
-        characterSprite.material.color = startingColor;
+        characterSprite.material.color = startingColor; // setting the default color again after the flash
+        }
     }
 
     private IEnumerator EnableSpeedBoost(bool speedModifier)

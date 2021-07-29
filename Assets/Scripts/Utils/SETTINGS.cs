@@ -32,7 +32,7 @@ public class SETTINGS
     public static readonly float knockBackDistance = 150.0f;
 
     // cygnus
-    public static readonly float cygnusSpeed = 200f;
+    public static readonly float cygnusSpeed = 280f;
     public static readonly float cygnusDamage = 1.0f;
 
     public static readonly float cygnusKnockBackStrength = 500.0f;
@@ -40,7 +40,7 @@ public class SETTINGS
 
     // player
     public static readonly float startingLives = 3.0f;
-    public static readonly float basePlayerSpeed = 5f;
+    public static readonly float basePlayerSpeed = 6.5f;
     public static readonly int basePlayerJumpPower = 1150;
     
     public static readonly float invincibilityFramesDurationSeconds = 1.5f;
