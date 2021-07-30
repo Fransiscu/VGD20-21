@@ -427,14 +427,8 @@ InitTestScene*.unity.meta
 InitTestScene*.unity
 
 # My stuff
-Assets/Sounds
-[Aa]ssets/TextMesh*Pro/
-Assets/Text\ Mesh\ Pro
-Assets/TextMesh*Pro
 Assets/Resources
-Assets/BayatGames 
-Assets/Palettes
-Assets/Palettes/*
+Assets/Resources/*
 
 # Heavy assets folder
 Assets/heavyassets
