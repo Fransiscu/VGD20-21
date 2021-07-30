@@ -17,6 +17,7 @@ TagManager:
   - SpeedUp
   - Map Borders
   - BonusLevelEntryPoint
+  - BiggerCoin
   layers:
   - Default
   - TransparentFX

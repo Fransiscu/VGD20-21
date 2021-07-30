@@ -9,11 +9,12 @@ public class consumablesPicker : MonoBehaviour
     coinController coin;
     playerController playerController;
     doubleJumpController doubleJumpController;
-    speedUpController speedUpController;
+    speedModifierController speedUpController;
     public GUIController GUIController;
     
     public AudioClip doubleJumpPickupSound;
-    public AudioClip speedUpPickupSoung;
+    public AudioClip speedUpPickupSound;
+    public AudioClip speedDownPickupSound;
     public AudioClip coinPickupSound;
 
     private void OnTriggerEnter2D(Collider2D col)
@@ -63,16 +64,28 @@ public class consumablesPicker : MonoBehaviour
                 Destroy(col.gameObject);
                 break;
 
-            case "SpeedUp" when !col.GetComponent<speedUpController>().pickedUp:
-                AudioSource.PlayClipAtPoint(speedUpPickupSoung, transform.position);
+            case "SpeedUp" when !col.GetComponent<speedModifierController>().pickedUp:
+                AudioSource.PlayClipAtPoint(speedUpPickupSound, transform.position);
 
                 playerController.SpeedEditEnabler(true);  // speed up -> true
 
-                speedUpController = col.GetComponent<speedUpController>();
+                speedUpController = col.GetComponent<speedModifierController>();
                 speedUpController.pickedUp = true;
 
                 Destroy(col.gameObject);
                 break;
+
+            case "SpeedDown" when !col.GetComponent<speedModifierController>().pickedUp:
+                AudioSource.PlayClipAtPoint(speedDownPickupSound, transform.position);
+
+                playerController.SpeedEditEnabler(false);  // speed false -> false
+
+                speedUpController = col.GetComponent<speedModifierController>();
+                speedUpController.pickedUp = true;
+
+                Destroy(col.gameObject);
+                break;
+
         }
     }
 }
