@@ -4183,7 +4183,7 @@ GameObject:
   - component: {fileID: 157436019}
   - component: {fileID: 157436020}
   m_Layer: 0
-  m_Name: Coin 3
+  m_Name: Coin 2
   m_TagString: Coin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4201,7 +4201,7 @@ Transform:
   m_LocalScale: {x: 0.4324, y: 0.4116, z: 1}
   m_Children: []
   m_Father: {fileID: 671078245}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!111 &157436015
 Animation:
@@ -6647,7 +6647,7 @@ GameObject:
   - component: {fileID: 223054848}
   - component: {fileID: 223054847}
   m_Layer: 0
-  m_Name: Coin 11
+  m_Name: Coin 5
   m_TagString: Coin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6665,7 +6665,7 @@ Transform:
   m_LocalScale: {x: 0.4324, y: 0.4116, z: 1}
   m_Children: []
   m_Father: {fileID: 671078245}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &223054847
 BoxCollider2D:
@@ -7735,7 +7735,7 @@ GameObject:
   - component: {fileID: 254184719}
   - component: {fileID: 254184718}
   m_Layer: 0
-  m_Name: Coin 34
+  m_Name: Coin 12
   m_TagString: Coin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7753,7 +7753,7 @@ Transform:
   m_LocalScale: {x: 0.4324, y: 0.4116, z: 1}
   m_Children: []
   m_Father: {fileID: 671078245}
-  m_RootOrder: 18
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &254184718
 BoxCollider2D:
@@ -9412,7 +9412,7 @@ GameObject:
   - component: {fileID: 293092412}
   - component: {fileID: 293092411}
   m_Layer: 0
-  m_Name: Coin 6
+  m_Name: Coin 3
   m_TagString: Coin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9430,7 +9430,7 @@ Transform:
   m_LocalScale: {x: 0.4324, y: 0.4116, z: 1}
   m_Children: []
   m_Father: {fileID: 671078245}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &293092411
 BoxCollider2D:
@@ -21190,7 +21190,7 @@ GameObject:
   - component: {fileID: 577478728}
   - component: {fileID: 577478727}
   m_Layer: 0
-  m_Name: Coin 27
+  m_Name: Coin 9
   m_TagString: Coin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21208,7 +21208,7 @@ Transform:
   m_LocalScale: {x: 0.4324, y: 0.4116, z: 1}
   m_Children: []
   m_Father: {fileID: 671078245}
-  m_RootOrder: 15
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &577478727
 BoxCollider2D:
@@ -25843,7 +25843,6 @@ Transform:
   - {fileID: 1947902922}
   - {fileID: 250292858}
   - {fileID: 601380103}
-  - {fileID: 1225670502}
   - {fileID: 157436014}
   - {fileID: 293092410}
   - {fileID: 1792138427}
@@ -25856,6 +25855,7 @@ Transform:
   - {fileID: 939945125}
   - {fileID: 254184717}
   - {fileID: 715570489}
+  - {fileID: 1225670502}
   - {fileID: 947946854}
   - {fileID: 612314606}
   - {fileID: 1800948767}
@@ -27118,7 +27118,7 @@ GameObject:
   - component: {fileID: 715570491}
   - component: {fileID: 715570490}
   m_Layer: 0
-  m_Name: Coin 36
+  m_Name: Coin 13
   m_TagString: Coin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27136,7 +27136,7 @@ Transform:
   m_LocalScale: {x: 0.4324, y: 0.4116, z: 1}
   m_Children: []
   m_Father: {fileID: 671078245}
-  m_RootOrder: 19
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &715570490
 BoxCollider2D:
@@ -33861,7 +33861,7 @@ GameObject:
   - component: {fileID: 881853267}
   - component: {fileID: 881853266}
   m_Layer: 0
-  m_Name: Coin 24
+  m_Name: Coin 8
   m_TagString: Coin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33879,7 +33879,7 @@ Transform:
   m_LocalScale: {x: 0.4324, y: 0.4116, z: 1}
   m_Children: []
   m_Father: {fileID: 671078245}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &881853266
 BoxCollider2D:
@@ -36679,7 +36679,7 @@ GameObject:
   - component: {fileID: 939945127}
   - component: {fileID: 939945126}
   m_Layer: 0
-  m_Name: Coin 32
+  m_Name: Coin 11
   m_TagString: Coin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -36697,7 +36697,7 @@ Transform:
   m_LocalScale: {x: 0.4324, y: 0.4116, z: 1}
   m_Children: []
   m_Father: {fileID: 671078245}
-  m_RootOrder: 17
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &939945126
 BoxCollider2D:
@@ -39030,7 +39030,7 @@ GameObject:
   - component: {fileID: 1007688073}
   - component: {fileID: 1007688072}
   m_Layer: 0
-  m_Name: Coin 29
+  m_Name: Coin 10
   m_TagString: Coin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -39048,7 +39048,7 @@ Transform:
   m_LocalScale: {x: 0.4324, y: 0.4116, z: 1}
   m_Children: []
   m_Father: {fileID: 671078245}
-  m_RootOrder: 16
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1007688072
 BoxCollider2D:
@@ -42555,7 +42555,7 @@ GameObject:
   - component: {fileID: 1117966633}
   - component: {fileID: 1117966632}
   m_Layer: 0
-  m_Name: DoubleJump 8
+  m_Name: DoubleJump 1
   m_TagString: DoubleJump
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44114,7 +44114,7 @@ GameObject:
   - component: {fileID: 1159362942}
   - component: {fileID: 1159362941}
   m_Layer: 0
-  m_Name: Coin 15
+  m_Name: Coin 6
   m_TagString: Coin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44132,7 +44132,7 @@ Transform:
   m_LocalScale: {x: 0.4324, y: 0.4116, z: 1}
   m_Children: []
   m_Father: {fileID: 671078245}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1159362941
 BoxCollider2D:
@@ -44678,7 +44678,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GUIController: {fileID: 1860570474}
   doubleJumpPickupSound: {fileID: 8300000, guid: c82bb09aaaed0034dadd256970109c83, type: 3}
-  speedUpPickupSoung: {fileID: 8300000, guid: 1335982a90ddb0e42b0f6cd7cde8e98b, type: 3}
+  speedUpPickupSound: {fileID: 0}
+  speedDownPickupSound: {fileID: 0}
   coinPickupSound: {fileID: 8300000, guid: 24a99dd453755c647b9ab3d9e18880c8, type: 3}
 --- !u!212 &1174348958
 SpriteRenderer:
@@ -47035,7 +47036,7 @@ Transform:
   m_LocalScale: {x: 0.4324, y: 0.4116, z: 1}
   m_Children: []
   m_Father: {fileID: 671078245}
-  m_RootOrder: 7
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1225670503
 BoxCollider2D:
@@ -47909,7 +47910,7 @@ GameObject:
   - component: {fileID: 1240914688}
   - component: {fileID: 1240914687}
   m_Layer: 0
-  m_Name: DoubleJump 28
+  m_Name: DoubleJump 2
   m_TagString: DoubleJump
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -72187,7 +72188,7 @@ Transform:
   m_LocalScale: {x: 0.4324, y: 0.4116, z: 1}
   m_Children: []
   m_Father: {fileID: 671078245}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1792138428
 BoxCollider2D:
@@ -87722,7 +87723,7 @@ GameObject:
   - component: {fileID: 2128892385}
   - component: {fileID: 2128892384}
   m_Layer: 0
-  m_Name: Coin 19
+  m_Name: Coin 7
   m_TagString: Coin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -87740,7 +87741,7 @@ Transform:
   m_LocalScale: {x: 0.4324, y: 0.4116, z: 1}
   m_Children: []
   m_Father: {fileID: 671078245}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &2128892384
 BoxCollider2D:
