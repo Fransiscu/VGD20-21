@@ -24,7 +24,6 @@ public class playerController : MonoBehaviour
 
     private int jumpCounter;
     private float lives;
-    private float score;
 
     private bool isFlashing = false;
     public bool doubleJumpActive;
@@ -400,6 +399,6 @@ public class playerController : MonoBehaviour
     {
         player.CurrentScore += amount;
         player.SavePlayer();
-        Debug.Log("total score = " + score);
+        Debug.Log("total score = " + player.CurrentScore);
     }
 }
