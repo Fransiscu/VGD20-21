@@ -41,7 +41,6 @@ public class savePointsController : MonoBehaviour
                 player.AtCheckpoint = true;
 
                 AudioSource.PlayClipAtPoint(checkpointSound, transform.position);   // checkpoint sound
-
                 player.SavePlayer();
             }
             else if (gameObject.tag == "Finishline")

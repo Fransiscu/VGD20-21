@@ -46,6 +46,7 @@ public class gameController : MonoBehaviour
         }
         else
         {
+            SaveSceneSystem.DeleteSceneSave();  // deleting potential leftover saved scenes
             playerObject.AtCheckpoint = false;
             playerObject.currentScore = 0;
             playerObject.SavePlayer();

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class consumablesPicker : MonoBehaviour
@@ -16,6 +17,8 @@ public class consumablesPicker : MonoBehaviour
     public AudioClip speedUpPickupSound;
     public AudioClip speedDownPickupSound;
     public AudioClip coinPickupSound;
+
+    private List<GameObject> obtainedItems;
 
     private void OnTriggerEnter2D(Collider2D col)
     {
@@ -34,6 +37,8 @@ public class consumablesPicker : MonoBehaviour
 
                 GUIController.changeGUIScore(coinValue);
                 playerController.EditScore(coinValue);
+
+                SaveSceneSystem.SaveScene(coin.iD);
 
                 Destroy(col.gameObject);
                 break;
@@ -87,5 +92,6 @@ public class consumablesPicker : MonoBehaviour
                 break;
 
         }
+
     }
 }
