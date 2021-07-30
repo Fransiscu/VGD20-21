@@ -33,13 +33,22 @@ public class gameController : MonoBehaviour
         playerObject = Player.LoadPlayer();
 
         /*
-         * If player at checkpoint at the start of the level, move the position to the checkpoint sign post
+         * If player at checkpoint at the start of the *current* level, move the position to the appropriate sign post
+         * Else just set the entities up the normal way and delete temporary points (Player.CurrentScore) from previous save
+         * as well as eventual checkpoint (Player.AtCheckPoint)
          */
 
-        if (playerObject.AtCheckpoint)  
+        if (playerObject.CurrentLevel == gameController.GetCurrentGameLevel() && playerObject.AtCheckpoint)  
         {
             player.transform.position = checkpoint.transform.position;
             cygnus.transform.position = new Vector3(player.transform.position.x - 10, cygnus.transform.position.y, cygnus.transform.position.z);
+            StartCoroutine("SetupEntities");
+        }
+        else
+        {
+            playerObject.AtCheckpoint = false;
+            playerObject.currentScore = 0;
+            playerObject.SavePlayer();
             StartCoroutine("SetupEntities");
         }
 

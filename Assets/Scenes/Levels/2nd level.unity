@@ -14383,7 +14383,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!61 &1377208271
 BoxCollider2D:
@@ -14528,7 +14528,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GUIController: {fileID: 2011102319}
   doubleJumpPickupSound: {fileID: 8300000, guid: c82bb09aaaed0034dadd256970109c83, type: 3}
-  speedUpPickupSoung: {fileID: 8300000, guid: 1335982a90ddb0e42b0f6cd7cde8e98b, type: 3}
+  speedUpPickupSound: {fileID: 0}
+  speedDownPickupSound: {fileID: 0}
   coinPickupSound: {fileID: 8300000, guid: 24a99dd453755c647b9ab3d9e18880c8, type: 3}
 --- !u!1 &1387410879
 GameObject:

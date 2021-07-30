@@ -45,7 +45,14 @@ public class savePointsController : MonoBehaviour
             }
             else if (gameObject.tag == "Finishline")
             {
-                if (currentLevel > 0 && currentLevel < 3 && !player.UnlockedLevels.Contains(currentLevel + 1))   // unlocking next level if necessary
+                // if last level, trigger the Player.FinishedGame boolean
+                if (gameController.GetCurrentGameLevel() == 3)
+                {
+                    player.FinishedGame = true;
+                }
+
+                // unlocking next level if necessary
+                if (currentLevel > 0 && currentLevel < 3 && !player.UnlockedLevels.Contains(currentLevel + 1))   
                 {
                     player.UnlockedLevels.Add(currentLevel + 1);  
                 }
@@ -70,9 +77,7 @@ public class savePointsController : MonoBehaviour
             }
             else if (gameObject.tag == "BonusLevelEntryPoint")
             {
-
                 //TODO: implement scene saving to get back to the exact situation
-
                 FadeTransition fadeToLevel = new FadeTransition()   // returning to level selection menu
                 {
                     nextScene = 5,  // bonus level scene index = 5
