@@ -430,6 +430,10 @@ InitTestScene*.unity
 Assets/Resources
 Assets/Resources/*
 
+
+/Assets/Resources
+/Assets/Resources/*
+
 # Heavy assets folder
 Assets/heavyassets
 
