@@ -10,6 +10,7 @@ public class playerController : MonoBehaviour
     private SpriteRenderer characterSprite;
 
     public AudioClip jumpSound;
+    public AudioClip doubleJumpSound;
     public AudioClip hitSound;
     public AudioClip deathSound;
 
@@ -223,7 +224,7 @@ public class playerController : MonoBehaviour
             gameObject.GetComponent<Rigidbody2D>().AddForce(Vector3.up * playerJumpPower);
             touchingGround = false;
             jumpCounter++;
-            AudioSource.PlayClipAtPoint(jumpSound, transform.position);
+            AudioSource.PlayClipAtPoint(doubleJumpSound, transform.position);
         }
         else if (touchingGround)
         {

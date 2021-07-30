@@ -10,6 +10,7 @@ public class savePointsController : MonoBehaviour
     public Transform milestonePoint;
     public AudioClip checkpointSound;
     public AudioClip victorySound;
+    public AudioClip portalSound;
 
     public bool milestoneReached;
     public float distance = 50f;
@@ -78,6 +79,9 @@ public class savePointsController : MonoBehaviour
             else if (gameObject.tag == "BonusLevelEntryPoint")
             {
                 //TODO: implement scene saving to get back to the exact situation
+
+                AudioSource.PlayClipAtPoint(portalSound, transform.position);  // finishline sound
+
                 FadeTransition fadeToLevel = new FadeTransition()   // returning to level selection menu
                 {
                     nextScene = 5,  // bonus level scene index = 5
