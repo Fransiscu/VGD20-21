@@ -55,14 +55,15 @@ public class SaveSceneSystem : MonoBehaviour
         return JsonConvert.DeserializeObject<ItemsIDs>(jsonIdsString);
     }
 
-    public static void LoadSceneFromObject(ItemsIDs idsObject)
+    public static void LoadSceneFromObject()
     {
+        ItemsIDs idsObject = LoadSceneDetailsFromJson(PlayerPrefs.GetString(idPrefName));   // ok
         object[] objectsInScene = GameObject.FindObjectsOfType(typeof(GameObject));
         
         // cycling through the items and destroying the ones matching the list
         foreach (object item in objectsInScene)
         {
-            GameObject currentGameObject = (GameObject)item;
+            GameObject currentGameObject = (GameObject) item;
             string consumableTag = currentGameObject.tag;
 
             switch (consumableTag)
@@ -70,10 +71,11 @@ public class SaveSceneSystem : MonoBehaviour
                 case "Coin":
                 case "BiggerCoin":
                     coinController coin = currentGameObject.GetComponent<coinController>();
-
+                    Debug.LogWarning("value = " + coin.coinValue + " - ID = " + coin.iD);
+                    
                     if (idsObject.Ids.Contains(coin.iD))
                     {
-                        Destroy(coin);
+                        Destroy(coin.gameObject);
                     }
                     break;
 
@@ -82,7 +84,7 @@ public class SaveSceneSystem : MonoBehaviour
 
                     if (idsObject.Ids.Contains(doubleJump.iD))
                     {
-                        Destroy(doubleJump);
+                        Destroy(doubleJump.gameObject);
                     }
                     break;
 
@@ -92,7 +94,7 @@ public class SaveSceneSystem : MonoBehaviour
                    
                     if (idsObject.Ids.Contains(speedModifier.iD))
                     {
-                        Destroy(speedModifier);
+                        Destroy(speedModifier.gameObject);
                     }
                     break;
             }

@@ -18,16 +18,15 @@ public class gameController : MonoBehaviour
         // triggering the savescene feature one time at the beginning,
         // more info as of why in the implementation
         SaveSceneSystem.SaveScene("0");   
-
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     void OnDisable()
     {
-        if (!playerObject.AtCheckpoint)
+       /* if (!playerObject.AtCheckpoint)
         {
             SaveSceneSystem.DeleteSceneSave();  // if player not yet at checkpoint delete the saed consumables pickups
-        }
+        }*/
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
@@ -40,7 +39,7 @@ public class gameController : MonoBehaviour
     {
         playerObject = new Player();
         playerObject = Player.LoadPlayer();
-        SaveSceneSystem.LoadSceneFromObject(null);
+        SaveSceneSystem.LoadSceneFromObject();
 
         /*
          * If player at checkpoint at the start of the *current* level, move the position to the appropriate sign post
@@ -50,6 +49,7 @@ public class gameController : MonoBehaviour
 
         if (playerObject.CurrentLevel == gameController.GetCurrentGameLevel() && playerObject.AtCheckpoint)  
         {
+            Debug.LogWarning("at checkpoint rn spawning");
             player.transform.position = new Vector3(checkpoint.transform.position.x + 5, checkpoint.transform.position.y, checkpoint.transform.position.z);
             cygnus.transform.position = new Vector3(player.transform.position.x - 10, cygnus.transform.position.y, cygnus.transform.position.z);
             StartCoroutine("SetupEntities");
