@@ -38,7 +38,6 @@ public class SaveSceneSystem
         
         if (PlayerPrefs.HasKey(idPrefName)) // checking if we already have something saved
         {
-            Debug.LogWarning("apparently");
             idsObject = LoadSceneDetailsFromJson(PlayerPrefs.GetString(idPrefName));   // if yes, load it
         }
 
@@ -58,10 +57,19 @@ public class SaveSceneSystem
     public static void LoadSceneFromObject(ItemsIDs ids)
     {
         object[] obj = GameObject.FindObjectsOfType(typeof(GameObject));
+
         foreach (object o in obj)
         {
-            GameObject g = (GameObject)o;
-            Debug.Log(g.name);
+            GameObject currentGameObject = (GameObject)o;
+
+            if (currentGameObject.CompareTag("Coin"))
+            {
+                if (currentGameObject != null)
+                {
+                    coinController coin = currentGameObject.GetComponent<coinController>();
+                    Debug.LogWarning("value = " + coin.coinValue + " - ID = " + coin.iD);
+                }
+            }
         }
         // cycle through ids and disable objects
     }

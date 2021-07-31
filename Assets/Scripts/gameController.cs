@@ -14,6 +14,7 @@ public class gameController : MonoBehaviour
     Player playerObject;
     void OnEnable()
     {
+        assignCoinsValues();
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
@@ -26,15 +27,15 @@ public class gameController : MonoBehaviour
     {
         // triggering the savescene feature one time at the beginning,
         // more info as of why in the implementation
-        SaveSceneSystem.LoadSceneFromObject(null);
-        SaveSceneSystem.SaveScene("0");   
         StartCoroutine("SetupEntities");
+        SaveSceneSystem.SaveScene("0");   
     }
 
     void Start()
     {
         playerObject = new Player();
         playerObject = Player.LoadPlayer();
+        SaveSceneSystem.LoadSceneFromObject(null);
 
         /*
          * If player at checkpoint at the start of the *current* level, move the position to the appropriate sign post
@@ -77,5 +78,24 @@ public class gameController : MonoBehaviour
     public static int GetCurrentGameLevel()
     {
         return SceneManager.GetActiveScene().buildIndex - 1; // 2 scenes before the actual levels, so we subtract 1
+    }
+
+    private void assignCoinsValues() 
+    {
+        object[] obj = GameObject.FindObjectsOfType(typeof(GameObject));
+
+        foreach (object o in obj)
+        {
+            GameObject currentGameObject = (GameObject)o;
+
+            if (currentGameObject.CompareTag("Coin"))
+            {
+                if (currentGameObject != null)
+                {
+                    coinController coin = currentGameObject.GetComponent<coinController>();
+                    Debug.LogWarning("value = " + coin.coinValue + " - ID = " + coin.iD);
+                }
+            }
+        }
     }
 }
