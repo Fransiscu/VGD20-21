@@ -5,8 +5,9 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using System;
 using System.Threading;
+using System.Linq;
 
-public class SaveSceneSystem
+public class SaveSceneSystem : MonoBehaviour
 {
     public static readonly string idPrefName = "items_ids";
 
@@ -54,24 +55,48 @@ public class SaveSceneSystem
         return JsonConvert.DeserializeObject<ItemsIDs>(jsonIdsString);
     }
 
-    public static void LoadSceneFromObject(ItemsIDs ids)
+    public static void LoadSceneFromObject(ItemsIDs idsObject)
     {
-        object[] obj = GameObject.FindObjectsOfType(typeof(GameObject));
-
-        foreach (object o in obj)
+        object[] objectsInScene = GameObject.FindObjectsOfType(typeof(GameObject));
+        
+        // cycling through the items and destroying the ones matching the list
+        foreach (object item in objectsInScene)
         {
-            GameObject currentGameObject = (GameObject)o;
+            GameObject currentGameObject = (GameObject)item;
+            string consumableTag = currentGameObject.tag;
 
-            if (currentGameObject.CompareTag("Coin"))
+            switch (consumableTag)
             {
-                if (currentGameObject != null)
-                {
+                case "Coin":
+                case "BiggerCoin":
                     coinController coin = currentGameObject.GetComponent<coinController>();
-                    Debug.LogWarning("value = " + coin.coinValue + " - ID = " + coin.iD);
-                }
+
+                    if (idsObject.Ids.Contains(coin.iD))
+                    {
+                        Destroy(coin);
+                    }
+                    break;
+
+                case "DoubleJump":
+                    doubleJumpController doubleJump = currentGameObject.GetComponent<doubleJumpController>();
+
+                    if (idsObject.Ids.Contains(doubleJump.iD))
+                    {
+                        Destroy(doubleJump);
+                    }
+                    break;
+
+                case "SpeedUp":
+                case "SpeedDown":
+                    speedModifierController speedModifier = currentGameObject.GetComponent<speedModifierController>();
+                   
+                    if (idsObject.Ids.Contains(speedModifier.iD))
+                    {
+                        Destroy(speedModifier);
+                    }
+                    break;
             }
         }
-        // cycle through ids and disable objects
     }
 
     public static void DeleteSceneSave()

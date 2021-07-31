@@ -18,8 +18,6 @@ public class consumablesPicker : MonoBehaviour
     public AudioClip speedDownPickupSound;
     public AudioClip coinPickupSound;
 
-    private List<GameObject> obtainedItems;
-
     private void OnTriggerEnter2D(Collider2D col)
     {
         playerController = gameObject.GetComponent<playerController>();

@@ -13,13 +13,15 @@ public class coinController : MonoBehaviour
     */
     public bool pickedUp; 
 
-    void Start()
+    public void SetUp()
     {
         coinValue = Random.Range(SETTINGS.level1MinCoinScore, SETTINGS.level1MaxCoinScore);
         pickedUp = false;
+
         // dirty way to create a persistent ID
-        iD = (this.transform.position.x.ToString() + this.transform.position.y.ToString()).Replace(",","").Substring(0,6);
-        Debug.Log("Generated " + gameObject.tag + " with the value of " + coinValue + "." + " ID is " + iD);
+        iD = (transform.position.x.ToString() + transform.position.y.ToString()).Replace(",", "").Substring(0, 6);
+
+        Debug.Log("value = " + coinValue + " - ID = " + iD);
     }
 
 }

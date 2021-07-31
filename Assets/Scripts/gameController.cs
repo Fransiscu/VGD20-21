@@ -14,21 +14,26 @@ public class gameController : MonoBehaviour
     Player playerObject;
     void OnEnable()
     {
-        assignCoinsValues();
+        SetUpConsumables();
+        // triggering the savescene feature one time at the beginning,
+        // more info as of why in the implementation
+        SaveSceneSystem.SaveScene("0");   
+
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     void OnDisable()
     {
+        if (!playerObject.AtCheckpoint)
+        {
+            SaveSceneSystem.DeleteSceneSave();  // if player not yet at checkpoint delete the saed consumables pickups
+        }
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode) // setting up entities before game start
     {
-        // triggering the savescene feature one time at the beginning,
-        // more info as of why in the implementation
         StartCoroutine("SetupEntities");
-        SaveSceneSystem.SaveScene("0");   
     }
 
     void Start()
@@ -80,21 +85,33 @@ public class gameController : MonoBehaviour
         return SceneManager.GetActiveScene().buildIndex - 1; // 2 scenes before the actual levels, so we subtract 1
     }
 
-    private void assignCoinsValues() 
+    private void SetUpConsumables() 
     {
-        object[] obj = GameObject.FindObjectsOfType(typeof(GameObject));
+        object[] objectsInScene = GameObject.FindObjectsOfType(typeof(GameObject));
 
-        foreach (object o in obj)
+        foreach (object item in objectsInScene)
         {
-            GameObject currentGameObject = (GameObject)o;
+            GameObject currentGameObject = (GameObject) item;
+            string consumableTag = currentGameObject.tag;
 
-            if (currentGameObject.CompareTag("Coin"))
+            switch (consumableTag)
             {
-                if (currentGameObject != null)
-                {
+                case "Coin":
+                case "BiggerCoin":
                     coinController coin = currentGameObject.GetComponent<coinController>();
-                    Debug.LogWarning("value = " + coin.coinValue + " - ID = " + coin.iD);
-                }
+                    coin.SetUp();
+                    break;
+
+                case "DoubleJump":
+                    doubleJumpController doubleJump = currentGameObject.GetComponent<doubleJumpController>();
+                    doubleJump.SetUp();
+                    break;
+
+                case "SpeedUp":
+                case "SpeedDown":
+                    speedModifierController speedModifier = currentGameObject.GetComponent<speedModifierController>();
+                    speedModifier.SetUp();
+                    break;
             }
         }
     }

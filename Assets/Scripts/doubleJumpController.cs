@@ -11,16 +11,11 @@ public class doubleJumpController : MonoBehaviour
     public bool pickedUp;
     public string iD;
 
-    void Start()
+    public void SetUp()
     {
         pickedUp = false;
-        // dirty way to create a persistent ID
-        iD = (this.transform.position.x.ToString() + this.transform.position.y.ToString()).Replace(",", "").Substring(0, 6);
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        // dirty way to create a persistent ID
+        iD = (transform.position.x.ToString() + transform.position.y.ToString()).Replace(",", "").Substring(0, 6);
     }
 }
