@@ -567,6 +567,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinValue: 0
+  iD: 
   pickedUp: 0
 --- !u!111 &61438830
 Animation:
@@ -1256,6 +1257,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinValue: 0
+  iD: 
   pickedUp: 0
 --- !u!111 &114874064
 Animation:
@@ -2178,6 +2180,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickedUp: 0
+  iD: 
 --- !u!61 &284515375
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2726,6 +2729,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinValue: 0
+  iD: 
   pickedUp: 0
 --- !u!111 &303671466
 Animation:
@@ -3051,6 +3055,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinValue: 0
+  iD: 
   pickedUp: 0
 --- !u!111 &350096095
 Animation:
@@ -4033,6 +4038,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinValue: 0
+  iD: 
   pickedUp: 0
 --- !u!111 &470395411
 Animation:
@@ -4450,6 +4456,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickedUp: 0
+  iD: 
 --- !u!61 &503516444
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5397,6 +5404,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinValue: 0
+  iD: 
   pickedUp: 0
 --- !u!111 &562786843
 Animation:
@@ -5558,6 +5566,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinValue: 0
+  iD: 
   pickedUp: 0
 --- !u!111 &583589721
 Animation:
@@ -5774,6 +5783,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickedUp: 0
+  iD: 
 --- !u!61 &619308883
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5926,6 +5936,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinValue: 0
+  iD: 
   pickedUp: 0
 --- !u!111 &628379558
 Animation:
@@ -6087,6 +6098,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinValue: 0
+  iD: 
   pickedUp: 0
 --- !u!111 &628403733
 Animation:
@@ -6856,6 +6868,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickedUp: 0
+  iD: 
 --- !u!61 &647575225
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8253,6 +8266,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinValue: 0
+  iD: 
   pickedUp: 0
 --- !u!111 &723589480
 Animation:
@@ -9050,6 +9064,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinValue: 0
+  iD: 
   pickedUp: 0
 --- !u!111 &764428289
 Animation:
@@ -9726,7 +9741,7 @@ MonoBehaviour:
   victorySound: {fileID: 8300000, guid: 306ad7d86e8f3f143a4388418cbc35f3, type: 3}
   portalSound: {fileID: 8300000, guid: 553cbbd9f7eac8a448afb748b2ccc04c, type: 3}
   milestoneReached: 0
-  distance: 50
+  distance: 200
 --- !u!212 &813123048
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9765,7 +9780,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 362380441
+  m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 36f8de57af422904eabb77037387d16a, type: 3}
@@ -10425,6 +10440,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinValue: 0
+  iD: 
   pickedUp: 0
 --- !u!111 &979466807
 Animation:
@@ -10756,6 +10772,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickedUp: 0
+  iD: 
 --- !u!61 &1040473495
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11504,6 +11521,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinValue: 0
+  iD: 
   pickedUp: 0
 --- !u!111 &1127450329
 Animation:
@@ -11665,6 +11683,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinValue: 0
+  iD: 
   pickedUp: 0
 --- !u!111 &1190041802
 Animation:
@@ -11826,6 +11845,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinValue: 0
+  iD: 
   pickedUp: 0
 --- !u!111 &1193634647
 Animation:
@@ -14283,6 +14303,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinValue: 0
+  iD: 
   pickedUp: 0
 --- !u!111 &1295207640
 Animation:
@@ -14452,6 +14473,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickedUp: 0
+  iD: 
 --- !u!61 &1334627438
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -14604,6 +14626,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinValue: 0
+  iD: 
   pickedUp: 0
 --- !u!111 &1340869547
 Animation:
@@ -16094,7 +16117,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 362380441
+  m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: c361cd8e81dd1b043a075c63bf1f7ca1, type: 3}
@@ -17345,6 +17368,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinValue: 0
+  iD: 
   pickedUp: 0
 --- !u!111 &1653972713
 Animation:
@@ -17609,6 +17633,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinValue: 0
+  iD: 
   pickedUp: 0
 --- !u!111 &1672737033
 Animation:
@@ -18490,6 +18515,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinValue: 0
+  iD: 
   pickedUp: 0
 --- !u!111 &1720384579
 Animation:
@@ -18651,6 +18677,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinValue: 0
+  iD: 
   pickedUp: 0
 --- !u!111 &1725768887
 Animation:
@@ -19960,6 +19987,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinValue: 0
+  iD: 
   pickedUp: 0
 --- !u!111 &1869072914
 Animation:
@@ -20253,6 +20281,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinValue: 0
+  iD: 
   pickedUp: 0
 --- !u!111 &1935440701
 Animation:
@@ -20375,7 +20404,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 104.33, y: 3.57}
+  m_AnchoredPosition: {x: 101.85, y: 3.57}
   m_SizeDelta: {x: 5.51, y: 8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1980388221
@@ -20395,7 +20424,7 @@ MonoBehaviour:
   victorySound: {fileID: 8300000, guid: 306ad7d86e8f3f143a4388418cbc35f3, type: 3}
   portalSound: {fileID: 8300000, guid: 553cbbd9f7eac8a448afb748b2ccc04c, type: 3}
   milestoneReached: 0
-  distance: 50
+  distance: 200
 --- !u!212 &1980388222
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -20434,7 +20463,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 362380441
+  m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: edd138e578303b94fbff55de01ea2546, type: 3}
@@ -20522,6 +20551,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinValue: 0
+  iD: 
   pickedUp: 0
 --- !u!111 &1992090311
 Animation:
@@ -20979,6 +21009,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickedUp: 0
+  iD: 
 --- !u!61 &2025933209
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -21394,6 +21425,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinValue: 0
+  iD: 
   pickedUp: 0
 --- !u!111 &2071346492
 Animation:

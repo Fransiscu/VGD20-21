@@ -37,6 +37,7 @@ public class savePointsController : MonoBehaviour
 
             if (gameObject.tag == "CheckPoint") // check if at checkpoint or finishline
             {
+                Debug.LogWarning("at checkpoint");
                 player.CurrentLevel = currentLevel;
                 player.AtCheckpoint = true;
 
@@ -61,6 +62,7 @@ public class savePointsController : MonoBehaviour
                 player.CurrentScore = 0;    // resetting current score
                 player.AtCheckpoint = false;
                 player.currentLives = SETTINGS.startingLives;   // resetting total lives for next level
+                SaveSceneSystem.DeleteSceneSave();  // deleting any save file for the current level
 
                 AudioSource.PlayClipAtPoint(victorySound, transform.position);  // finishline sound
 

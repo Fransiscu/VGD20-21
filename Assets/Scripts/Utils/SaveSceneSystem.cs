@@ -3,6 +3,8 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using System;
+using System.Threading;
 
 public class SaveSceneSystem
 {
@@ -16,35 +18,69 @@ public class SaveSceneSystem
 
     public static void SaveScene(string id)
     {
-        Debug.LogWarning("boh");
-        string itemsIDsString;
-        List<string> itemsIDs = new List<string>();
+        ItemsIDs idsObject = new ItemsIDs();
+        idsObject.Ids = new List<string>();
+        string jsonIdsString;
         
-            Debug.LogWarning(PlayerPrefs.HasKey(idPrefName));
-        if (PlayerPrefs.HasKey(idPrefName))
+        /* 
+         * If id == 0 we are at the beginning of the level and can just return.
+         * This is necessary to avoid a small freeze the first time this method is called
+         * during a level (for some unknown reason). We trigger it at the beginning of the scene
+         * during the animation so it's not noticeable for the player when picking up the first consumable
+         * mid gameplay.
+        */
+
+        if (id.Equals("0"))
+        {
+            jsonIdsString = JsonConvert.SerializeObject(idsObject);
+            return;
+        }
+        
+        if (PlayerPrefs.HasKey(idPrefName)) // checking if we already have something saved
         {
             Debug.LogWarning("apparently");
-            LoadSceneFromJson(PlayerPrefs.GetString(idPrefName));
+            idsObject = LoadSceneDetailsFromJson(PlayerPrefs.GetString(idPrefName));   // if yes, load it
         }
 
-        itemsIDs.Add(id);
-        itemsIDs.Add(id);
-        itemsIDs.Add(id);
+        idsObject.Ids.Add(id);  // add id to the list 
+        jsonIdsString = JsonConvert.SerializeObject(idsObject);  // serialize to json
 
-        itemsIDsString  = JsonConvert.SerializeObject(itemsIDs);
+        Debug.LogWarning(jsonIdsString);
 
-        PlayerPrefs.SetString(idPrefName, itemsIDsString);
+        PlayerPrefs.SetString(idPrefName, jsonIdsString); // save to playerprefs
     }
 
-    Movie m = JsonConvert.DeserializeObject<Movie>(json);
-    public static void LoadSceneFromJson(string jsonList)
+    public static ItemsIDs LoadSceneDetailsFromJson(string jsonIdsString)
     {
-        string test = JsonToken.Pa
-        Debug.LogWarning(test);
+        return JsonConvert.DeserializeObject<ItemsIDs>(jsonIdsString);
+    }
+
+    public static void LoadSceneFromObject(ItemsIDs ids)
+    {
+        object[] obj = GameObject.FindObjectsOfType(typeof(GameObject));
+        foreach (object o in obj)
+        {
+            GameObject g = (GameObject)o;
+            Debug.Log(g.name);
+        }
+        // cycle through ids and disable objects
     }
 
     public static void DeleteSceneSave()
     {
         PlayerPrefs.DeleteKey(idPrefName);
+    }
+
+    /*  
+     *  Support class created to help saving consumables ids
+     *  in json format
+     */
+    public class ItemsIDs
+    {
+        List<string> ids;
+
+        public ItemsIDs() { }
+
+        public List<string> Ids { get => ids; set => ids = value; }
     }
 }

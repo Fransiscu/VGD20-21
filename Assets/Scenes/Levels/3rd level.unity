@@ -929,6 +929,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinValue: 0
+  iD: 
   pickedUp: 0
 --- !u!111 &94031498
 Animation:
@@ -1173,6 +1174,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinValue: 0
+  iD: 
   pickedUp: 0
 --- !u!111 &115235567
 Animation:
@@ -1732,6 +1734,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinValue: 0
+  iD: 
   pickedUp: 0
 --- !u!111 &188274630
 Animation:
@@ -2350,6 +2353,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinValue: 0
+  iD: 
   pickedUp: 0
 --- !u!111 &224094620
 Animation:
@@ -3899,6 +3903,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinValue: 0
+  iD: 
   pickedUp: 0
 --- !u!111 &359333635
 Animation:
@@ -4060,6 +4065,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinValue: 0
+  iD: 
   pickedUp: 0
 --- !u!111 &360801515
 Animation:
@@ -4460,6 +4466,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinValue: 0
+  iD: 
   pickedUp: 0
 --- !u!111 &402979721
 Animation:
@@ -4653,6 +4660,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinValue: 0
+  iD: 
   pickedUp: 0
 --- !u!111 &464346080
 Animation:
@@ -4968,6 +4976,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickedUp: 0
+  iD: 
 --- !u!61 &489188365
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5477,7 +5486,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 104.33, y: 3.57}
+  m_AnchoredPosition: {x: 103.37, y: 3.57}
   m_SizeDelta: {x: 5.51, y: 8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &544003670
@@ -5497,7 +5506,7 @@ MonoBehaviour:
   victorySound: {fileID: 8300000, guid: 306ad7d86e8f3f143a4388418cbc35f3, type: 3}
   portalSound: {fileID: 8300000, guid: 553cbbd9f7eac8a448afb748b2ccc04c, type: 3}
   milestoneReached: 0
-  distance: 50
+  distance: 200
 --- !u!212 &544003671
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6800,6 +6809,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinValue: 0
+  iD: 
   pickedUp: 0
 --- !u!111 &632040972
 Animation:
@@ -7357,6 +7367,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinValue: 0
+  iD: 
   pickedUp: 0
 --- !u!111 &673773805
 Animation:
@@ -7518,6 +7529,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinValue: 0
+  iD: 
   pickedUp: 0
 --- !u!111 &688587044
 Animation:
@@ -8064,6 +8076,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinValue: 0
+  iD: 
   pickedUp: 0
 --- !u!111 &754178687
 Animation:
@@ -8607,6 +8620,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinValue: 0
+  iD: 
   pickedUp: 0
 --- !u!111 &855410931
 Animation:
@@ -9390,6 +9404,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinValue: 0
+  iD: 
   pickedUp: 0
 --- !u!111 &904805140
 Animation:
@@ -10820,6 +10835,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickedUp: 0
+  iD: 
 --- !u!61 &1010687444
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11938,6 +11954,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinValue: 0
+  iD: 
   pickedUp: 0
 --- !u!111 &1083716564
 Animation:
@@ -13258,6 +13275,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinValue: 0
+  iD: 
   pickedUp: 0
 --- !u!111 &1179150372
 Animation:
@@ -14196,6 +14214,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinValue: 0
+  iD: 
   pickedUp: 0
 --- !u!111 &1219734684
 Animation:
@@ -15916,6 +15935,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinValue: 0
+  iD: 
   pickedUp: 0
 --- !u!111 &1270754093
 Animation:
@@ -16077,6 +16097,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinValue: 0
+  iD: 
   pickedUp: 0
 --- !u!111 &1272866646
 Animation:
@@ -16238,6 +16259,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinValue: 0
+  iD: 
   pickedUp: 0
 --- !u!111 &1277651055
 Animation:
@@ -16537,6 +16559,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinValue: 0
+  iD: 
   pickedUp: 0
 --- !u!111 &1301422419
 Animation:
@@ -16698,6 +16721,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinValue: 0
+  iD: 
   pickedUp: 0
 --- !u!111 &1306547832
 Animation:
@@ -18222,6 +18246,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinValue: 0
+  iD: 
   pickedUp: 0
 --- !u!111 &1364939066
 Animation:
@@ -18383,6 +18408,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinValue: 0
+  iD: 
   pickedUp: 0
 --- !u!111 &1372377207
 Animation:
@@ -19057,6 +19083,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickedUp: 0
+  iD: 
 --- !u!61 &1400604659
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -19341,6 +19368,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinValue: 0
+  iD: 
   pickedUp: 0
 --- !u!111 &1424055219
 Animation:
@@ -19609,6 +19637,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinValue: 0
+  iD: 
   pickedUp: 0
 --- !u!111 &1435246133
 Animation:
@@ -19770,6 +19799,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinValue: 0
+  iD: 
   pickedUp: 0
 --- !u!111 &1436368911
 Animation:
@@ -20038,6 +20068,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinValue: 0
+  iD: 
   pickedUp: 0
 --- !u!111 &1446276763
 Animation:
@@ -20256,7 +20287,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1491881973}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.31, y: -3.18, z: -86.40694}
+  m_LocalPosition: {x: -0.85, y: -3.05, z: 12.3}
   m_LocalScale: {x: 2.4211457, y: 2.204927, z: 1}
   m_Children: []
   m_Father: {fileID: 544003669}
@@ -21939,6 +21970,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickedUp: 0
+  iD: 
 --- !u!61 &1607534548
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -23008,7 +23040,7 @@ MonoBehaviour:
   victorySound: {fileID: 8300000, guid: 306ad7d86e8f3f143a4388418cbc35f3, type: 3}
   portalSound: {fileID: 8300000, guid: 553cbbd9f7eac8a448afb748b2ccc04c, type: 3}
   milestoneReached: 0
-  distance: 50
+  distance: 200
 --- !u!212 &1726595844
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -23135,6 +23167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinValue: 0
+  iD: 
   pickedUp: 0
 --- !u!111 &1737509062
 Animation:
@@ -23304,6 +23337,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickedUp: 0
+  iD: 
 --- !u!61 &1740847023
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -23822,6 +23856,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinValue: 0
+  iD: 
   pickedUp: 0
 --- !u!111 &1743742881
 Animation:
@@ -24418,6 +24453,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinValue: 0
+  iD: 
   pickedUp: 0
 --- !u!111 &1758281641
 Animation:
@@ -25340,6 +25376,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinValue: 0
+  iD: 
   pickedUp: 0
 --- !u!111 &1791769144
 Animation:
@@ -26623,6 +26660,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinValue: 0
+  iD: 
   pickedUp: 0
 --- !u!111 &1896251638
 Animation:
@@ -27912,6 +27950,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickedUp: 0
+  iD: 
 --- !u!61 &1980226912
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -28196,6 +28235,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinValue: 0
+  iD: 
   pickedUp: 0
 --- !u!111 &1989635814
 Animation:
@@ -28357,6 +28397,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinValue: 0
+  iD: 
   pickedUp: 0
 --- !u!111 &2008470049
 Animation:
@@ -28510,6 +28551,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickedUp: 0
+  iD: 
 --- !u!61 &2017022131
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -28995,6 +29037,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinValue: 0
+  iD: 
   pickedUp: 0
 --- !u!111 &2048782515
 Animation:
@@ -29631,6 +29674,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinValue: 0
+  iD: 
   pickedUp: 0
 --- !u!111 &2094327425
 Animation:
@@ -29792,6 +29836,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinValue: 0
+  iD: 
   pickedUp: 0
 --- !u!111 &2097352776
 Animation:

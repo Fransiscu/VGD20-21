@@ -24,6 +24,10 @@ public class gameController : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode) // setting up entities before game start
     {
+        // triggering the savescene feature one time at the beginning,
+        // more info as of why in the implementation
+        SaveSceneSystem.LoadSceneFromObject(null);
+        SaveSceneSystem.SaveScene("0");   
         StartCoroutine("SetupEntities");
     }
 
@@ -40,7 +44,7 @@ public class gameController : MonoBehaviour
 
         if (playerObject.CurrentLevel == gameController.GetCurrentGameLevel() && playerObject.AtCheckpoint)  
         {
-            player.transform.position = checkpoint.transform.position;
+            player.transform.position = new Vector3(checkpoint.transform.position.x + 5, checkpoint.transform.position.y, checkpoint.transform.position.z);
             cygnus.transform.position = new Vector3(player.transform.position.x - 10, cygnus.transform.position.y, cygnus.transform.position.z);
             StartCoroutine("SetupEntities");
         }

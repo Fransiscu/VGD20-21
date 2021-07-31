@@ -10,7 +10,7 @@ public class consumablesPicker : MonoBehaviour
     coinController coin;
     playerController playerController;
     doubleJumpController doubleJumpController;
-    speedModifierController speedUpController;
+    speedModifierController speedModifierController;
     public GUIController GUIController;
     
     public AudioClip doubleJumpPickupSound;
@@ -23,8 +23,9 @@ public class consumablesPicker : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D col)
     {
         playerController = gameObject.GetComponent<playerController>();
+        string consumableTag = col.gameObject.tag;
 
-        switch (col.gameObject.tag)
+        switch (consumableTag)
         {
             case "Coin" when !col.GetComponent<coinController>().pickedUp:
                 Debug.Log("Picked coin's value = " + col.GetComponent<coinController>().coinValue);
@@ -38,7 +39,7 @@ public class consumablesPicker : MonoBehaviour
                 GUIController.changeGUIScore(coinValue);
                 playerController.EditScore(coinValue);
 
-                SaveSceneSystem.SaveScene(coin.iD);
+                SaveSceneSystem.SaveScene(coin.iD); // saving id of aquired item
 
                 Destroy(col.gameObject);
                 break;
@@ -55,6 +56,8 @@ public class consumablesPicker : MonoBehaviour
                 GUIController.changeGUIScore(coinValue * 3);
                 playerController.EditScore(coinValue * 3);
 
+                SaveSceneSystem.SaveScene(coin.iD); // saving id of aquired item
+
                 Destroy(col.gameObject);
                 break;
 
@@ -66,6 +69,8 @@ public class consumablesPicker : MonoBehaviour
                 doubleJumpController = col.GetComponent<doubleJumpController>();
                 doubleJumpController.pickedUp = true;
 
+                SaveSceneSystem.SaveScene(doubleJumpController.iD); // saving id of aquired item    
+
                 Destroy(col.gameObject);
                 break;
 
@@ -74,8 +79,10 @@ public class consumablesPicker : MonoBehaviour
 
                 playerController.SpeedEditEnabler(true);  // speed up -> true
 
-                speedUpController = col.GetComponent<speedModifierController>();
-                speedUpController.pickedUp = true;
+                speedModifierController = col.GetComponent<speedModifierController>();
+                speedModifierController.pickedUp = true;
+
+                SaveSceneSystem.SaveScene(speedModifierController.iD);  // saving id of aquired item
 
                 Destroy(col.gameObject);
                 break;
@@ -85,8 +92,10 @@ public class consumablesPicker : MonoBehaviour
 
                 playerController.SpeedEditEnabler(false);  // speed false -> false
 
-                speedUpController = col.GetComponent<speedModifierController>();
-                speedUpController.pickedUp = true;
+                speedModifierController = col.GetComponent<speedModifierController>();
+                speedModifierController.pickedUp = true;
+
+                SaveSceneSystem.SaveScene(speedModifierController.iD);  // saving id of aquired item
 
                 Destroy(col.gameObject);
                 break;
