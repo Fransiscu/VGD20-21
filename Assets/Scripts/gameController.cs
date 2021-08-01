@@ -15,9 +15,6 @@ public class gameController : MonoBehaviour
     void OnEnable()
     {
         SetUpConsumables();
-        // triggering the savescene feature one time at the beginning,
-        // more info as of why in the implementation
-        SaveSceneSystem.SaveScene("0");   
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 

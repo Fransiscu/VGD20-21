@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class consumablesPicker : MonoBehaviour
 {
-    int coinValue;
-    
     coinController coin;
     playerController playerController;
     doubleJumpController doubleJumpController;
@@ -31,28 +29,26 @@ public class consumablesPicker : MonoBehaviour
                 AudioSource.PlayClipAtPoint(coinPickupSound, transform.position);
 
                 coin = col.GetComponent<coinController>();
-                coinValue = coin.coinValue;
                 coin.pickedUp = true;
 
-                GUIController.changeGUIScore(coinValue);
-                playerController.EditScore(coinValue);
+                GUIController.changeGUIScore(coin.coinValue);
+                playerController.EditScore(coin.coinValue);
 
                 SaveSceneSystem.SaveScene(coin.iD); // saving id of aquired item
 
                 Destroy(col.gameObject);
                 break;
 
-            case "BiggerCoin" when !col.GetComponent<doubleJumpController>().pickedUp:
+            case "BiggerCoin" when !col.GetComponent<coinController>().pickedUp:
                 Debug.Log("Picked bigger coin! value * 3 " + col.GetComponent<coinController>().coinValue * 3);
 
                 AudioSource.PlayClipAtPoint(coinPickupSound, transform.position);
 
                 coin = col.GetComponent<coinController>();
-                coinValue = coin.coinValue;
                 coin.pickedUp = true;
 
-                GUIController.changeGUIScore(coinValue * 3);
-                playerController.EditScore(coinValue * 3);
+                GUIController.changeGUIScore(coin.coinValue * 3);
+                playerController.EditScore(coin.coinValue * 3);
 
                 SaveSceneSystem.SaveScene(coin.iD); // saving id of aquired item
 

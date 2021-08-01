@@ -23,20 +23,6 @@ public class SaveSceneSystem : MonoBehaviour
         idsObject.Ids = new List<string>();
         string jsonIdsString;
         
-        /* 
-         * If id == 0 we are at the beginning of the level and can just return.
-         * This is necessary to avoid a small freeze the first time this method is called
-         * during a level (for some unknown reason). We trigger it at the beginning of the scene
-         * during the animation so it's not noticeable for the player when picking up the first consumable
-         * mid gameplay.
-        */
-
-        if (id.Equals("0"))
-        {
-            jsonIdsString = JsonConvert.SerializeObject(idsObject);
-            return;
-        }
-        
         if (PlayerPrefs.HasKey(idPrefName)) // checking if we already have something saved
         {
             idsObject = LoadSceneDetailsFromJson(PlayerPrefs.GetString(idPrefName));   // if yes, load it
@@ -60,44 +46,48 @@ public class SaveSceneSystem : MonoBehaviour
         ItemsIDs idsObject = LoadSceneDetailsFromJson(PlayerPrefs.GetString(idPrefName));   // ok
         object[] objectsInScene = GameObject.FindObjectsOfType(typeof(GameObject));
         
-        // cycling through the items and destroying the ones matching the list
-        foreach (object item in objectsInScene)
+        if (idsObject != null)  // if we do have a save
         {
-            GameObject currentGameObject = (GameObject) item;
-            string consumableTag = currentGameObject.tag;
-
-            switch (consumableTag)
+            // cycle through the items and destroy the ones with a match in the list
+            foreach (object item in objectsInScene)
             {
-                case "Coin":
-                case "BiggerCoin":
-                    coinController coin = currentGameObject.GetComponent<coinController>();
-                    Debug.LogWarning("value = " + coin.coinValue + " - ID = " + coin.iD);
+                GameObject currentGameObject = (GameObject) item;
+                string consumableTag = currentGameObject.tag;
+
+                switch (consumableTag)
+                {
+                    case "Coin":
+                    case "BiggerCoin":
+                        coinController coin = currentGameObject.GetComponent<coinController>();
+                        Debug.LogWarning("value = " + coin.coinValue + " - ID = " + coin.iD);
                     
-                    if (idsObject.Ids.Contains(coin.iD))
-                    {
-                        Destroy(coin.gameObject);
-                    }
-                    break;
+                        if (idsObject.Ids.Contains(coin.iD))
+                        {
+                            Destroy(coin.gameObject);
+                        }
+                        break;
 
-                case "DoubleJump":
-                    doubleJumpController doubleJump = currentGameObject.GetComponent<doubleJumpController>();
+                    case "DoubleJump":
+                        doubleJumpController doubleJump = currentGameObject.GetComponent<doubleJumpController>();
 
-                    if (idsObject.Ids.Contains(doubleJump.iD))
-                    {
-                        Destroy(doubleJump.gameObject);
-                    }
-                    break;
+                        if (idsObject.Ids.Contains(doubleJump.iD))
+                        {
+                            Destroy(doubleJump.gameObject);
+                        }
+                        break;
 
-                case "SpeedUp":
-                case "SpeedDown":
-                    speedModifierController speedModifier = currentGameObject.GetComponent<speedModifierController>();
+                    case "SpeedUp":
+                    case "SpeedDown":
+                        speedModifierController speedModifier = currentGameObject.GetComponent<speedModifierController>();
                    
-                    if (idsObject.Ids.Contains(speedModifier.iD))
-                    {
-                        Destroy(speedModifier.gameObject);
-                    }
-                    break;
+                        if (idsObject.Ids.Contains(speedModifier.iD))
+                        {
+                            Destroy(speedModifier.gameObject);
+                        }
+                        break;
+                }
             }
+
         }
     }
 
