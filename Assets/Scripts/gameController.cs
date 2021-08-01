@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -29,6 +30,9 @@ public class gameController : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode) // setting up entities before game start
     {
+        // triggering the savescene feature one time at the beginning,
+        // more info as of why in the implementation
+        SaveSceneSystem.SaveScene("1234");
         StartCoroutine("SetupEntities");
     }
 
@@ -36,7 +40,6 @@ public class gameController : MonoBehaviour
     {
         playerObject = new Player();
         playerObject = Player.LoadPlayer();
-        SaveSceneSystem.LoadSceneFromObject();
 
         /*
          * If player at checkpoint at the start of the *current* level, move the position to the appropriate sign post
@@ -44,9 +47,12 @@ public class gameController : MonoBehaviour
          * as well as eventual checkpoint (Player.AtCheckPoint)
          */
 
+
+        Debug.LogWarning(playerObject.CurrentLevel + " - " + gameController.GetCurrentGameLevel() + " - " + playerObject.AtCheckpoint);
         if (playerObject.CurrentLevel == gameController.GetCurrentGameLevel() && playerObject.AtCheckpoint)  
         {
             Debug.LogWarning("at checkpoint rn spawning");
+            SaveSceneSystem.LoadSceneFromObject();
             player.transform.position = new Vector3(checkpoint.transform.position.x + 5, checkpoint.transform.position.y, checkpoint.transform.position.z);
             cygnus.transform.position = new Vector3(player.transform.position.x - 10, cygnus.transform.position.y, cygnus.transform.position.z);
             StartCoroutine("SetupEntities");
@@ -95,19 +101,28 @@ public class gameController : MonoBehaviour
             {
                 case "Coin":
                 case "BiggerCoin":
-                    coinController coin = currentGameObject.GetComponent<coinController>();
-                    coin.SetUp();
+                    try
+                    {
+                        coinController coin = currentGameObject.GetComponent<coinController>();
+                        coin.SetUp();
+                    } catch (Exception) { }
                     break;
 
                 case "DoubleJump":
-                    doubleJumpController doubleJump = currentGameObject.GetComponent<doubleJumpController>();
-                    doubleJump.SetUp();
+                    try
+                    {
+                        doubleJumpController doubleJump = currentGameObject.GetComponent<doubleJumpController>();
+                        doubleJump.SetUp();
+                    } catch (Exception) { }
                     break;
 
                 case "SpeedUp":
                 case "SpeedDown":
-                    speedModifierController speedModifier = currentGameObject.GetComponent<speedModifierController>();
-                    speedModifier.SetUp();
+                    try
+                    {
+                        speedModifierController speedModifier = currentGameObject.GetComponent<speedModifierController>();
+                        speedModifier.SetUp();
+                    } catch (Exception) { }
                     break;
             }
         }

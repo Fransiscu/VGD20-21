@@ -22,7 +22,21 @@ public class SaveSceneSystem : MonoBehaviour
         ItemsIDs idsObject = new ItemsIDs();
         idsObject.Ids = new List<string>();
         string jsonIdsString;
-        
+
+        /* 
+        * If id == 1234 we are at the beginning of the level and can just return.
+        * This is necessary to avoid a small freeze the first time this method is called
+        * during a level (for some unknown reason). We trigger it at the beginning of the scene
+        * during the animation so it's not noticeable for the player when picking up the first consumable
+        * mid gameplay.
+       */
+
+        if (id.Equals("1234"))
+        {
+            jsonIdsString = JsonConvert.SerializeObject(idsObject);
+            return;
+        }
+
         if (PlayerPrefs.HasKey(idPrefName)) // checking if we already have something saved
         {
             idsObject = LoadSceneDetailsFromJson(PlayerPrefs.GetString(idPrefName));   // if yes, load it
@@ -70,20 +84,27 @@ public class SaveSceneSystem : MonoBehaviour
                     case "DoubleJump":
                         doubleJumpController doubleJump = currentGameObject.GetComponent<doubleJumpController>();
 
-                        if (idsObject.Ids.Contains(doubleJump.iD))
+                        try
                         {
-                            Destroy(doubleJump.gameObject);
-                        }
+                            if (idsObject.Ids.Contains(doubleJump.iD))
+                            {
+                                Destroy(doubleJump.gameObject);
+                            }
+                        } catch (Exception) { }
                         break;
 
                     case "SpeedUp":
                     case "SpeedDown":
                         speedModifierController speedModifier = currentGameObject.GetComponent<speedModifierController>();
-                   
-                        if (idsObject.Ids.Contains(speedModifier.iD))
+                        
+                        try
                         {
-                            Destroy(speedModifier.gameObject);
-                        }
+                            if (idsObject.Ids.Contains(speedModifier.iD))
+                            {
+                                Destroy(speedModifier.gameObject);
+                            }
+
+                        } catch (Exception) { }
                         break;
                 }
             }
