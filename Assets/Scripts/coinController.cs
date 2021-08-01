@@ -20,7 +20,7 @@ public class coinController : MonoBehaviour
         // dirty way to create a persistent ID
         iD = (transform.position.x.ToString() + transform.position.y.ToString()).Replace(",", "").Substring(0, 6);
 
-        Debug.Log("name = " + this.name + " - value = " + coinValue + " - ID = " + iD);
+        Debug.Log("name = " + name + " - value = " + coinValue + " - ID = " + iD);
     }
 
 }

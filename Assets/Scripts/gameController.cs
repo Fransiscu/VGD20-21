@@ -21,10 +21,6 @@ public class gameController : MonoBehaviour
 
     void OnDisable()
     {
-       /* if (!playerObject.AtCheckpoint)
-        {
-            SaveSceneSystem.DeleteSceneSave();  // if player not yet at checkpoint delete the saed consumables pickups
-        }*/
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
@@ -47,9 +43,14 @@ public class gameController : MonoBehaviour
          * as well as eventual checkpoint (Player.AtCheckPoint)
          */
 
-
-        Debug.LogWarning(playerObject.CurrentLevel + " - " + gameController.GetCurrentGameLevel() + " - " + playerObject.AtCheckpoint);
-        if (playerObject.CurrentLevel == gameController.GetCurrentGameLevel() && playerObject.AtCheckpoint)  
+        if (playerObject.CurrentLevel != gameController.GetCurrentGameLevel())
+        {
+            SaveSceneSystem.DeleteSceneSave();  // deleting potential leftover saved scenes
+            playerObject.currentLevel = gameController.GetCurrentGameLevel();
+            playerObject.AtCheckpoint = false;
+            playerObject.currentScore = 0;
+        }
+        else if (playerObject.CurrentLevel == gameController.GetCurrentGameLevel() && playerObject.AtCheckpoint)  
         {
             Debug.LogWarning("at checkpoint rn spawning");
             SaveSceneSystem.LoadSceneFromObject();
@@ -105,7 +106,8 @@ public class gameController : MonoBehaviour
                     {
                         coinController coin = currentGameObject.GetComponent<coinController>();
                         coin.SetUp();
-                    } catch (Exception) { }
+                    }
+                    catch (Exception) { }
                     break;
 
                 case "DoubleJump":
@@ -113,7 +115,8 @@ public class gameController : MonoBehaviour
                     {
                         doubleJumpController doubleJump = currentGameObject.GetComponent<doubleJumpController>();
                         doubleJump.SetUp();
-                    } catch (Exception) { }
+                    }
+                    catch (Exception) { }
                     break;
 
                 case "SpeedUp":
@@ -122,7 +125,8 @@ public class gameController : MonoBehaviour
                     {
                         speedModifierController speedModifier = currentGameObject.GetComponent<speedModifierController>();
                         speedModifier.SetUp();
-                    } catch (Exception) { }
+                    }
+                    catch (Exception) { }
                     break;
             }
         }

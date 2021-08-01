@@ -84,27 +84,20 @@ public class SaveSceneSystem : MonoBehaviour
                     case "DoubleJump":
                         doubleJumpController doubleJump = currentGameObject.GetComponent<doubleJumpController>();
 
-                        try
+                        if (idsObject.Ids.Contains(doubleJump.iD))
                         {
-                            if (idsObject.Ids.Contains(doubleJump.iD))
-                            {
-                                Destroy(doubleJump.gameObject);
-                            }
-                        } catch (Exception) { }
+                            Destroy(doubleJump.gameObject);
+                        }
                         break;
 
                     case "SpeedUp":
                     case "SpeedDown":
                         speedModifierController speedModifier = currentGameObject.GetComponent<speedModifierController>();
                         
-                        try
+                        if (idsObject.Ids.Contains(speedModifier.iD))
                         {
-                            if (idsObject.Ids.Contains(speedModifier.iD))
-                            {
-                                Destroy(speedModifier.gameObject);
-                            }
-
-                        } catch (Exception) { }
+                            Destroy(speedModifier.gameObject);
+                        }
                         break;
                 }
             }
