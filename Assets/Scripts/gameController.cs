@@ -45,10 +45,13 @@ public class gameController : MonoBehaviour
 
         if (playerObject.CurrentLevel != gameController.GetCurrentGameLevel())
         {
+            Debug.LogWarning("hey");
             SaveSceneSystem.DeleteSceneSave();  // deleting potential leftover saved scenes
             playerObject.currentLevel = gameController.GetCurrentGameLevel();
             playerObject.AtCheckpoint = false;
             playerObject.currentScore = 0;
+            playerObject.SavePlayer();
+            //StartCoroutine("SetupEntities");
         }
         else if (playerObject.CurrentLevel == gameController.GetCurrentGameLevel() && playerObject.AtCheckpoint)  
         {
@@ -56,6 +59,7 @@ public class gameController : MonoBehaviour
             SaveSceneSystem.LoadSceneFromObject();
             player.transform.position = new Vector3(checkpoint.transform.position.x + 5, checkpoint.transform.position.y, checkpoint.transform.position.z);
             cygnus.transform.position = new Vector3(player.transform.position.x - 10, cygnus.transform.position.y, cygnus.transform.position.z);
+            playerObject.SavePlayer();
             StartCoroutine("SetupEntities");
         }
         else

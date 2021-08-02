@@ -14,7 +14,7 @@ public class playerController : MonoBehaviour
     public AudioClip hitSound;
     public AudioClip deathSound;
 
-    Player player;
+    public Player player;
 
     private float playerMovementDirection;
     public float playerMovementSpeed;

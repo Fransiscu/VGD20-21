@@ -34,7 +34,12 @@ public class consumablesPicker : MonoBehaviour
                 GUIController.changeGUIScore(coin.coinValue);
                 playerController.EditScore(coin.coinValue);
 
-                SaveSceneSystem.SaveScene(coin.iD); // saving id of aquired item
+                // if the player is in the first half of the level, save the pickup progression
+                if (!playerController.player.AtCheckpoint)
+                {
+                    Debug.LogWarning("Player before the checkpoint, saving consumables");
+                    SaveSceneSystem.SaveScene(coin.iD); // saving id of acquired item
+                }
 
                 Destroy(col.gameObject);
                 break;
@@ -50,7 +55,12 @@ public class consumablesPicker : MonoBehaviour
                 GUIController.changeGUIScore(coin.coinValue * 3);
                 playerController.EditScore(coin.coinValue * 3);
 
-                SaveSceneSystem.SaveScene(coin.iD); // saving id of aquired item
+                // if the player is in the first half of the level, save the pickup progression
+                if (!playerController.player.AtCheckpoint)
+                {
+                    Debug.LogWarning("Player before the checkpoint, saving consumables");
+                    SaveSceneSystem.SaveScene(coin.iD); // saving id of acquired item
+                }
 
                 Destroy(col.gameObject);
                 break;
@@ -63,7 +73,12 @@ public class consumablesPicker : MonoBehaviour
                 doubleJumpController = col.GetComponent<doubleJumpController>();
                 doubleJumpController.pickedUp = true;
 
-                SaveSceneSystem.SaveScene(doubleJumpController.iD); // saving id of aquired item    
+                // if the player is in the first half of the level, save the pickup progression
+                if (!playerController.player.AtCheckpoint)
+                {
+                    Debug.LogWarning("Player before the checkpoint, saving consumables");
+                    SaveSceneSystem.SaveScene(doubleJumpController.iD); // saving id of acquired item    
+                }
 
                 Destroy(col.gameObject);
                 break;
@@ -76,7 +91,12 @@ public class consumablesPicker : MonoBehaviour
                 speedModifierController = col.GetComponent<speedModifierController>();
                 speedModifierController.pickedUp = true;
 
-                SaveSceneSystem.SaveScene(speedModifierController.iD);  // saving id of aquired item
+                // if the player is in the first half of the level, save the pickup progression
+                if (!playerController.player.AtCheckpoint)
+                {
+                    Debug.LogWarning("Player before the checkpoint, saving consumables");
+                    SaveSceneSystem.SaveScene(speedModifierController.iD);  // saving id of acquired item
+                }
 
                 Destroy(col.gameObject);
                 break;
@@ -84,12 +104,17 @@ public class consumablesPicker : MonoBehaviour
             case "SpeedDown" when !col.GetComponent<speedModifierController>().pickedUp:
                 AudioSource.PlayClipAtPoint(speedDownPickupSound, transform.position);
 
-                playerController.SpeedEditEnabler(false);  // speed false -> false
+                playerController.SpeedEditEnabler(false);  // speed down -> false
 
                 speedModifierController = col.GetComponent<speedModifierController>();
                 speedModifierController.pickedUp = true;
 
-                SaveSceneSystem.SaveScene(speedModifierController.iD);  // saving id of aquired item
+                // if the player is in the first half of the level, save the pickup progression
+                if (!playerController.player.AtCheckpoint)
+                {
+                    Debug.LogWarning("Player before the checkpoint, saving consumables");
+                    SaveSceneSystem.SaveScene(speedModifierController.iD);  // saving id of acquired item
+                }
 
                 Destroy(col.gameObject);
                 break;

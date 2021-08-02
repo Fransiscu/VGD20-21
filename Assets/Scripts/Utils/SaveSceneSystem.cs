@@ -75,29 +75,41 @@ public class SaveSceneSystem : MonoBehaviour
                         coinController coin = currentGameObject.GetComponent<coinController>();
                         Debug.LogWarning("value = " + coin.coinValue + " - ID = " + coin.iD);
                     
-                        if (idsObject.Ids.Contains(coin.iD))
+                        try
                         {
-                            Destroy(coin.gameObject);
-                        }
+                            if (idsObject.Ids.Contains(coin.iD))
+                            {
+                                Destroy(coin.gameObject);
+                            }
+
+                        } catch (Exception) { }
                         break;
 
                     case "DoubleJump":
                         doubleJumpController doubleJump = currentGameObject.GetComponent<doubleJumpController>();
 
-                        if (idsObject.Ids.Contains(doubleJump.iD))
+                        try
                         {
-                            Destroy(doubleJump.gameObject);
-                        }
+                            if (idsObject.Ids.Contains(doubleJump.iD))
+                            {
+                                Destroy(doubleJump.gameObject);
+                            }
+
+                        } catch (Exception) { }
                         break;
 
                     case "SpeedUp":
                     case "SpeedDown":
                         speedModifierController speedModifier = currentGameObject.GetComponent<speedModifierController>();
                         
-                        if (idsObject.Ids.Contains(speedModifier.iD))
+                        try
                         {
-                            Destroy(speedModifier.gameObject);
-                        }
+                            if (idsObject.Ids.Contains(speedModifier.iD))
+                            {
+                                Destroy(speedModifier.gameObject);
+                            }
+
+                        } catch (Exception) { }
                         break;
                 }
             }
