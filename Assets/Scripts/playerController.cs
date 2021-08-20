@@ -38,7 +38,6 @@ public class playerController : MonoBehaviour
         player = LoadPlayer();
         Debug.LogWarning(PlayerPrefs.GetString("save_data"));
         SetupCurrentGame();
-        playerAnimator.runtimeAnimatorController = femaleCharacterAnimatorController;
     }
 
     void Update()
@@ -380,6 +379,16 @@ public class playerController : MonoBehaviour
     {
         characterSprite = GetComponent<SpriteRenderer>();
         playerAnimator = GetComponent<Animator>();
+
+        // loading specific animator according to gender
+        if (player.gender == Gender.FEMALE) 
+        {
+            playerAnimator.runtimeAnimatorController = femaleCharacterAnimatorController;
+        }
+        else
+        {
+            playerAnimator.runtimeAnimatorController = maleCharacterAnimatorController;
+        }
 
         playerMovementSpeed = SETTINGS.basePlayerSpeed;
         playerJumpPower = SETTINGS.basePlayerJumpPower;
