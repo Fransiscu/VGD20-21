@@ -7,6 +7,8 @@ using UnityEngine;
 public class playerController : MonoBehaviour
 {
     private Animator playerAnimator;
+    public RuntimeAnimatorController maleCharacterAnimatorController;
+    public RuntimeAnimatorController femaleCharacterAnimatorController;
     private SpriteRenderer characterSprite;
 
     public AudioClip jumpSound;
@@ -36,6 +38,7 @@ public class playerController : MonoBehaviour
         player = LoadPlayer();
         Debug.LogWarning(PlayerPrefs.GetString("save_data"));
         SetupCurrentGame();
+        playerAnimator.runtimeAnimatorController = femaleCharacterAnimatorController;
     }
 
     void Update()

@@ -44763,10 +44763,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5bd085a138cd944a94ae003b0e5b3ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maleCharacterAnimatorController: {fileID: 9100000, guid: fb0c461e4a020f94fbf68b831118ad79, type: 2}
+  femaleCharacterAnimatorController: {fileID: 9100000, guid: 00cf48c077172984193e25f901d32edf, type: 2}
   jumpSound: {fileID: 8300000, guid: 95e7a5b4aacdb594ea476b78b75a121c, type: 3}
   doubleJumpSound: {fileID: 8300000, guid: b4c809d42a1c85a45849663d43e6f47b, type: 3}
   hitSound: {fileID: 8300000, guid: bf2e527ec9e2dcd4885fa9ef4e33faa4, type: 3}
   deathSound: {fileID: 8300000, guid: 2daf4d6f22e7cf3498168fe8a4251b48, type: 3}
+  player:
+    name: 
+    gender: 0
+    currentLevel: 0
+    currentLives: 0
+    atCheckpoint: 0
+    currentScore: 0
+    lifeTimeScore: 0
+    finishedGame: 0
+    unlockedLevels: 
   playerMovementSpeed: 0
   playerJumpPower: 0
   touchingGround: 1
