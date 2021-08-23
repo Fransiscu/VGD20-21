@@ -181,7 +181,7 @@ public class playerController : MonoBehaviour
         }
     }
 
-    // bool knockForward is used for some cases in which we force a forward knock no matter the direction of the hit
+    // bool knockForward is used for some cases in which we force a forward knock, ignoring the direction of the hit
     public void knockBackPlayer(Collision2D col, bool knockForward)
     {
         float approachDirection = col.gameObject.transform.position.x - transform.position.x;
@@ -221,7 +221,8 @@ public class playerController : MonoBehaviour
 
     public void PlayerJump()
     {
-        if (doubleJumpActive && jumpCounter < 1 && !touchingGround) // checking if the jump counter is < 1 in case of a double jump active buff
+        // checking if the jump counter is < 1 in case of a double jump active buff
+        if (doubleJumpActive && jumpCounter < 1 && !touchingGround) 
         {
             gameObject.GetComponent<Rigidbody2D>().AddForce(Vector3.up * playerJumpPower);
             touchingGround = false;
@@ -301,7 +302,7 @@ public class playerController : MonoBehaviour
                 isFlashing = false; // toggling isFlashing again
             }
 
-        characterSprite.material.color = startingColor; // setting the default color again after the flash
+        characterSprite.material.color = startingColor; // setting the default color again after flashing
         }
     }
 

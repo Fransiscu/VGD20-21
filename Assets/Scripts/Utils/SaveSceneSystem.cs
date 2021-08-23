@@ -109,7 +109,7 @@ public class SaveSceneSystem : MonoBehaviour
                                 Destroy(speedModifier.gameObject);
                             }
 
-                        } catch (Exception) { }
+                        } catch (Exception) { } // TODO: COMMENT
                         break;
                 }
             }
