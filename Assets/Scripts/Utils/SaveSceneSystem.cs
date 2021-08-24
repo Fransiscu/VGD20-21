@@ -9,7 +9,7 @@ using System.Linq;
 
 public class SaveSceneSystem : MonoBehaviour
 {
-    public static readonly string idPrefName = "items_ids";
+    private static readonly string idPrefName = DefaultValues.idPrefName;
 
     /*
      *  I'll be saving a list of items ids to a json array, storing it in PlayerPrefs
@@ -19,8 +19,10 @@ public class SaveSceneSystem : MonoBehaviour
 
     public static void SaveScene(string id)
     {
-        ItemsIDs idsObject = new ItemsIDs();
-        idsObject.Ids = new List<string>();
+        ItemsIDs idsObject = new ItemsIDs
+        {
+            Ids = new List<string>()
+        };
         string jsonIdsString;
 
         /* 

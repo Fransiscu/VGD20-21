@@ -36,7 +36,7 @@ public class playerController : MonoBehaviour
     public void Start()
     {
         player = LoadPlayer();
-        Debug.LogWarning(PlayerPrefs.GetString("save_data"));
+        Debug.LogWarning(PlayerPrefs.GetString(DefaultValues.saveDataPrefName));
         SetupCurrentGame();
     }
 

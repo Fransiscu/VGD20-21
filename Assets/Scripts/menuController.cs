@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -10,6 +11,7 @@ public class menuController : MonoBehaviour
 {
     public GameObject gameStatsResetMenu;
     public GameObject nameInputMenu;
+    public GameObject genderPicker;
     public GameObject settingsMenu;
     public GameObject levelsMenu;
     public GameObject mainMenu;
@@ -18,34 +20,38 @@ public class menuController : MonoBehaviour
 
     public TMP_InputField newPlayerNameInputField;
     public TextMeshProUGUI playerNameScore;
-    
+
+    private static readonly string gender = DefaultValues.menuGenderSelectionPrefName;
+
     Animator cygnusAnimator;
 
     Player player;
 
     void Start()
     {
-        if (PlayerPrefs.GetString("save_data").Equals("")) // if we have no playerdata saved yet
+        if (PlayerPrefs.GetString(DefaultValues.saveDataPrefName).Equals("")) // if we have no playerdata saved yet
         {
             FirstStart();   
         }
         else
         {
+            Debug.LogWarning(PlayerPrefs.GetString(DefaultValues.saveDataPrefName));
             player = new Player();
             player = Player.LoadPlayer();
             SetupInterface(player);
         }
-
-        Debug.LogWarning(PlayerPrefs.GetString("save_data"));
         
     }
 
     public void SetupNewPlayer()
     {
         Player player = new Player();
-        if (newPlayerNameInputField.text.Length < 15 && newPlayerNameInputField.text.Length > 2)
+
+        string selectedGender = PlayerPrefs.GetString(gender);
+            
+        if (newPlayerNameInputField.text.Length < 15 && newPlayerNameInputField.text.Length > 2 && !selectedGender.Equals(""))
         {
-            player = new Player(newPlayerNameInputField.text);
+            player = new Player(newPlayerNameInputField.text, selectedGender.Equals("Male") ? Gender.MALE : Gender.FEMALE);
         }
         else
         {
@@ -63,9 +69,10 @@ public class menuController : MonoBehaviour
     private void FirstStart()
     {
         // hide standard interface at first start
-        gameStatsResetMenu.SetActive(false); 
+        gameStatsResetMenu.SetActive(false);
         nameInputMenu.SetActive(false);
         settingsMenu.SetActive(false);
+        genderPicker.SetActive(true);
         levelsMenu.SetActive(false);
         mainMenu.SetActive(false);
 
@@ -81,8 +88,9 @@ public class menuController : MonoBehaviour
         cygnusAnimator.Play("cygnus_stand");
 
         gameStatsResetMenu.SetActive(false);    // turning the game stats menu off at start
-        settingsMenu.SetActive(false);  // turning the settings menu off at start
         nameInputMenu.SetActive(false);  // turning first time interface off at start
+        genderPicker.SetActive(false);  // turning the gender picker off at start
+        settingsMenu.SetActive(false);  // turning the settings menu off at start
         levelsMenu.SetActive(false);  // turning the levels menu off at start
         mainMenu.SetActive(true);   // turning the main menu on at start
         
@@ -141,5 +149,4 @@ public class menuController : MonoBehaviour
         };
         TransitionKit.instance.transitionWithDelegate(fadeToLevel);
     }
-
 }

@@ -1680,6 +1680,7 @@ GameObject:
   - component: {fileID: 543637624}
   - component: {fileID: 543637623}
   - component: {fileID: 543637625}
+  - component: {fileID: 543637626}
   m_Layer: 5
   m_Name: Female
   m_TagString: Untagged
@@ -1786,6 +1787,18 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 543637623}
+--- !u!114 &543637626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 543637621}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ad019c28e4e76846948fe439f467831, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &566715094
 GameObject:
   m_ObjectHideFlags: 0
@@ -2427,6 +2440,7 @@ GameObject:
   - component: {fileID: 661861946}
   - component: {fileID: 661861945}
   - component: {fileID: 661861947}
+  - component: {fileID: 661861948}
   m_Layer: 5
   m_Name: Male
   m_TagString: Untagged
@@ -2533,6 +2547,18 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 661861945}
+--- !u!114 &661861948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 661861943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ad019c28e4e76846948fe439f467831, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &662964931
 GameObject:
   m_ObjectHideFlags: 0
@@ -3431,9 +3457,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameStatsResetMenu: {fileID: 510801081}
   nameInputMenu: {fileID: 1145704355}
+  genderPicker: {fileID: 1629981689}
   settingsMenu: {fileID: 491473847}
   levelsMenu: {fileID: 959066791}
   mainMenu: {fileID: 341210362}
+  maleChar: {fileID: 661861947}
+  femaleChar: {fileID: 543637625}
   cygnus: {fileID: 1765510372}
   newPlayerNameInputField: {fileID: 1419409437}
   playerNameScore: {fileID: 1839616789}
@@ -4424,7 +4453,7 @@ GameObject:
   - component: {fileID: 1489506066}
   m_Layer: 5
   m_Name: Character
-  m_TagString: Cygnus
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6185,7 +6214,7 @@ GameObject:
   - component: {fileID: 2096040843}
   m_Layer: 5
   m_Name: Character
-  m_TagString: Cygnus
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
