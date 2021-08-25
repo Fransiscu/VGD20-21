@@ -10,14 +10,22 @@ public class consumablesPicker : MonoBehaviour
     doubleJumpController doubleJumpController;
     speedModifierController speedModifierController;
     public GUIController GUIController;
+
+    private GameSettings gameSettings;
     
     public AudioClip doubleJumpPickupSound;
     public AudioClip speedUpPickupSound;
     public AudioClip speedDownPickupSound;
     public AudioClip coinPickupSound;
 
+    float volume;
+
     private void OnTriggerEnter2D(Collider2D col)
     {
+        gameSettings = new GameSettings();
+        gameSettings = GameSettings.LoadSettings();
+        volume = gameSettings.Sound ? 1.0f : 0f;
+
         playerController = gameObject.GetComponent<playerController>();
         string consumableTag = col.gameObject.tag;
         Destroy(col.gameObject);
@@ -27,7 +35,7 @@ public class consumablesPicker : MonoBehaviour
             case "Coin" when !col.GetComponent<coinController>().pickedUp:
                 Debug.Log("Picked coin's value = " + col.GetComponent<coinController>().coinValue);
 
-                AudioSource.PlayClipAtPoint(coinPickupSound, transform.position);
+                AudioSource.PlayClipAtPoint(coinPickupSound, transform.position, volume);
 
                 coin = col.GetComponent<coinController>();
                 coin.pickedUp = true;
@@ -42,13 +50,12 @@ public class consumablesPicker : MonoBehaviour
                     SaveSceneSystem.SaveScene(coin.iD); // saving id of acquired item
                 }
 
-                
                 break;
 
             case "BiggerCoin" when !col.GetComponent<coinController>().pickedUp:
                 Debug.Log("Picked bigger coin! value * 3 " + col.GetComponent<coinController>().coinValue * 3);
 
-                AudioSource.PlayClipAtPoint(coinPickupSound, transform.position);
+                AudioSource.PlayClipAtPoint(coinPickupSound, transform.position, volume);
 
                 coin = col.GetComponent<coinController>();
                 coin.pickedUp = true;
@@ -66,7 +73,7 @@ public class consumablesPicker : MonoBehaviour
                 break;
 
             case "DoubleJump" when !col.GetComponent<doubleJumpController>().pickedUp:
-                AudioSource.PlayClipAtPoint(doubleJumpPickupSound, transform.position);
+                AudioSource.PlayClipAtPoint(doubleJumpPickupSound, transform.position, volume);
 
                 playerController.DoubleJumpEnabler();
 
@@ -83,7 +90,7 @@ public class consumablesPicker : MonoBehaviour
                 break;
 
             case "SpeedUp" when !col.GetComponent<speedModifierController>().pickedUp:
-                AudioSource.PlayClipAtPoint(speedUpPickupSound, transform.position);
+                AudioSource.PlayClipAtPoint(speedUpPickupSound, transform.position, volume);
 
                 playerController.SpeedEditEnabler(true);  // speed up -> true
 
@@ -100,7 +107,7 @@ public class consumablesPicker : MonoBehaviour
                 break;
 
             case "SpeedDown" when !col.GetComponent<speedModifierController>().pickedUp:
-                AudioSource.PlayClipAtPoint(speedDownPickupSound, transform.position);
+                AudioSource.PlayClipAtPoint(speedDownPickupSound, transform.position, volume);
 
                 playerController.SpeedEditEnabler(false);  // speed down -> false
 

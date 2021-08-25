@@ -22,8 +22,6 @@ public class menuController : MonoBehaviour
     public Button soundSettingToggle;
     public Button musicSettingToggle;
 
-    public GameObject menuMusic;
-
     Animator cygnusAnimator;
 
     GameSettings gameSettings;

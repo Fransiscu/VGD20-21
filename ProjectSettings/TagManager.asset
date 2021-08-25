@@ -18,6 +18,8 @@ TagManager:
   - Map Borders
   - BonusLevelEntryPoint
   - BiggerCoin
+  - MenuController
+  - MenuMusic
   layers:
   - Default
   - TransparentFX

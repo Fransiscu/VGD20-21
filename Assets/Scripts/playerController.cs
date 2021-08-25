@@ -18,6 +18,9 @@ public class playerController : MonoBehaviour
 
     public Player player;
 
+    public GameSettings gameSettings;
+    public float volume;
+
     private float playerMovementDirection;
     public float playerMovementSpeed;
     public int playerJumpPower;
@@ -154,7 +157,7 @@ public class playerController : MonoBehaviour
         {
             if (!isInvincible)
             {
-                AudioSource.PlayClipAtPoint(hitSound, transform.position);  // playing sound on hit
+                AudioSource.PlayClipAtPoint(hitSound, transform.position, volume);  // playing sound on hit
                 knockBackPlayer(col, false);
             }
         }
@@ -162,7 +165,7 @@ public class playerController : MonoBehaviour
         {
             if (!isInvincible)
             {
-                AudioSource.PlayClipAtPoint(hitSound, transform.position);  // playing sound on hit
+                AudioSource.PlayClipAtPoint(hitSound, transform.position, volume);  // playing sound on hit
                 knockBackPlayer(col, false);
             }
         }
@@ -170,7 +173,7 @@ public class playerController : MonoBehaviour
         {
             if (!isInvincible)
             {
-                AudioSource.PlayClipAtPoint(hitSound, transform.position);  // playing sound on hit
+                AudioSource.PlayClipAtPoint(hitSound, transform.position, volume);  // playing sound on hit
                 knockBackPlayer(col, true);   // knocking always to the right
             }
             else
@@ -227,13 +230,13 @@ public class playerController : MonoBehaviour
             gameObject.GetComponent<Rigidbody2D>().AddForce(Vector3.up * playerJumpPower);
             touchingGround = false;
             jumpCounter++;
-            AudioSource.PlayClipAtPoint(doubleJumpSound, transform.position);
+            AudioSource.PlayClipAtPoint(doubleJumpSound, transform.position, volume);
         }
         else if (touchingGround)
         {
             gameObject.GetComponent<Rigidbody2D>().AddForce(Vector3.up * playerJumpPower);
             touchingGround = false;
-            AudioSource.PlayClipAtPoint(jumpSound, transform.position);
+            AudioSource.PlayClipAtPoint(jumpSound, transform.position, volume);
         }
     }
 
@@ -399,6 +402,11 @@ public class playerController : MonoBehaviour
 
         EditLives(SETTINGS.startingLives);
         EditScore(0);
+
+        gameSettings = new GameSettings();
+        gameSettings = GameSettings.LoadSettings();
+        volume = gameSettings.Sound ? 1.0f : 0f;
+
     }
 
     public void EditLives(float change)
