@@ -404,9 +404,8 @@ public class playerController : MonoBehaviour
         EditScore(0);
 
         gameSettings = new GameSettings();
-        gameSettings = GameSettings.LoadSettings();
-        volume = gameSettings.Sound ? 1.0f : 0f;
-
+        gameSettings = GameSettings.LoadSettings(); //asd
+        volume = gameSettings.Sound ? SETTINGS.soundVolume : 0f;
     }
 
     public void EditLives(float change)

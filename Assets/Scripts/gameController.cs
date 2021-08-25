@@ -10,6 +10,8 @@ public class gameController : MonoBehaviour
     public GameObject player;
     public GameObject GUIController;
 
+    public AudioSource music;
+
     public Transform checkpoint;
 
     GameSettings gameSettings;
@@ -36,14 +38,15 @@ public class gameController : MonoBehaviour
 
     void Start()
     {
+        // loading player object for use
         playerObject = new Player();
         playerObject = Player.LoadPlayer();
 
+        // setting up music according to the game settings
         gameSettings = new GameSettings();
         gameSettings = GameSettings.LoadSettings();
-        /*
-        if 
-        AudioListener.volume = 1 - AudioListener.volume;
+
+        if (gameSettings.Music) music.volume = SETTINGS.musicVolume; else music.Stop();
 
         /*
          * If player at checkpoint at the start of the *current* level, move the position to the appropriate sign post

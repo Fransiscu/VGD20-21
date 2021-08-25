@@ -75,7 +75,7 @@ public class SaveSceneSystem : MonoBehaviour
                     case "Coin":
                     case "BiggerCoin":
                         coinController coin = currentGameObject.GetComponent<coinController>();
-                        Debug.LogWarning("value = " + coin.coinValue + " - ID = " + coin.iD);
+                        Debug.Log("value = " + coin.coinValue + " - ID = " + coin.iD);
                     
                         try
                         {

@@ -24,7 +24,7 @@ public class consumablesPicker : MonoBehaviour
     {
         gameSettings = new GameSettings();
         gameSettings = GameSettings.LoadSettings();
-        volume = gameSettings.Sound ? 1.0f : 0f;
+        volume = gameSettings.Sound ? SETTINGS.soundVolume : 0f;
 
         playerController = gameObject.GetComponent<playerController>();
         string consumableTag = col.gameObject.tag;
@@ -97,10 +97,9 @@ public class consumablesPicker : MonoBehaviour
                 speedModifierController = col.GetComponent<speedModifierController>();
                 speedModifierController.pickedUp = true;
 
-                // if the player is in the first half of the level, save the pickup progression
+                // if the player is in the first half of the level and didn't reach the checkpoint, save the pickup progression
                 if (!playerController.player.AtCheckpoint)
                 {
-                    Debug.LogWarning("Player before the checkpoint, saving consumables");
                     SaveSceneSystem.SaveScene(speedModifierController.iD);  // saving id of acquired item
                 }
 

@@ -19,7 +19,7 @@ TagManager:
   - BonusLevelEntryPoint
   - BiggerCoin
   - MenuController
-  - MenuMusic
+  - Music
   layers:
   - Default
   - TransparentFX

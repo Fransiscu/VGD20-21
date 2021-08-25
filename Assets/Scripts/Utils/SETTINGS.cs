@@ -57,4 +57,7 @@ public class SETTINGS
     // powedowns
     public static readonly float speedDeficit = .3f;
 
+    // levels
+    public static readonly float soundVolume = 1f;
+    public static readonly float musicVolume = .10f;
 }

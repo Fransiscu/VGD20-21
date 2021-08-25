@@ -22,6 +22,8 @@ public class menuController : MonoBehaviour
     public Button soundSettingToggle;
     public Button musicSettingToggle;
 
+    public AudioSource music;
+
     Animator cygnusAnimator;
 
     GameSettings gameSettings;
@@ -44,7 +46,12 @@ public class menuController : MonoBehaviour
             player = Player.LoadPlayer();
             SetupInterface(player, gameSettings);
         }
-        
+
+        // setting up music according to the game settings
+        gameSettings = new GameSettings();
+        gameSettings = GameSettings.LoadSettings();
+
+        if (gameSettings.Music) music.volume = SETTINGS.musicVolume; else music.Stop();
     }
 
     public void SetupNewPlayer()
@@ -138,8 +145,11 @@ public class menuController : MonoBehaviour
     public void OnMusicToggleButtonPress()
     {
         gameSettings.Music = !gameSettings.Music;
-        musicSettingToggle.GetComponentInChildren<TextMeshProUGUI>().SetText(gameSettings.Sound == true ? "Music On" : "Music Off");
+        musicSettingToggle.GetComponentInChildren<TextMeshProUGUI>().SetText(gameSettings.Music == true ? "Music On" : "Music Off");
         gameSettings.SaveSettings();
+
+        if (!gameSettings.Music) music.Stop(); else music.Play();
+
     }
 
     public void ResetGameStats()
