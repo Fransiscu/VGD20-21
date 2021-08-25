@@ -5,6 +5,7 @@ using UnityEngine;
 
 [System.Serializable]
 public enum Gender {MALE, FEMALE};
+    
 
 [System.Serializable]
 public class Player
@@ -19,8 +20,7 @@ public class Player
     public bool finishedGame;
     public List<int> unlockedLevels;
 
-    public readonly static string saveData = DefaultValues.saveDataPrefName;
-
+    private static readonly string saveData = PlayerPrefsKey.saveDataPrefName;
     public Player()
     {
     }

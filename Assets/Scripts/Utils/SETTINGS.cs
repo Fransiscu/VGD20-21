@@ -57,6 +57,4 @@ public class SETTINGS
     // powedowns
     public static readonly float speedDeficit = .3f;
 
-    // levels
-
 }

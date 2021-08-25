@@ -8,7 +8,7 @@ public class GenderPickerSelectableController : MonoBehaviour,
     ISelectHandler,
     IEventSystemHandler
 {
-    private static readonly string selectedGender = DefaultValues.menuGenderSelectionPrefName;
+    private static readonly string selectedGender = PlayerPrefsKey.menuGenderSelectionPrefName;
 
     public void OnSelect(BaseEventData eventData)
     {

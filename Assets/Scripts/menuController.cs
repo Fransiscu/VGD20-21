@@ -21,7 +21,7 @@ public class menuController : MonoBehaviour
     public TMP_InputField newPlayerNameInputField;
     public TextMeshProUGUI playerNameScore;
 
-    private static readonly string gender = DefaultValues.menuGenderSelectionPrefName;
+    private static readonly string gender = PlayerPrefsKey.menuGenderSelectionPrefName;
 
     Animator cygnusAnimator;
 
@@ -29,13 +29,13 @@ public class menuController : MonoBehaviour
 
     void Start()
     {
-        if (PlayerPrefs.GetString(DefaultValues.saveDataPrefName).Equals("")) // if we have no playerdata saved yet
+        if (PlayerPrefs.GetString(PlayerPrefsKey.saveDataPrefName).Equals("")) // if we have no playerdata saved yet
         {
             FirstStart();   
         }
         else
         {
-            Debug.LogWarning(PlayerPrefs.GetString(DefaultValues.saveDataPrefName));
+            Debug.LogWarning(PlayerPrefs.GetString(PlayerPrefsKey.saveDataPrefName));
             player = new Player();
             player = Player.LoadPlayer();
             SetupInterface(player);
@@ -68,6 +68,10 @@ public class menuController : MonoBehaviour
 
     private void FirstStart()
     {
+        // setting up game settings at first start 
+        GameSettings gameSettings = new GameSettings();
+        gameSettings.SaveSettings();
+
         // hide standard interface at first start
         gameStatsResetMenu.SetActive(false);
         nameInputMenu.SetActive(false);

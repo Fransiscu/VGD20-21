@@ -1733,7 +1733,7 @@ Transform:
   - {fileID: 1795317400}
   - {fileID: 475871078}
   m_Father: {fileID: 1862224408}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &274800226
 GameObject:
@@ -9722,7 +9722,7 @@ Transform:
   m_Children:
   - {fileID: 2095955310}
   m_Father: {fileID: 1116015491}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &813123047
 MonoBehaviour:
@@ -11441,11 +11441,12 @@ Transform:
   m_LocalPosition: {x: -7.213045, y: -5.0817966, z: 16.568367}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1388111562}
   - {fileID: 1495022663}
   - {fileID: 1980388220}
   - {fileID: 813123046}
   m_Father: {fileID: 1862224408}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1127450325
 GameObject:
@@ -15772,12 +15773,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1388111559}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 71.9442, y: 11.882193, z: 102.9753}
+  m_LocalPosition: {x: 79.15724, y: 16.96399, z: 86.40694}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children:
   - {fileID: 2006570619}
-  m_Father: {fileID: 1862224408}
-  m_RootOrder: 3
+  m_Father: {fileID: 1116015491}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1388111563
 MonoBehaviour:
@@ -15794,7 +15795,7 @@ MonoBehaviour:
   milestonePoint: {fileID: 2006570619}
   checkpointSound: {fileID: 8300000, guid: 6e3d2a5dda7e85948a39f808aac46429, type: 3}
   victorySound: {fileID: 8300000, guid: 306ad7d86e8f3f143a4388418cbc35f3, type: 3}
-  portalSound: {fileID: 0}
+  portalSound: {fileID: 8300000, guid: 553cbbd9f7eac8a448afb748b2ccc04c, type: 3}
   milestoneReached: 0
   distance: 50
 --- !u!1 &1428742551
@@ -16089,7 +16090,7 @@ Transform:
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_Children: []
   m_Father: {fileID: 1116015491}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1495022664
 SpriteRenderer:
@@ -19919,7 +19920,6 @@ Transform:
   - {fileID: 899882763}
   - {fileID: 1713743595}
   - {fileID: 672351719}
-  - {fileID: 1388111562}
   - {fileID: 1116015491}
   - {fileID: 273557993}
   m_Father: {fileID: 0}
@@ -20412,7 +20412,7 @@ RectTransform:
   m_Children:
   - {fileID: 583665169}
   m_Father: {fileID: 1116015491}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
