@@ -29,6 +29,8 @@ public class menuController : MonoBehaviour
     GameSettings gameSettings;
     Player player;
 
+    public float musicFadeTimer = 1.5f;
+
     private static readonly string gender = PlayerPrefsKey.menuGenderSelectionPrefName;
 
     //Stop all sounds
@@ -133,7 +135,8 @@ public class menuController : MonoBehaviour
 
     public void OnPlayButtonPress()
     {
-        SceneManager.LoadScene(1);
+        StartCoroutine("FadeToLevelMenu");
+        StartCoroutine("FadeToMenu");
     }
     
     public void OnSoundToggleButtonPress()
@@ -173,17 +176,6 @@ public class menuController : MonoBehaviour
         QuitGame();
     }
 
-    private IEnumerator FadeToMenu()
-    {
-        yield return new WaitForSeconds(.1f);
-        FadeTransition fadeToLevel = new FadeTransition()
-        {
-            duration = 1.5f,
-            fadeToColor = Color.white
-        };
-        TransitionKit.instance.transitionWithDelegate(fadeToLevel);
-    }
-
     private void SetupMusic()
     {
         if (gameSettings.Music)
@@ -196,4 +188,35 @@ public class menuController : MonoBehaviour
             music.Stop();
         }
     }
+
+    private IEnumerator FadeToLevelMenu()
+    {
+        for (float i = 0; i < 1.5f; i += 1f)
+        {
+
+            if (musicFadeTimer > 0)
+            {
+                music.volume -= 0.015f;
+                musicFadeTimer -= Time.deltaTime;
+            }
+            if (music.volume == 0)
+            {
+                break;
+            }
+            yield return new WaitForSeconds(.5f);
+        }
+        SceneManager.LoadScene(1);
+    }
+
+    private IEnumerator FadeToMenu()
+    {
+        yield return new WaitForSeconds(.1f);
+        FadeTransition fadeToLevel = new FadeTransition()
+        {
+            duration = .8f,
+            fadeToColor = Color.white
+        };
+        TransitionKit.instance.transitionWithDelegate(fadeToLevel);
+    }
+
 }

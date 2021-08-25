@@ -55,7 +55,7 @@ public class levelsMenuController : MonoBehaviour
 
     public void OnBackButtonPress()
     {
-        SceneManager.LoadScene(0);
+        StartCoroutine("StartLevel", 0);
     }
 
     public void OnLevel1ButtonPress()
@@ -82,8 +82,7 @@ public class levelsMenuController : MonoBehaviour
         FadeTransition fadeToLevel = new FadeTransition()
         {
             nextScene = sceneNumber,
-            fadedDelay = .5f,
-            duration = 1.5f,
+            duration = .8f,
             fadeToColor = Color.white
         };
         TransitionKit.instance.transitionWithDelegate(fadeToLevel);
