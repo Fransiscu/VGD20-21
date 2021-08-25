@@ -12,7 +12,9 @@ public class gameController : MonoBehaviour
 
     public Transform checkpoint;
 
+    GameSettings gameSettings;
     Player playerObject;
+
     void OnEnable()
     {
         SetUpConsumables();
@@ -36,6 +38,12 @@ public class gameController : MonoBehaviour
     {
         playerObject = new Player();
         playerObject = Player.LoadPlayer();
+
+        gameSettings = new GameSettings();
+        gameSettings = GameSettings.LoadSettings();
+        /*
+        if 
+        AudioListener.volume = 1 - AudioListener.volume;
 
         /*
          * If player at checkpoint at the start of the *current* level, move the position to the appropriate sign post

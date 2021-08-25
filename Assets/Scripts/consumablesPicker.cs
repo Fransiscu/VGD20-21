@@ -20,6 +20,7 @@ public class consumablesPicker : MonoBehaviour
     {
         playerController = gameObject.GetComponent<playerController>();
         string consumableTag = col.gameObject.tag;
+        Destroy(col.gameObject);
 
         switch (consumableTag)
         {
@@ -41,7 +42,7 @@ public class consumablesPicker : MonoBehaviour
                     SaveSceneSystem.SaveScene(coin.iD); // saving id of acquired item
                 }
 
-                Destroy(col.gameObject);
+                
                 break;
 
             case "BiggerCoin" when !col.GetComponent<coinController>().pickedUp:
@@ -62,7 +63,6 @@ public class consumablesPicker : MonoBehaviour
                     SaveSceneSystem.SaveScene(coin.iD); // saving id of acquired item
                 }
 
-                Destroy(col.gameObject);
                 break;
 
             case "DoubleJump" when !col.GetComponent<doubleJumpController>().pickedUp:
@@ -80,7 +80,6 @@ public class consumablesPicker : MonoBehaviour
                     SaveSceneSystem.SaveScene(doubleJumpController.iD); // saving id of acquired item    
                 }
 
-                Destroy(col.gameObject);
                 break;
 
             case "SpeedUp" when !col.GetComponent<speedModifierController>().pickedUp:
@@ -98,7 +97,6 @@ public class consumablesPicker : MonoBehaviour
                     SaveSceneSystem.SaveScene(speedModifierController.iD);  // saving id of acquired item
                 }
 
-                Destroy(col.gameObject);
                 break;
 
             case "SpeedDown" when !col.GetComponent<speedModifierController>().pickedUp:
@@ -116,9 +114,7 @@ public class consumablesPicker : MonoBehaviour
                     SaveSceneSystem.SaveScene(speedModifierController.iD);  // saving id of acquired item
                 }
 
-                Destroy(col.gameObject);
-                break;
-
+                break;  
         }
 
     }

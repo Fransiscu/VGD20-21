@@ -22,6 +22,8 @@ public class menuController : MonoBehaviour
     public Button soundSettingToggle;
     public Button musicSettingToggle;
 
+    public GameObject menuMusic;
+
     Animator cygnusAnimator;
 
     GameSettings gameSettings;
@@ -133,7 +135,6 @@ public class menuController : MonoBehaviour
         gameSettings.Sound = !gameSettings.Sound;
         soundSettingToggle.GetComponentInChildren<TextMeshProUGUI>().SetText(gameSettings.Sound == true ? "Sound On" : "Sound Off");
         gameSettings.SaveSettings();
-        Debug.LogWarning(PlayerPrefs.GetString(PlayerPrefsKey.gameSettingsPrefName));
     }
     
     public void OnMusicToggleButtonPress()
@@ -141,7 +142,6 @@ public class menuController : MonoBehaviour
         gameSettings.Music = !gameSettings.Music;
         musicSettingToggle.GetComponentInChildren<TextMeshProUGUI>().SetText(gameSettings.Sound == true ? "Music On" : "Music Off");
         gameSettings.SaveSettings();
-        Debug.LogWarning(PlayerPrefs.GetString(PlayerPrefsKey.gameSettingsPrefName));
     }
 
     public void ResetGameStats()

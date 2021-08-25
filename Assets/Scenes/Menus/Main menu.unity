@@ -2953,6 +2953,7 @@ MonoBehaviour:
   playerNameScore: {fileID: 1839616789}
   soundSettingToggle: {fileID: 1598415081}
   musicSettingToggle: {fileID: 576972146}
+  menuMusic: {fileID: 0}
 --- !u!4 &872862884
 Transform:
   m_ObjectHideFlags: 0
