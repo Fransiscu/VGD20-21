@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
+[Serializable]
 public enum Gender {MALE, FEMALE};
     
 
@@ -29,13 +29,13 @@ public class Player
     {
         this.name = name;
         this.gender = gender;
-        this.lifeTimeScore = 0;
-        this.finishedGame = false;
-        this.currentLevel = 0;
-        this.currentLives = 3;
-        this.currentScore = 0;
-        this.atCheckpoint = false;
-        this.unlockedLevels = new List<int>() { 1 };
+        lifeTimeScore = 0;
+        finishedGame = false;
+        currentLevel = 0;
+        currentLives = 3;
+        currentScore = 0;
+        atCheckpoint = false;
+        unlockedLevels = new List<int>() { 1 };
     }
 
     // getters and setters
@@ -43,13 +43,6 @@ public class Player
     public int LifeTimeScore { get => lifeTimeScore; set => lifeTimeScore = value; }
     public bool FinishedGame { get => finishedGame; set => finishedGame = value; }
     public int CurrentLevel { get => currentLevel; set => currentLevel = value; }
-
-    internal bool meetsRequirements()
-    {
-        throw new NotImplementedException();
-        //newPlayerNameInputField.text.Length < 15 && newPlayerNameInputField.text.Length > 2
-    }
-
     public float CurrentLives { get => currentLives; set => currentLives = value; }
     public int CurrentScore { get => currentScore; set => currentScore = value; }
     public bool AtCheckpoint { get => atCheckpoint; set => atCheckpoint = value; }
@@ -69,5 +62,4 @@ public class Player
     {
         return JsonUtility.FromJson<Player>(PlayerPrefs.GetString(saveData));
     }
-
 }

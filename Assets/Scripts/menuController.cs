@@ -13,19 +13,21 @@ public class menuController : MonoBehaviour
     public GameObject nameInputMenu;
     public GameObject genderPicker;
     public GameObject settingsMenu;
-    public GameObject levelsMenu;
     public GameObject mainMenu;
 
     public GameObject cygnus;
 
     public TMP_InputField newPlayerNameInputField;
     public TextMeshProUGUI playerNameScore;
-
-    private static readonly string gender = PlayerPrefsKey.menuGenderSelectionPrefName;
+    public Button soundSettingToggle;
+    public Button musicSettingToggle;
 
     Animator cygnusAnimator;
 
+    GameSettings gameSettings;
     Player player;
+
+    private static readonly string gender = PlayerPrefsKey.menuGenderSelectionPrefName;
 
     void Start()
     {
@@ -35,10 +37,12 @@ public class menuController : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning(PlayerPrefs.GetString(PlayerPrefsKey.saveDataPrefName));
+            Debug.LogWarning(PlayerPrefs.GetString(PlayerPrefsKey.gameSettingsPrefName));
+            gameSettings = new GameSettings();
+            gameSettings = GameSettings.LoadSettings();
             player = new Player();
             player = Player.LoadPlayer();
-            SetupInterface(player);
+            SetupInterface(player, gameSettings);
         }
         
     }
@@ -63,13 +67,13 @@ public class menuController : MonoBehaviour
 
         player.SavePlayer();
 
-        SetupInterface(player);   // setting up the rest of the interface 
+        SetupInterface(player, gameSettings);   // setting up the rest of the interface 
     }
 
     private void FirstStart()
     {
         // setting up game settings at first start 
-        GameSettings gameSettings = new GameSettings();
+        gameSettings = new GameSettings(true, true);
         gameSettings.SaveSettings();
 
         // hide standard interface at first start
@@ -77,7 +81,6 @@ public class menuController : MonoBehaviour
         nameInputMenu.SetActive(false);
         settingsMenu.SetActive(false);
         genderPicker.SetActive(true);
-        levelsMenu.SetActive(false);
         mainMenu.SetActive(false);
 
         playerNameScore.enabled = false;
@@ -86,16 +89,18 @@ public class menuController : MonoBehaviour
         nameInputMenu.SetActive(true);
     }
 
-    private void SetupInterface(Player player)
+    private void SetupInterface(Player player, GameSettings gameSettings)
     {
         cygnusAnimator = cygnus.GetComponentInChildren<Animator>();
         cygnusAnimator.Play("cygnus_stand");
+
+        soundSettingToggle.GetComponentInChildren<TextMeshProUGUI>().SetText(gameSettings.Sound == true ? "Sound On" : "Sound Off");
+        musicSettingToggle.GetComponentInChildren<TextMeshProUGUI>().SetText(gameSettings.Music == true ? "Music On" : "Music Off");
 
         gameStatsResetMenu.SetActive(false);    // turning the game stats menu off at start
         nameInputMenu.SetActive(false);  // turning first time interface off at start
         genderPicker.SetActive(false);  // turning the gender picker off at start
         settingsMenu.SetActive(false);  // turning the settings menu off at start
-        levelsMenu.SetActive(false);  // turning the levels menu off at start
         mainMenu.SetActive(true);   // turning the main menu on at start
         
         cygnusAnimator.SetBool("cygnus_wakeup", true); // setting up main menu cygnus animations 
@@ -121,6 +126,22 @@ public class menuController : MonoBehaviour
     public void OnPlayButtonPress()
     {
         SceneManager.LoadScene(1);
+    }
+    
+    public void OnSoundToggleButtonPress()
+    {
+        gameSettings.Sound = !gameSettings.Sound;
+        soundSettingToggle.GetComponentInChildren<TextMeshProUGUI>().SetText(gameSettings.Sound == true ? "Sound On" : "Sound Off");
+        gameSettings.SaveSettings();
+        Debug.LogWarning(PlayerPrefs.GetString(PlayerPrefsKey.gameSettingsPrefName));
+    }
+    
+    public void OnMusicToggleButtonPress()
+    {
+        gameSettings.Music = !gameSettings.Music;
+        musicSettingToggle.GetComponentInChildren<TextMeshProUGUI>().SetText(gameSettings.Sound == true ? "Music On" : "Music Off");
+        gameSettings.SaveSettings();
+        Debug.LogWarning(PlayerPrefs.GetString(PlayerPrefsKey.gameSettingsPrefName));
     }
 
     public void ResetGameStats()
