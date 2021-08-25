@@ -45,7 +45,6 @@ public class gameController : MonoBehaviour
 
         if (playerObject.CurrentLevel != gameController.GetCurrentGameLevel())
         {
-            Debug.LogWarning("hey");
             SaveSceneSystem.DeleteSceneSave();  // deleting potential leftover saved scenes
             playerObject.currentLevel = gameController.GetCurrentGameLevel();
             playerObject.AtCheckpoint = false;
