@@ -31,15 +31,17 @@ public class menuController : MonoBehaviour
 
     private static readonly string gender = PlayerPrefsKey.menuGenderSelectionPrefName;
 
+    //Stop all sounds
+    private AudioSource[] allAudioSources;
+
     void Start()
     {
         if (PlayerPrefs.GetString(PlayerPrefsKey.saveDataPrefName).Equals("")) // if we have no playerdata saved yet
         {
-            FirstStart();   
+            FirstStart();
         }
         else
         {
-            Debug.LogWarning(PlayerPrefs.GetString(PlayerPrefsKey.gameSettingsPrefName));
             gameSettings = new GameSettings();
             gameSettings = GameSettings.LoadSettings();
             player = new Player();
@@ -50,8 +52,7 @@ public class menuController : MonoBehaviour
         // setting up music according to the game settings
         gameSettings = new GameSettings();
         gameSettings = GameSettings.LoadSettings();
-
-        if (gameSettings.Music) music.volume = SETTINGS.musicVolume; else music.Stop();
+        SetupMusic();
     }
 
     public void SetupNewPlayer()
@@ -141,15 +142,22 @@ public class menuController : MonoBehaviour
         soundSettingToggle.GetComponentInChildren<TextMeshProUGUI>().SetText(gameSettings.Sound == true ? "Sound On" : "Sound Off");
         gameSettings.SaveSettings();
     }
-    
+
     public void OnMusicToggleButtonPress()
     {
         gameSettings.Music = !gameSettings.Music;
         musicSettingToggle.GetComponentInChildren<TextMeshProUGUI>().SetText(gameSettings.Music == true ? "Music On" : "Music Off");
         gameSettings.SaveSettings();
 
-        if (!gameSettings.Music) music.Stop(); else music.Play();
-
+        if (!gameSettings.Music) 
+        {
+            music.Stop(); 
+        }
+        else
+        {
+            music.volume = SETTINGS.musicVolume;
+            music.Play(); 
+        }
     }
 
     public void ResetGameStats()
@@ -174,5 +182,18 @@ public class menuController : MonoBehaviour
             fadeToColor = Color.white
         };
         TransitionKit.instance.transitionWithDelegate(fadeToLevel);
+    }
+
+    private void SetupMusic()
+    {
+        if (gameSettings.Music)
+        {
+            music.volume = SETTINGS.musicVolume;
+            music.Play();
+        }
+        else
+        {
+            music.Stop();
+        }
     }
 }

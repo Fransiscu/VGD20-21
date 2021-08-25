@@ -11,9 +11,11 @@ public class levelsMenuController : MonoBehaviour
 {
     public GameObject cygnus;
     public TextMeshProUGUI playerNameScore;
+    public GameObject menuController;
     
     Animator cygnusAnimator;
-    
+    AudioSource audioClip;
+
     public Button continueButton;
     public Button level1Button;
     public Button level2Button;
@@ -25,10 +27,10 @@ public class levelsMenuController : MonoBehaviour
     void Start()
     {
         cygnusAnimator = cygnus.GetComponentInChildren<Animator>();
-
+        
         player = new Player();
         player = Player.LoadPlayer();
-
+        
         SetupInterface();
     }
 
