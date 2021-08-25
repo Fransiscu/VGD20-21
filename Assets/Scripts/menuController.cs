@@ -118,13 +118,6 @@ public class menuController : MonoBehaviour
     {
         SceneManager.LoadScene(1);
     }
- 
-    public IEnumerator StartingGameAnimation()
-    {
-        cygnusAnimator.SetBool("cygnus_attack", true);
-        yield return new WaitForSeconds(2f);
-        // start game
-    }
 
     public void ResetGameStats()
     {
