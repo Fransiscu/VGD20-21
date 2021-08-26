@@ -20,6 +20,7 @@ TagManager:
   - BiggerCoin
   - MenuController
   - Music
+  - SpeedDown
   layers:
   - Default
   - TransparentFX

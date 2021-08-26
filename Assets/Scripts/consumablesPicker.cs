@@ -46,7 +46,6 @@ public class consumablesPicker : MonoBehaviour
                 // if the player is in the first half of the level, save the pickup progression
                 if (!playerController.player.AtCheckpoint)
                 {
-                    Debug.LogWarning("Player before the checkpoint, saving consumables");
                     SaveSceneSystem.SaveScene(coin.iD); // saving id of acquired item
                 }
 
@@ -66,7 +65,6 @@ public class consumablesPicker : MonoBehaviour
                 // if the player is in the first half of the level, save the pickup progression
                 if (!playerController.player.AtCheckpoint)
                 {
-                    Debug.LogWarning("Player before the checkpoint, saving consumables");
                     SaveSceneSystem.SaveScene(coin.iD); // saving id of acquired item
                 }
 
@@ -83,7 +81,6 @@ public class consumablesPicker : MonoBehaviour
                 // if the player is in the first half of the level, save the pickup progression
                 if (!playerController.player.AtCheckpoint)
                 {
-                    Debug.LogWarning("Player before the checkpoint, saving consumables");
                     SaveSceneSystem.SaveScene(doubleJumpController.iD); // saving id of acquired item    
                 }
 
@@ -116,7 +113,6 @@ public class consumablesPicker : MonoBehaviour
                 // if the player is in the first half of the level, save the pickup progression
                 if (!playerController.player.AtCheckpoint)
                 {
-                    Debug.LogWarning("Player before the checkpoint, saving consumables");
                     SaveSceneSystem.SaveScene(speedModifierController.iD);  // saving id of acquired item
                 }
 

@@ -288,6 +288,9 @@ public class playerController : MonoBehaviour
                 case "doubleJump":
                     flashingColor = Color.magenta;
                     break;
+                case "speedDown":
+                    flashingColor = Color.gray;
+                    break;
                 default:
                     Debug.LogWarning("???");
                     flashingColor = Color.black;
@@ -311,8 +314,6 @@ public class playerController : MonoBehaviour
 
     private IEnumerator EnableSpeedBoost(bool speedModifier)
     {
-        Debug.Log("Speed boost on");
-
         if (speedModifier)  // true -> speed up
         {
             Debug.Log("Speed up");
@@ -330,8 +331,6 @@ public class playerController : MonoBehaviour
         }
 
         playerMovementSpeed = SETTINGS.basePlayerSpeed;
-
-        Debug.Log("Speed boost off");
     }
 
     private IEnumerator EnableDoubleJump()

@@ -50,12 +50,12 @@ public class SETTINGS
     public static readonly float playerHitInputFreezeFramesDeltaTime = .1f;
 
     // powerups
-    public static readonly float speedBoost = 1.7f;
-    public static readonly float doubleJumpBuffDuration = 5f;
-    public static readonly float speedBoostBuffDuration = 5f;
+    public static readonly float speedBoost = 1.3f;
+    public static readonly float doubleJumpBuffDuration = 3f;
+    public static readonly float speedBoostBuffDuration = 3f;
 
     // powedowns
-    public static readonly float speedDeficit = .3f;
+    public static readonly float speedDeficit = .2f;
 
     // levels
     public static readonly float soundVolume = 1f;
