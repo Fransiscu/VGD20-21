@@ -17,7 +17,7 @@ public class savePointsController : MonoBehaviour
     private int currentLevel;
 
     Player player;
-    
+
     void Start()
     {
         player = new Player();
@@ -71,7 +71,7 @@ public class savePointsController : MonoBehaviour
                 FadeTransition fadeToLevel = new FadeTransition()   // returning to level selection menu
                 {
                     nextScene = 1,
-                    fadedDelay = .5f,
+                    fadedDelay = 1.5f,
                     duration = 1.5f,
                     fadeToColor = Color.white
                 };

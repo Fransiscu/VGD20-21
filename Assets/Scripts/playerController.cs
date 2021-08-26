@@ -35,6 +35,7 @@ public class playerController : MonoBehaviour
     public bool doubleJumpActive;
     public bool isInvincible;
     public bool inputFrozen = true;
+    public bool knockedBack;
 
     public void Start()
     {
@@ -137,6 +138,30 @@ public class playerController : MonoBehaviour
         transform.localScale = localScale;
     }
 
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        switch (col.gameObject.tag)
+        {
+            case "Ground":
+                touchingGround = true;
+                jumpCounter = 0;
+                playerAnimator.SetBool("isJumping", false); // back to the ground
+                break;
+            case "Enemy":
+            case "Cygnus":
+            case "Obstacle":
+                EntitiesCollisionHandler(col);
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void OnCollisionStay2D(Collision2D col)
+    {
+        EntitiesCollisionHandler(col);
+    }
+
     private void OnCollisionExit2D(Collision2D col)
     {
         if (col.gameObject.tag == "Ground")
@@ -145,42 +170,38 @@ public class playerController : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter2D(Collision2D col)
+    private void EntitiesCollisionHandler(Collision2D col)
     {
-        if (col.gameObject.tag == "Ground")
+        switch (col.gameObject.tag)
         {
-            touchingGround = true;
-            jumpCounter = 0;
-            playerAnimator.SetBool("isJumping", false); // back to the ground
-        }
-        else if (col.gameObject.tag == "Enemy")
-        {
-            if (!isInvincible)
-            {
-                AudioSource.PlayClipAtPoint(hitSound, transform.position, volume);  // playing sound on hit
-                knockBackPlayer(col, false);
-            }
-        }
-        else if (col.gameObject.tag == "Cygnus")
-        {
-            if (!isInvincible)
-            {
-                AudioSource.PlayClipAtPoint(hitSound, transform.position, volume);  // playing sound on hit
-                knockBackPlayer(col, false);
-            }
-        }
-        else if (col.gameObject.tag == "Obstacle")
-        {
-            if (!isInvincible)
-            {
-                AudioSource.PlayClipAtPoint(hitSound, transform.position, volume);  // playing sound on hit
-                knockBackPlayer(col, true);   // knocking always to the right
-            }
-            else
-            {
-                touchingGround = true;
-                playerAnimator.SetBool("isJumping", false);
-            }
+            case "Enemy":
+                if (!isInvincible)
+                {
+                    AudioSource.PlayClipAtPoint(hitSound, transform.position, volume);  // playing sound on hit
+                    knockBackPlayer(col, false);
+                }
+                break;
+            case "Cygnus":
+                if (!isInvincible)
+                {
+                    AudioSource.PlayClipAtPoint(hitSound, transform.position, volume);  // playing sound on hit
+                    knockBackPlayer(col, false);
+                }
+                break;
+            case "Obstacle":
+                if (!isInvincible)
+                {
+                    AudioSource.PlayClipAtPoint(hitSound, transform.position, volume);  // playing sound on hit
+                    knockBackPlayer(col, true);   // knocking always to the right
+                }
+                else
+                {
+                    touchingGround = true;
+                    playerAnimator.SetBool("isJumping", false);
+                }
+                break;
+            default:
+                break;
         }
     }
 
@@ -188,6 +209,7 @@ public class playerController : MonoBehaviour
     public void knockBackPlayer(Collision2D col, bool knockForward)
     {
         float approachDirection = col.gameObject.transform.position.x - transform.position.x;
+        knockedBack = true;
 
         if (knockForward)
         {
@@ -220,6 +242,7 @@ public class playerController : MonoBehaviour
         StartCoroutine("CharacterFlash", "hit");
         StartCoroutine("GiveInvincibilityFrames");
         StartCoroutine("FreezeInput");
+        knockedBack = false;
     }
 
     public void PlayerJump()
@@ -253,9 +276,9 @@ public class playerController : MonoBehaviour
         isInvincible = false;
     }
 
-    public void PlayerFreezeToggle()
+    public void PlayerFreezeToggle(bool frozen)
     {
-        inputFrozen = !inputFrozen;
+        inputFrozen = frozen;
     }
 
     private IEnumerator FreezeInput()
