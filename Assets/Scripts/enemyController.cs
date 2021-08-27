@@ -112,6 +112,10 @@ public class enemyController : MonoBehaviour
         {
             Physics2D.IgnoreCollision(enemyCollider, col.collider);
         }
+        else if (col.gameObject.tag == "Enemy")
+        {
+            Physics2D.IgnoreCollision(enemyCollider, col.collider);
+        }
     }
 
     private void SetupEnemy()
