@@ -446,12 +446,8 @@ public class playerController : MonoBehaviour
 
     public void UpdateLives(float change)
     {
-
-            Debug.LogWarning("fuori, invincible = " + isInvincible);
         if(!isInvincible)
         {
-            Debug.LogWarning("dentro ");
-            Debug.LogWarning("Current = " + player.CurrentLives + " new = " + (player.CurrentLives - change));
             player.CurrentLives -= change;
             interfaceController.ChangeGUILives(player.CurrentLives, false);
             player.SavePlayer();
