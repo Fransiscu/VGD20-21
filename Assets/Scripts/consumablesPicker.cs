@@ -40,8 +40,8 @@ public class consumablesPicker : MonoBehaviour
                 coin = col.GetComponent<coinController>();
                 coin.pickedUp = true;
 
-                GUIController.changeGUIScore(coin.coinValue);
-                playerController.EditScore(coin.coinValue);
+                //GUIController.ChangeGUIScore(coin.coinValue, true);
+                playerController.IncreaseScore(coin.coinValue);
 
                 // if the player is in the first half of the level, save the pickup progression
                 if (!playerController.player.AtCheckpoint)
@@ -59,8 +59,8 @@ public class consumablesPicker : MonoBehaviour
                 coin = col.GetComponent<coinController>();
                 coin.pickedUp = true;
 
-                GUIController.changeGUIScore(coin.coinValue * 3);
-                playerController.EditScore(coin.coinValue * 3);
+                //GUIController.ChangeGUIScore(coin.coinValue * 3, true);
+                playerController.IncreaseScore(coin.coinValue * 3); 
 
                 // if the player is in the first half of the level, save the pickup progression
                 if (!playerController.player.AtCheckpoint)

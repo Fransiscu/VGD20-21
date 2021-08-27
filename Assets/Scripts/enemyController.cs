@@ -14,6 +14,7 @@ public class enemyController : MonoBehaviour
     public Rigidbody2D rigidBody;
     private Animator animator;
     private bool needsFlipping;
+    GUIController interfaceController;
     public bool onPatrolDuty;
     public float enemySpeed;
     public bool facingRight;
@@ -75,6 +76,16 @@ public class enemyController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D col)
     {
+        EntitiesCollisionHandler(col);
+    }
+
+    private void OnCollisionStay2D(Collision2D col)
+    {
+        EntitiesCollisionHandler(col);
+    }
+
+    private void EntitiesCollisionHandler(Collision2D col)
+    {
         if (col.gameObject.tag == "Player")
         {
             float approachDirection = col.transform.position.x - transform.position.x;
@@ -83,18 +94,19 @@ public class enemyController : MonoBehaviour
             if (approachDirection < 0 && facingRight)  // player to its left
             {
                 needsFlipping = false;
-            } 
+            }
             else if (approachDirection > 0 && !facingRight)  // player to its right
             {
                 needsFlipping = false;
             }
-            else 
+            else
             {
                 needsFlipping = true;
             }
 
             // dealing damage
-            col.gameObject.GetComponent<playerController>().EditLives(hitDamage);
+            Debug.LogWarning("hit damage = " + hitDamage);
+            col.gameObject.GetComponent<playerController>().UpdateLives(hitDamage);
         }
         else if (col.gameObject.tag == "Obstacle")
         {

@@ -1357,6 +1357,7 @@ GameObject:
   - component: {fileID: 196980540}
   - component: {fileID: 196980539}
   - component: {fileID: 196980538}
+  - component: {fileID: 196980541}
   m_Layer: 0
   m_Name: spikes ground 9
   m_TagString: Obstacle
@@ -1477,6 +1478,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &196980541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 196980536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a6ff7aa5f1d5f341b33319658572980, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &224281184
 GameObject:
   m_ObjectHideFlags: 0
@@ -1796,6 +1809,7 @@ GameObject:
   - component: {fileID: 239691174}
   - component: {fileID: 239691173}
   - component: {fileID: 239691172}
+  - component: {fileID: 239691175}
   m_Layer: 0
   m_Name: spikes 2
   m_TagString: Obstacle
@@ -1916,6 +1930,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &239691175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 239691170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a6ff7aa5f1d5f341b33319658572980, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &244292697
 GameObject:
   m_ObjectHideFlags: 0
@@ -3089,6 +3115,7 @@ GameObject:
   - component: {fileID: 343057627}
   - component: {fileID: 343057626}
   - component: {fileID: 343057625}
+  - component: {fileID: 343057628}
   m_Layer: 0
   m_Name: spikes ground 3
   m_TagString: Obstacle
@@ -3209,6 +3236,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &343057628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 343057623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a6ff7aa5f1d5f341b33319658572980, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &343444874
 GameObject:
   m_ObjectHideFlags: 0
@@ -3415,6 +3454,7 @@ GameObject:
   - component: {fileID: 365428514}
   - component: {fileID: 365428513}
   - component: {fileID: 365428512}
+  - component: {fileID: 365428515}
   m_Layer: 0
   m_Name: spikes 4
   m_TagString: Obstacle
@@ -3535,6 +3575,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &365428515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 365428510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a6ff7aa5f1d5f341b33319658572980, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &366493498
 GameObject:
   m_ObjectHideFlags: 0
@@ -3840,6 +3892,7 @@ GameObject:
   - component: {fileID: 386266355}
   - component: {fileID: 386266354}
   - component: {fileID: 386266353}
+  - component: {fileID: 386266356}
   m_Layer: 0
   m_Name: spikes 6
   m_TagString: Obstacle
@@ -3960,6 +4013,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &386266356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 386266351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a6ff7aa5f1d5f341b33319658572980, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &426282619
 GameObject:
   m_ObjectHideFlags: 0
@@ -3972,6 +4037,7 @@ GameObject:
   - component: {fileID: 426282623}
   - component: {fileID: 426282622}
   - component: {fileID: 426282621}
+  - component: {fileID: 426282624}
   m_Layer: 0
   m_Name: spikes ground 2
   m_TagString: Obstacle
@@ -4092,6 +4158,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &426282624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 426282619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a6ff7aa5f1d5f341b33319658572980, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &428641128
 GameObject:
   m_ObjectHideFlags: 0
@@ -4104,6 +4182,7 @@ GameObject:
   - component: {fileID: 428641132}
   - component: {fileID: 428641131}
   - component: {fileID: 428641130}
+  - component: {fileID: 428641133}
   m_Layer: 0
   m_Name: spikes ground 1
   m_TagString: Obstacle
@@ -4224,6 +4303,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &428641133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 428641128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a6ff7aa5f1d5f341b33319658572980, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &470395407
 GameObject:
   m_ObjectHideFlags: 0
@@ -4398,6 +4489,7 @@ GameObject:
   - component: {fileID: 475871081}
   - component: {fileID: 475871080}
   - component: {fileID: 475871079}
+  - component: {fileID: 475871082}
   m_Layer: 0
   m_Name: spikes 9
   m_TagString: Obstacle
@@ -4518,6 +4610,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &475871082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 475871077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a6ff7aa5f1d5f341b33319658572980, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &477086176
 GameObject:
   m_ObjectHideFlags: 0
@@ -4530,6 +4634,7 @@ GameObject:
   - component: {fileID: 477086180}
   - component: {fileID: 477086179}
   - component: {fileID: 477086178}
+  - component: {fileID: 477086181}
   m_Layer: 0
   m_Name: spikes ground 10
   m_TagString: Obstacle
@@ -4650,6 +4755,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &477086181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 477086176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a6ff7aa5f1d5f341b33319658572980, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &503516440
 GameObject:
   m_ObjectHideFlags: 0
@@ -8041,6 +8158,7 @@ GameObject:
   - component: {fileID: 684153050}
   - component: {fileID: 684153049}
   - component: {fileID: 684153048}
+  - component: {fileID: 684153051}
   m_Layer: 0
   m_Name: spikes ground 6
   m_TagString: Obstacle
@@ -8161,6 +8279,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &684153051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 684153046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a6ff7aa5f1d5f341b33319658572980, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &695884593
 GameObject:
   m_ObjectHideFlags: 0
@@ -9426,6 +9556,7 @@ GameObject:
   - component: {fileID: 766510343}
   - component: {fileID: 766510342}
   - component: {fileID: 766510341}
+  - component: {fileID: 766510344}
   m_Layer: 0
   m_Name: spikes 1
   m_TagString: Obstacle
@@ -9546,6 +9677,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &766510344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 766510339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a6ff7aa5f1d5f341b33319658572980, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &783014106
 GameObject:
   m_ObjectHideFlags: 0
@@ -9673,7 +9816,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2011102323}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -10430,6 +10573,7 @@ GameObject:
   - component: {fileID: 882144297}
   - component: {fileID: 882144296}
   - component: {fileID: 882144295}
+  - component: {fileID: 882144298}
   m_Layer: 0
   m_Name: spikes ground 8
   m_TagString: Obstacle
@@ -10550,6 +10694,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &882144298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 882144293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a6ff7aa5f1d5f341b33319658572980, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &899882761
 GameObject:
   m_ObjectHideFlags: 0
@@ -10773,6 +10929,140 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &967165457
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 967165458}
+  - component: {fileID: 967165460}
+  - component: {fileID: 967165459}
+  m_Layer: 5
+  m_Name: Lives
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &967165458
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 967165457}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2011102323}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 0, y: -0.00012207031}
+  m_SizeDelta: {x: 298.781, y: 65.435}
+  m_Pivot: {x: 0, y: 1}
+--- !u!114 &967165459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 967165457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: Lives placeholder
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 1
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 0.8784314, g: 0.6117647, b: 0.22745098, a: 1}
+    topRight: {r: 0.8980392, g: 0.7882353, b: 0.28235295, a: 1}
+    bottomLeft: {r: 0.83137256, g: 0.65882355, b: 0.16078432, a: 1}
+    bottomRight: {r: 0.9647059, g: 0.9137255, b: 0.29411766, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 33.45
+  m_fontSizeBase: 72
+  m_fontWeight: 400
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 1
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &967165460
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 967165457}
+  m_CullTransparentMesh: 1
 --- !u!1 &979466803
 GameObject:
   m_ObjectHideFlags: 0
@@ -10977,6 +11267,7 @@ GameObject:
   - component: {fileID: 1012142078}
   - component: {fileID: 1012142077}
   - component: {fileID: 1012142076}
+  - component: {fileID: 1012142079}
   m_Layer: 0
   m_Name: spikes 5
   m_TagString: Obstacle
@@ -11097,6 +11388,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1012142079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1012142074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a6ff7aa5f1d5f341b33319658572980, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1040473490
 GameObject:
   m_ObjectHideFlags: 0
@@ -11385,7 +11688,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2011102323}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -15612,6 +15915,7 @@ GameObject:
   - component: {fileID: 1356420044}
   - component: {fileID: 1356420043}
   - component: {fileID: 1356420042}
+  - component: {fileID: 1356420045}
   m_Layer: 0
   m_Name: spikes 3
   m_TagString: Obstacle
@@ -15732,6 +16036,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1356420045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1356420040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a6ff7aa5f1d5f341b33319658572980, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1377208268
 GameObject:
   m_ObjectHideFlags: 0
@@ -15791,8 +16107,8 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 8.9
   m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
+  m_Interpolate: 1
+  m_SleepingMode: 0
   m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!61 &1377208271
@@ -15851,6 +16167,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maleCharacterAnimatorController: {fileID: 9100000, guid: fb0c461e4a020f94fbf68b831118ad79, type: 2}
   femaleCharacterAnimatorController: {fileID: 9100000, guid: 00cf48c077172984193e25f901d32edf, type: 2}
+  interfaceController: {fileID: 2011102319}
   jumpSound: {fileID: 8300000, guid: 95e7a5b4aacdb594ea476b78b75a121c, type: 3}
   doubleJumpSound: {fileID: 8300000, guid: b4c809d42a1c85a45849663d43e6f47b, type: 3}
   hitSound: {fileID: 8300000, guid: bf2e527ec9e2dcd4885fa9ef4e33faa4, type: 3}
@@ -15875,6 +16192,7 @@ MonoBehaviour:
   doubleJumpActive: 0
   isInvincible: 0
   inputFrozen: 0
+  knockedBack: 0
 --- !u!212 &1377208274
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -16712,6 +17030,7 @@ GameObject:
   - component: {fileID: 1542835655}
   - component: {fileID: 1542835654}
   - component: {fileID: 1542835653}
+  - component: {fileID: 1542835656}
   m_Layer: 0
   m_Name: spikes ground 5
   m_TagString: Obstacle
@@ -16832,6 +17151,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1542835656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1542835651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a6ff7aa5f1d5f341b33319658572980, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1565645778
 GameObject:
   m_ObjectHideFlags: 0
@@ -17576,6 +17907,7 @@ GameObject:
   - component: {fileID: 1601022491}
   - component: {fileID: 1601022490}
   - component: {fileID: 1601022489}
+  - component: {fileID: 1601022492}
   m_Layer: 0
   m_Name: spikes ground 7
   m_TagString: Obstacle
@@ -17696,6 +18028,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1601022492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1601022487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a6ff7aa5f1d5f341b33319658572980, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1604837320
 GameObject:
   m_ObjectHideFlags: 0
@@ -17708,6 +18052,7 @@ GameObject:
   - component: {fileID: 1604837324}
   - component: {fileID: 1604837323}
   - component: {fileID: 1604837322}
+  - component: {fileID: 1604837325}
   m_Layer: 0
   m_Name: spikes ground 4
   m_TagString: Obstacle
@@ -17828,6 +18173,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1604837325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1604837320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a6ff7aa5f1d5f341b33319658572980, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1652736001
 GameObject:
   m_ObjectHideFlags: 0
@@ -19956,6 +20313,7 @@ GameObject:
   - component: {fileID: 1795317403}
   - component: {fileID: 1795317402}
   - component: {fileID: 1795317401}
+  - component: {fileID: 1795317404}
   m_Layer: 0
   m_Name: spikes 8
   m_TagString: Obstacle
@@ -20076,6 +20434,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1795317404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1795317399}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a6ff7aa5f1d5f341b33319658572980, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1823982748
 GameObject:
   m_ObjectHideFlags: 0
@@ -20655,6 +21025,7 @@ GameObject:
   - component: {fileID: 1901063103}
   - component: {fileID: 1901063102}
   - component: {fileID: 1901063101}
+  - component: {fileID: 1901063104}
   m_Layer: 0
   m_Name: spikes 7
   m_TagString: Obstacle
@@ -20775,6 +21146,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1901063104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1901063099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a6ff7aa5f1d5f341b33319658572980, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1935440697
 GameObject:
   m_ObjectHideFlags: 0
@@ -21271,6 +21654,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textcoins: {fileID: 783014107}
   countDown: {fileID: 1083421556}
+  lives: {fileID: 967165459}
 --- !u!114 &2011102320
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21343,6 +21727,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
+  - {fileID: 967165458}
   - {fileID: 783014109}
   - {fileID: 1083421558}
   m_Father: {fileID: 0}
@@ -22194,6 +22579,7 @@ MonoBehaviour:
   yMin: 6
   yMax: 20
   cygnusSpeed: 0
+  hitDamage: 0
 --- !u!4 &2116919539
 Transform:
   m_ObjectHideFlags: 0

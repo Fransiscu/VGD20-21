@@ -21,6 +21,7 @@ TagManager:
   - MenuController
   - Music
   - SpeedDown
+  - GUI
   layers:
   - Default
   - TransparentFX

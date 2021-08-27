@@ -10,6 +10,7 @@ public class playerController : MonoBehaviour
     public RuntimeAnimatorController maleCharacterAnimatorController;
     public RuntimeAnimatorController femaleCharacterAnimatorController;
     private SpriteRenderer characterSprite;
+    public GUIController interfaceController;
 
     public AudioClip jumpSound;
     public AudioClip doubleJumpSound;
@@ -33,14 +34,13 @@ public class playerController : MonoBehaviour
 
     private bool isFlashing = false;
     public bool doubleJumpActive;
-    public bool isInvincible;
+    public bool isInvincible = false;
     public bool inputFrozen = true;
     public bool knockedBack;
 
     public void Start()
     {
         player = LoadPlayer();
-        Debug.LogWarning(PlayerPrefs.GetString(PlayerPrefsKey.saveDataPrefName));
         SetupCurrentGame();
     }
 
@@ -185,7 +185,7 @@ public class playerController : MonoBehaviour
                 if (!isInvincible)
                 {
                     AudioSource.PlayClipAtPoint(hitSound, transform.position, volume);  // playing sound on hit
-                    knockBackPlayer(col, false);
+                    knockBackPlayer(col, true);   // knocking always to the right
                 }
                 break;
             case "Obstacle":
@@ -225,7 +225,7 @@ public class playerController : MonoBehaviour
                 playerAnimator.SetBool("isJumping", true);
                 touchingGround = false;
             }
-            else if (approachDirection < 0) // < 0 enemy is to the left
+            else if (approachDirection <= 0) // < 0 enemy is to the left
             {
                 if (col.gameObject.tag == "Cygnus") // cygnus knocks back harder
                 {
@@ -422,26 +422,39 @@ public class playerController : MonoBehaviour
 
         touchingGround = true;
 
-        EditLives(SETTINGS.startingLives);
-        EditScore(0);
+        DisplayValues();
 
         gameSettings = new GameSettings();
-        gameSettings = GameSettings.LoadSettings(); //asd
+        gameSettings = GameSettings.LoadSettings(); 
         volume = gameSettings.Sound ? SETTINGS.soundVolume : 0f;
     }
 
-    public void EditLives(float change)
+    public void DisplayValues()
     {
-        if (!isInvincible)
-        {
-            player.CurrentLives -= change;
-        }
+        interfaceController.ChangeGUILives  (player.CurrentLives, false);
+        interfaceController.ChangeGUIScore(player.CurrentScore, false);
     }
 
-    public void EditScore(int amount)
+    public void IncreaseScore(int increment)
     {
-        player.CurrentScore += amount;
+        Debug.LogWarning("score = " + increment);
+        player.CurrentScore += increment;
+        player.LifeTimeScore += increment;
+        interfaceController.ChangeGUIScore(player.CurrentScore, false);
         player.SavePlayer();
-        Debug.Log("total score = " + player.CurrentScore);
+    }
+
+    public void UpdateLives(float change)
+    {
+
+            Debug.LogWarning("fuori, invincible = " + isInvincible);
+        if(!isInvincible)
+        {
+            Debug.LogWarning("dentro ");
+            Debug.LogWarning("Current = " + player.CurrentLives + " new = " + (player.CurrentLives - change));
+            player.CurrentLives -= change;
+            interfaceController.ChangeGUILives(player.CurrentLives, false);
+            player.SavePlayer();
+        }
     }
 }

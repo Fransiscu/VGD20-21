@@ -23,8 +23,8 @@ public class SETTINGS
     public static readonly float level3EnemySpeed = 180f;
 
     public static readonly float level1EnemyDamage = 0.5f;
-    public static readonly float level2EnemyDamage = 0.5f;
-    public static readonly float level3EnemyDamage = 0.5f;
+    public static readonly float level2EnemyDamage = 1f;
+    public static readonly float level3EnemyDamage = 1.5f;
 
     public static readonly float spikesDamage = 1.0f;
     
@@ -33,7 +33,7 @@ public class SETTINGS
 
     // cygnus
     public static readonly float cygnusSpeed = 300f;
-    public static readonly float cygnusDamage = 1.0f;
+    public static readonly float cygnusDamage = 1.5f;
 
     public static readonly float cygnusKnockBackStrength = 500.0f;
     public static readonly float cygnusKnockBackDistance = 400.0f;

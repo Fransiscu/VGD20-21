@@ -14,6 +14,7 @@ public class cygnusController : MonoBehaviour
     public float yMax;
 
     public float cygnusSpeed;
+    public float hitDamage;
 
     void Start()
     {
@@ -35,6 +36,7 @@ public class cygnusController : MonoBehaviour
 
     private void setupCygnus()
     {
+        hitDamage = SETTINGS.cygnusDamage;
         cygnusAnimator = GetComponentInChildren<Animator>();
         cygnusRigidBody = GetComponent<Rigidbody2D>();
         cygnusCollider = GetComponent<Collider2D>();
@@ -47,6 +49,17 @@ public class cygnusController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D col)
     {
+        EntitiesCollisionHandler(col);
+    }
+
+    private void OnCollisionStay2D(Collision2D col)
+    {
+        EntitiesCollisionHandler(col);
+    }
+
+    private void EntitiesCollisionHandler(Collision2D col)
+    {
+
         // ignoring all collisions but with Player
         if (!(col.gameObject.tag == "Player"))
         {
@@ -54,9 +67,11 @@ public class cygnusController : MonoBehaviour
         }
         else
         {
+            col.gameObject.GetComponent<playerController>().UpdateLives(hitDamage);
             StartCoroutine("AttackPlayerAnimationHandler");
         }
     }
+
 
     public IEnumerator RiseAndShine()
     {
