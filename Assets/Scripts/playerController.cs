@@ -34,11 +34,11 @@ public class playerController : MonoBehaviour
 
     private bool isFlashing = false;
     public bool doubleJumpActive;
-    public bool isInvincible = false;
+    public static bool isInvincible = false;
     public bool inputFrozen = true;
     public bool knockedBack;
 
-    public void Start()
+    private void Awake()
     {
         player = LoadPlayer();
         SetupCurrentGame();
@@ -130,6 +130,11 @@ public class playerController : MonoBehaviour
 
     }
 
+    internal void PlayerInvincibleToggle(bool invincible)
+    {
+        inputFrozen = invincible;
+    }
+
     public void FlipPlayer()
     {
         facingRight = !facingRight;
@@ -178,6 +183,7 @@ public class playerController : MonoBehaviour
                 if (!isInvincible)
                 {
                     AudioSource.PlayClipAtPoint(hitSound, transform.position, volume);  // playing sound on hit
+                    UpdateLives(col.gameObject.GetComponent<enemyController>().hitDamage);   
                     knockBackPlayer(col, false);
                 }
                 break;
@@ -185,6 +191,7 @@ public class playerController : MonoBehaviour
                 if (!isInvincible)
                 {
                     AudioSource.PlayClipAtPoint(hitSound, transform.position, volume);  // playing sound on hit
+                    UpdateLives(col.gameObject.GetComponent<cygnusController>().hitDamage);
                     knockBackPlayer(col, true);   // knocking always to the right
                 }
                 break;
@@ -192,10 +199,13 @@ public class playerController : MonoBehaviour
                 if (!isInvincible)
                 {
                     AudioSource.PlayClipAtPoint(hitSound, transform.position, volume);  // playing sound on hit
+                    UpdateLives(col.gameObject.GetComponent<SpikesController>().hitDamage);
                     knockBackPlayer(col, true);   // knocking always to the right
                 }
                 else
                 {
+                    // ignoring collisions with obstacle so we don't get stuck between them and cygnus
+                    col.gameObject.GetComponent<SpikesController>().DisableColliderEnabler();
                     touchingGround = true;
                     playerAnimator.SetBool("isJumping", false);
                 }
@@ -239,9 +249,10 @@ public class playerController : MonoBehaviour
                 }
             }
         }
+
+        StartCoroutine("FreezeInput");
         StartCoroutine("CharacterFlash", "hit");
         StartCoroutine("GiveInvincibilityFrames");
-        StartCoroutine("FreezeInput");
         knockedBack = false;
     }
 
@@ -265,6 +276,7 @@ public class playerController : MonoBehaviour
 
     private IEnumerator GiveInvincibilityFrames()
     {
+        new WaitForSeconds(.1f);
         isInvincible = true;
 
         for (float i = 0;
@@ -437,7 +449,6 @@ public class playerController : MonoBehaviour
 
     public void IncreaseScore(int increment)
     {
-        Debug.LogWarning("score = " + increment);
         player.CurrentScore += increment;
         player.LifeTimeScore += increment;
         interfaceController.ChangeGUIScore(player.CurrentScore, false);
@@ -453,4 +464,10 @@ public class playerController : MonoBehaviour
             player.SavePlayer();
         }
     }
+
+    public Boolean IsPlayerInvincible()
+    {
+        return isInvincible;
+    }
+
 }

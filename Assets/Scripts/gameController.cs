@@ -9,6 +9,10 @@ public class gameController : MonoBehaviour
     public GameObject cygnus;
     public GameObject player;
     public GameObject GUIController;
+    
+    private playerController pController;
+    private cygnusController cController;
+    private GUIController gController;
 
     public AudioSource music;
 
@@ -33,10 +37,9 @@ public class gameController : MonoBehaviour
         // triggering the savescene feature one time at the beginning,
         // more info as of why in the implementation
         SaveSceneSystem.SaveScene("1234");
-        StartCoroutine("SetupEntities");
     }
 
-    void Start()
+    private void Awake()
     {
         // loading player object for use
         playerObject = new Player();
@@ -45,6 +48,11 @@ public class gameController : MonoBehaviour
         // setting up music according to the game settings
         gameSettings = new GameSettings();
         gameSettings = GameSettings.LoadSettings();
+
+        // setting up controllers
+        pController = player.gameObject.GetComponent<playerController>();
+        cController = cygnus.gameObject.GetComponent<cygnusController>();
+        gController = GUIController.gameObject.GetComponent<GUIController>();
 
         if (gameSettings.Music) music.volume = SETTINGS.musicVolume; else music.Stop();
 
@@ -61,9 +69,9 @@ public class gameController : MonoBehaviour
             playerObject.AtCheckpoint = false;
             playerObject.currentScore = 0;
             playerObject.SavePlayer();
-            //StartCoroutine("SetupEntities");
+            StartCoroutine("SetupEntities");
         }
-        else if (playerObject.CurrentLevel == gameController.GetCurrentGameLevel() && playerObject.AtCheckpoint)  
+        else if (playerObject.CurrentLevel == gameController.GetCurrentGameLevel() && playerObject.AtCheckpoint)
         {
             Debug.LogWarning("at checkpoint rn spawning");
             SaveSceneSystem.LoadSceneFromObject();
@@ -80,27 +88,28 @@ public class gameController : MonoBehaviour
             playerObject.SavePlayer();
             StartCoroutine("SetupEntities");
         }
-
-    }
-
-    void Update()
-    {
-        
     }
 
     IEnumerator SetupEntities()
     {
-        player.gameObject.GetComponent<playerController>().PlayerFreezeToggle(true);    // freezing player
+        pController.PlayerInvincibleToggle(true);    // freezing player
+        pController.PlayerFreezeToggle(true);    // freezing player
         yield return new WaitForSeconds(1f); // waiting for fade effect to finish before loading the entities
-        yield return cygnus.GetComponent<cygnusController>().RiseAndShine();    // waking up cygnus + freeze
-        yield return GUIController.gameObject.GetComponent<GUIController>().StartCountDown();   // displaying countdown
-        player.gameObject.GetComponent<playerController>().PlayerFreezeToggle(false);    // unfreezing player
-        cygnus.gameObject.GetComponent<cygnusController>().UnFreezeCygnus();    // unfreezing cygnus
+        yield return cController.RiseAndShine();    // waking up cygnus + freeze
+        yield return gController.StartCountDown();   // displaying countdown
+        pController.PlayerInvincibleToggle(false);    // freezing player
+        pController.PlayerFreezeToggle(false);    // unfreezing player
+        cController.UnFreezeCygnus();    // unfreezing cygnus
     }
 
     public static int GetCurrentGameLevel()
     {
         return SceneManager.GetActiveScene().buildIndex - 1; // 2 scenes before the actual levels, so we subtract 1
+    }
+
+    public static float GetCurrentLevelDamage()
+    {
+        throw new NotImplementedException();
     }
 
     private void SetUpConsumables() 

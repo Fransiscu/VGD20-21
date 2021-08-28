@@ -16,11 +16,10 @@ public class cygnusController : MonoBehaviour
     public float cygnusSpeed;
     public float hitDamage;
 
-    void Start()
+    private void Awake()
     {
         setupCygnus();
     }
-
     void Update()
     {
         MoveCygnus();
@@ -59,7 +58,6 @@ public class cygnusController : MonoBehaviour
 
     private void EntitiesCollisionHandler(Collision2D col)
     {
-
         // ignoring all collisions but with Player
         if (!(col.gameObject.tag == "Player"))
         {
@@ -67,7 +65,6 @@ public class cygnusController : MonoBehaviour
         }
         else
         {
-            col.gameObject.GetComponent<playerController>().UpdateLives(hitDamage);
             StartCoroutine("AttackPlayerAnimationHandler");
         }
     }

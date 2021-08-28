@@ -18,14 +18,13 @@ public class savePointsController : MonoBehaviour
 
     Player player;
 
-    void Start()
+    private void Awake()
     {
         player = new Player();
         currentLevel = gameController.GetCurrentGameLevel(); // 2 scenes before the actual levels, so we subtract 1
         milestoneReached = false;  // player can only reach checkpoint once
     }
 
-    // Update is called once per frame
     void Update()
     {
         raycastHit2D = Physics2D.Raycast(milestonePoint.position, Vector2.up, distance);

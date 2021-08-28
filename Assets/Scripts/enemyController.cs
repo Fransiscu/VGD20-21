@@ -20,7 +20,7 @@ public class enemyController : MonoBehaviour
     public bool facingRight;
     public float hitDamage;
 
-    void Start()
+    private void Awake()
     {
         SetupEnemy();
     }
@@ -91,7 +91,7 @@ public class enemyController : MonoBehaviour
             float approachDirection = col.transform.position.x - transform.position.x;
 
             // enemy won't flip unless it damages the player on its front
-            if (approachDirection < 0 && facingRight)  // player to its left
+            if (approachDirection <= 0 && facingRight)  // player to its left
             {
                 needsFlipping = false;
             }
@@ -103,10 +103,6 @@ public class enemyController : MonoBehaviour
             {
                 needsFlipping = true;
             }
-
-            // dealing damage
-            Debug.LogWarning("hit damage = " + hitDamage);
-            col.gameObject.GetComponent<playerController>().UpdateLives(hitDamage);
         }
         else if (col.gameObject.tag == "Obstacle")
         {
