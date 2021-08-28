@@ -30,11 +30,7 @@ public class SETTINGS
     
     public static readonly float knockBackStrength = 700.0f;
     public static readonly float knockBackDistance = 450.0f;
-
-    /*
-    public static readonly float knockBackStrength = 450.0f;
-    public static readonly float knockBackDistance = 300.0f;
-    */
+    
     // cygnus
     public static readonly float cygnusSpeed = 300f;
     public static readonly float cygnusDamage = 1.5f;

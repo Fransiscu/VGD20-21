@@ -33,9 +33,6 @@ public class menuController : MonoBehaviour
 
     private static readonly string gender = PlayerPrefsKey.menuGenderSelectionPrefName;
 
-    //Stop all sounds
-    private AudioSource[] allAudioSources;
-
     void Start()
     {
         if (PlayerPrefs.GetString(PlayerPrefsKey.saveDataPrefName).Equals("")) // if we have no playerdata saved yet
@@ -135,10 +132,13 @@ public class menuController : MonoBehaviour
 
     public void OnPlayButtonPress()
     {
+        SceneManager.LoadScene(1);
+        /*
         StartCoroutine("FadeToLevelMenu");
         StartCoroutine("FadeToMenu");
+    */
     }
-    
+
     public void OnSoundToggleButtonPress()
     {
         gameSettings.Sound = !gameSettings.Sound;
