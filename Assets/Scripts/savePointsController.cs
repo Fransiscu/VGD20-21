@@ -78,9 +78,10 @@ public class savePointsController : MonoBehaviour
             }
             else if (gameObject.tag == "BonusLevelEntryPoint")
             {
-                //TODO: implement scene saving to get back to the exact situation
+                player.EnteringBonusLevel = true;
+                player.SavePlayer();
 
-                AudioSource.PlayClipAtPoint(portalSound, transform.position);  // finishline sound
+                AudioSource.PlayClipAtPoint(portalSound, transform.position);  // portal sound
 
                 FadeTransition fadeToLevel = new FadeTransition()   // returning to level selection menu
                 {

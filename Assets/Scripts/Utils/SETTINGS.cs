@@ -43,7 +43,7 @@ public class SETTINGS
     public static readonly float cygnusKnockBackDistance = 400.0f;
 
     // player
-    public static readonly float startingLives = 3.0f;
+    public static readonly float startingLives = 5.0f;
     public static readonly float basePlayerSpeed = 6.5f;
     public static readonly int basePlayerJumpPower = 1150;
     

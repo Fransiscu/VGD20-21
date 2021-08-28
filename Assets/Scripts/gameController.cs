@@ -62,6 +62,7 @@ public class gameController : MonoBehaviour
          * as well as eventual checkpoint (Player.AtCheckPoint)
          */
 
+        // if we're starting a brand new level
         if (playerObject.CurrentLevel != gameController.GetCurrentGameLevel())
         {
             SaveSceneSystem.DeleteSceneSave();  // deleting potential leftover saved scenes
@@ -71,18 +72,39 @@ public class gameController : MonoBehaviour
             playerObject.SavePlayer();
             StartCoroutine("SetupEntities");
         }
+        // if we are at the checkpoint of the current level
         else if (playerObject.CurrentLevel == gameController.GetCurrentGameLevel() && playerObject.AtCheckpoint)
         {
             Debug.LogWarning("at checkpoint rn spawning");
             SaveSceneSystem.LoadSceneFromObject();
             player.transform.position = new Vector3(checkpoint.transform.position.x + 5, checkpoint.transform.position.y, checkpoint.transform.position.z);
-            cygnus.transform.position = new Vector3(player.transform.position.x - 10, cygnus.transform.position.y, cygnus.transform.position.z);
+            cygnus.transform.position = new Vector3(player.transform.position.x - 7, cygnus.transform.position.y, cygnus.transform.position.z);
             playerObject.SavePlayer();
             StartCoroutine("SetupEntities");
         }
+        // spawning inside bonus level  -> bonuslevelcontroller
+        else if (playerObject.EnteringBonusLevel)
+        {
+            // spawn in bonus level, setup
+        }
+        // spawning after bonus level
+        else if (playerObject.CurrentLevel == 3 && gameController.GetCurrentGameLevel() == 3 && playerObject.ComingFromBonusLevel)
+        {
+            // spawning after portal
+            Vector3 bonusPortalTransform = new Vector3(79, 17, 90);
+            SaveSceneSystem.LoadSceneFromObject(); 
+            playerObject.ComingFromBonusLevel = false;
+            player.transform.position = bonusPortalTransform;
+            cygnus.transform.position = new Vector3(player.transform.position.x - 7, cygnus.transform.position.y, cygnus.transform.position.z);
+            playerObject.SavePlayer();
+            StartCoroutine("SetupEntities");
+
+        }
+        // same level no checkpoint no bonus no nothing
         else
         {
             SaveSceneSystem.DeleteSceneSave();  // deleting potential leftover saved scenes
+            playerObject.currentLevel = gameController.GetCurrentGameLevel();
             playerObject.AtCheckpoint = false;
             playerObject.currentScore = 0;
             playerObject.SavePlayer();

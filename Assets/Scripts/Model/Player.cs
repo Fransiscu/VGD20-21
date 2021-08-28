@@ -17,6 +17,8 @@ public class Player
     public bool atCheckpoint;
     public int currentScore;
     public int lifeTimeScore;
+    public bool comingFromBonusLevel;
+    public bool enteringBonusLevel;
     public bool finishedGame;
     public List<int> unlockedLevels;
 
@@ -32,9 +34,11 @@ public class Player
         lifeTimeScore = 0;
         finishedGame = false;
         currentLevel = 0;
-        currentLives = 3;
+        currentLives = 0;
         currentScore = 0;
         atCheckpoint = false;
+        enteringBonusLevel = false;
+        comingFromBonusLevel = false;
         unlockedLevels = new List<int>() { 1 };
     }
 
@@ -46,6 +50,8 @@ public class Player
     public float CurrentLives { get => currentLives; set => currentLives = value; }
     public int CurrentScore { get => currentScore; set => currentScore = value; }
     public bool AtCheckpoint { get => atCheckpoint; set => atCheckpoint = value; }
+    public bool ComingFromBonusLevel { get => comingFromBonusLevel; set => comingFromBonusLevel = value; }
+    public bool EnteringBonusLevel { get => enteringBonusLevel; set => enteringBonusLevel = value; }
     public List<int> UnlockedLevels { get => unlockedLevels; set => unlockedLevels = value; }
 
     /*

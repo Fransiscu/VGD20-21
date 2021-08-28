@@ -34,7 +34,7 @@ public class playerController : MonoBehaviour
 
     private bool isFlashing = false;
     public bool doubleJumpActive;
-    public static bool isInvincible = false;
+    public bool isInvincible;
     public bool inputFrozen = true;
     public bool knockedBack;
 
@@ -130,9 +130,9 @@ public class playerController : MonoBehaviour
 
     }
 
-    internal void PlayerInvincibleToggle(bool invincible)
+    public void PlayerInvincibleToggle(bool invincible)
     {
-        inputFrozen = invincible;
+        isInvincible = invincible;
     }
 
     public void FlipPlayer()
