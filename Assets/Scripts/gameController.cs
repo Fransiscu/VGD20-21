@@ -43,7 +43,6 @@ public class gameController : MonoBehaviour
     private void Awake()
     {
         // loading player object for use
-        playerObject = new Player();
         playerObject = Player.LoadPlayer();
 
         // setting up music according to the game settings

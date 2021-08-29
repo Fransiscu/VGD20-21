@@ -67,6 +67,7 @@ public class GUIController : MonoBehaviour
     public IEnumerator BonusLevelIntroduction(TextMeshProUGUI textObject)
     {
         textObject.enabled = true;
+        yield return new WaitForSeconds(1.5f);
         textObject.text = "Welcome to the Bonus level!";
         yield return new WaitForSeconds(2.5f);
         textObject.text = "Gather as many coins as you can...";

@@ -22,7 +22,6 @@ public class savePointsController : MonoBehaviour
 
     private void Awake()
     {
-        player = new Player();
         currentLevel = gameController.GetCurrentGameLevel(); // 2 scenes before the actual levels, so we subtract 1
         milestoneReached = false;  // player can only reach checkpoint once
     }
@@ -49,10 +48,9 @@ public class savePointsController : MonoBehaviour
             {
                 if (player.InBonusLevel)
                 {
-                    fadeToLevel = new FadeTransition()   // returning to level selection menu
+                    SceneManager.LoadScene(3); // instant load and fade transition
+                    fadeToLevel = new FadeTransition()   
                     {
-                        nextScene = 3,
-                        fadedDelay = 1.5f,
                         duration = 1.5f,
                         fadeToColor = Color.white
                     };
@@ -78,6 +76,8 @@ public class savePointsController : MonoBehaviour
                 player.LifeTimeScore += player.CurrentScore;
                 player.CurrentScore = 0;    // resetting current score
                 player.AtCheckpoint = false;
+                player.InBonusLevel = false;
+                player.ComingFromBonusLevel = false;
                 player.currentLives = SETTINGS.startingLives;   // resetting total lives for next level
                 SaveSceneSystem.DeleteSceneSave();  // deleting any save file for the current level
 

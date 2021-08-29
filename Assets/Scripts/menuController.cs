@@ -75,8 +75,6 @@ public class menuController : MonoBehaviour
 
     public void SetupNewPlayer()
     {
-        Player player = new Player();
-
         string selectedGender = PlayerPrefs.GetString(gender);
             
         if (newPlayerNameInputField.text.Length < 15 && newPlayerNameInputField.text.Length > 2 && !selectedGender.Equals(""))
