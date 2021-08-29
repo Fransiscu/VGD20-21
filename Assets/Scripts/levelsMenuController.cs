@@ -34,6 +34,14 @@ public class levelsMenuController : MonoBehaviour
         SetupInterface();
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            OnBackButtonPress();
+        }
+    }
+
     private void SetupInterface()
     {
         // levels menu buttons

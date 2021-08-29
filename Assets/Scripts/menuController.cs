@@ -30,11 +30,30 @@ public class menuController : MonoBehaviour
     Player player;
 
     public float musicFadeTimer = 1.5f;
+    private bool inSettingsMenu;
 
     private static readonly string gender = PlayerPrefsKey.menuGenderSelectionPrefName;
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (inSettingsMenu)
+            {
+                mainMenu.SetActive(true);
+                settingsMenu.SetActive(false);
+                inSettingsMenu = false;
+            }
+            else
+            {
+                QuitGame();
+            }
+        }
+    }
+
     void Start()
     {
+        inSettingsMenu = false;
         if (PlayerPrefs.GetString(PlayerPrefsKey.saveDataPrefName).Equals("")) // if we have no playerdata saved yet
         {
             FirstStart();
@@ -128,6 +147,13 @@ public class menuController : MonoBehaviour
         };
         TransitionKit.instance.transitionWithDelegate(fadeToLevel);
         Application.Quit();
+    }
+
+    public void OnSettingsButtonPress()
+    {
+        mainMenu.SetActive(false);
+        settingsMenu.SetActive(true);
+        inSettingsMenu = true;
     }
 
     public void OnPlayButtonPress()
