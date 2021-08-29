@@ -16,6 +16,8 @@ public class savePointsController : MonoBehaviour
     public float distance = 50f;
     private int currentLevel;
 
+    FadeTransition fadeToLevel;
+
     Player player;
 
     private void Awake()
@@ -45,6 +47,22 @@ public class savePointsController : MonoBehaviour
             }
             else if (gameObject.tag == "Finishline")
             {
+                if (player.InBonusLevel)
+                {
+                    fadeToLevel = new FadeTransition()   // returning to level selection menu
+                    {
+                        nextScene = 3,
+                        fadedDelay = 1.5f,
+                        duration = 1.5f,
+                        fadeToColor = Color.white
+                    };
+                    TransitionKit.instance.transitionWithDelegate(fadeToLevel);
+                    player.InBonusLevel = false;
+                    player.ComingFromBonusLevel = true;
+                    player.SavePlayer();
+                    return;
+                }
+                
                 // if last level, trigger the Player.FinishedGame boolean
                 if (gameController.GetCurrentGameLevel() == 3)
                 {
@@ -67,7 +85,7 @@ public class savePointsController : MonoBehaviour
 
                 player.SavePlayer();
 
-                FadeTransition fadeToLevel = new FadeTransition()   // returning to level selection menu
+                fadeToLevel = new FadeTransition()   // returning to level selection menu
                 {
                     nextScene = 1,
                     fadedDelay = 1.5f,
@@ -78,12 +96,12 @@ public class savePointsController : MonoBehaviour
             }
             else if (gameObject.tag == "BonusLevelEntryPoint")
             {
-                player.EnteringBonusLevel = true;
+                player.InBonusLevel = true;
                 player.SavePlayer();
 
                 AudioSource.PlayClipAtPoint(portalSound, transform.position);  // portal sound
 
-                FadeTransition fadeToLevel = new FadeTransition()   // returning to level selection menu
+                FadeTransition fadeToLevel = new FadeTransition()   
                 {
                     nextScene = 5,  // bonus level scene index = 5
                     fadedDelay = .5f,

@@ -18,7 +18,7 @@ public class Player
     public int currentScore;
     public int lifeTimeScore;
     public bool comingFromBonusLevel;
-    public bool enteringBonusLevel;
+    public bool inBonusLevel;
     public bool finishedGame;
     public List<int> unlockedLevels;
 
@@ -37,7 +37,7 @@ public class Player
         currentLives = 0;
         currentScore = 0;
         atCheckpoint = false;
-        enteringBonusLevel = false;
+        inBonusLevel = false;
         comingFromBonusLevel = false;
         unlockedLevels = new List<int>() { 1 };
     }
@@ -51,7 +51,7 @@ public class Player
     public int CurrentScore { get => currentScore; set => currentScore = value; }
     public bool AtCheckpoint { get => atCheckpoint; set => atCheckpoint = value; }
     public bool ComingFromBonusLevel { get => comingFromBonusLevel; set => comingFromBonusLevel = value; }
-    public bool EnteringBonusLevel { get => enteringBonusLevel; set => enteringBonusLevel = value; }
+    public bool InBonusLevel { get => inBonusLevel; set => inBonusLevel = value; }
     public List<int> UnlockedLevels { get => unlockedLevels; set => unlockedLevels = value; }
 
     /*
@@ -67,5 +67,10 @@ public class Player
     public static Player LoadPlayer()
     {
         return JsonUtility.FromJson<Player>(PlayerPrefs.GetString(saveData));
+    }
+
+    public override string ToString()
+    {
+        return "name = " + name + " level = " + CurrentLevel + " coming from bonus = " + ComingFromBonusLevel + " checkpoint = " + AtCheckpoint;
     }
 }

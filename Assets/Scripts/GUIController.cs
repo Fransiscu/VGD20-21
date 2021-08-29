@@ -51,6 +51,7 @@ public class GUIController : MonoBehaviour
 
     public IEnumerator StartCountDown()
     {
+        countDown.enabled = true;
         countDown.text = "3";
         yield return new WaitForSeconds(1f);
         countDown.text = "2";
@@ -60,6 +61,27 @@ public class GUIController : MonoBehaviour
         countDown.text = "RUN!";
         yield return new WaitForSeconds(2f);
         countDown.enabled = false;
+        yield return true;
+    }
+
+    public IEnumerator BonusLevelIntroduction(TextMeshProUGUI textObject)
+    {
+        textObject.enabled = true;
+        textObject.text = "Welcome to the Bonus level!";
+        yield return new WaitForSeconds(2.5f);
+        textObject.text = "Gather as many coins as you can...";
+        yield return new WaitForSeconds(2.6f);
+        textObject.text = "But make sure you do not fall down! \n \n Ready?";
+        yield return new WaitForSeconds(3f);
+        textObject.text = "3";
+        yield return new WaitForSeconds(1f);
+        textObject.text = "2";
+        yield return new WaitForSeconds(1f);
+        textObject.text = "1";
+        yield return new WaitForSeconds(1f);
+        textObject.text = "GO!";
+        yield return new WaitForSeconds(2f);
+        textObject.enabled = false;
         yield return true;
     }
 }

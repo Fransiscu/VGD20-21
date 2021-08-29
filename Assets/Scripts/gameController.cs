@@ -17,6 +17,7 @@ public class gameController : MonoBehaviour
     public AudioSource music;
 
     public Transform checkpoint;
+    public Transform bonusPortal;
 
     GameSettings gameSettings;
     Player playerObject;
@@ -55,12 +56,17 @@ public class gameController : MonoBehaviour
         gController = GUIController.gameObject.GetComponent<GUIController>();
 
         if (gameSettings.Music) music.volume = SETTINGS.musicVolume; else music.Stop();
+    }
 
+    private void Start()
+    {
         /*
          * If player at checkpoint at the start of the *current* level, move the position to the appropriate sign post
          * Else just set the entities up the normal way and delete temporary points (Player.CurrentScore) from previous save
          * as well as eventual checkpoint (Player.AtCheckPoint)
          */
+
+        Debug.LogWarning(playerObject.ToString());
 
         // if we're starting a brand new level
         if (playerObject.CurrentLevel != gameController.GetCurrentGameLevel())
@@ -77,25 +83,19 @@ public class gameController : MonoBehaviour
         {
             Debug.LogWarning("at checkpoint rn spawning");
             SaveSceneSystem.LoadSceneFromObject();
-            player.transform.position = new Vector3(checkpoint.transform.position.x + 5, checkpoint.transform.position.y, checkpoint.transform.position.z);
-            cygnus.transform.position = new Vector3(player.transform.position.x - 7, cygnus.transform.position.y, cygnus.transform.position.z);
+            player.transform.position = new Vector3(checkpoint.transform.position.x + 5, checkpoint.transform.position.y, 250);
+            cygnus.transform.position = new Vector3(player.transform.position.x - 10, cygnus.transform.position.y, cygnus.transform.position.z);
             playerObject.SavePlayer();
             StartCoroutine("SetupEntities");
         }
-        // spawning inside bonus level  -> bonuslevelcontroller
-        else if (playerObject.EnteringBonusLevel)
-        {
-            // spawn in bonus level, setup
-        }
         // spawning after bonus level
-        else if (playerObject.CurrentLevel == 3 && gameController.GetCurrentGameLevel() == 3 && playerObject.ComingFromBonusLevel)
+        else if (playerObject.CurrentLevel == 2 && gameController.GetCurrentGameLevel() == 2 && playerObject.ComingFromBonusLevel)
         {
             // spawning after portal
-            Vector3 bonusPortalTransform = new Vector3(79, 17, 90);
-            SaveSceneSystem.LoadSceneFromObject(); 
+            SaveSceneSystem.LoadSceneFromObject();
             playerObject.ComingFromBonusLevel = false;
-            player.transform.position = bonusPortalTransform;
-            cygnus.transform.position = new Vector3(player.transform.position.x - 7, cygnus.transform.position.y, cygnus.transform.position.z);
+            player.transform.position = new Vector3(bonusPortal.transform.position.x + 5, bonusPortal.transform.position.y, 250);
+            cygnus.transform.position = new Vector3(player.transform.position.x - 15, cygnus.transform.position.y, cygnus.transform.position.z);
             playerObject.SavePlayer();
             StartCoroutine("SetupEntities");
 

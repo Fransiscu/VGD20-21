@@ -8258,7 +8258,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 589744557}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 9.703043, y: 5.1999993, z: 120}
+  m_LocalPosition: {x: 5.35, y: 5.1999993, z: 120}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children:
   - {fileID: 1299594894}
@@ -14146,7 +14146,7 @@ MonoBehaviour:
     currentScore: 0
     lifeTimeScore: 0
     comingFromBonusLevel: 0
-    enteringBonusLevel: 0
+    inBonusLevel: 0
     finishedGame: 0
     unlockedLevels: 
   gameSettings:
@@ -14220,7 +14220,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1067370217}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 17.789783, y: 3.1459775, z: 245.90251}
+  m_LocalPosition: {x: 16.04, y: 3.1459775, z: 245.90251}
   m_LocalScale: {x: 2, y: 2, z: 0}
   m_Children: []
   m_Father: {fileID: 323097431}
@@ -15189,7 +15189,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1089126628}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 94.1042, y: 4.752192, z: 102.9753}
+  m_LocalPosition: {x: 94.1042, y: 4.752192, z: 430}
   m_LocalScale: {x: 0.69, y: 0.56, z: 1}
   m_Children: []
   m_Father: {fileID: 1971569613}
@@ -15285,7 +15285,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 362380441
+  m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 868b0cd4c3548ff4d89f222ca9fa9cc4, type: 3}
