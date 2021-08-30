@@ -10,7 +10,7 @@ public class playerController : MonoBehaviour
     public RuntimeAnimatorController maleCharacterAnimatorController;
     public RuntimeAnimatorController femaleCharacterAnimatorController;
     private SpriteRenderer characterSprite;
-    public GUIController interfaceController;
+    public GUIController gController;
 
     public AudioClip jumpSound;
     public AudioClip doubleJumpSound;
@@ -41,7 +41,7 @@ public class playerController : MonoBehaviour
     private void Awake()
     {
         player = LoadPlayer();
-        SetupCurrentGame();
+        SetupCurrentPlayer();
     }
 
     void Update()
@@ -382,7 +382,6 @@ public class playerController : MonoBehaviour
         doubleJumpActive = false;
     }
 
-    // other methods
     public void SpeedEditEnabler(bool modifier)
     {
         StartCoroutine("EnableSpeedBoost", modifier);
@@ -408,12 +407,12 @@ public class playerController : MonoBehaviour
         return Player.LoadPlayer();
     }
 
-    public Player getPlayer()
+    public Player GetPlayer()
     {
         return player;
     }
 
-    public void SetupCurrentGame()
+    public void SetupCurrentPlayer()
     {
         characterSprite = GetComponent<SpriteRenderer>();
         playerAnimator = GetComponent<Animator>();
@@ -443,16 +442,24 @@ public class playerController : MonoBehaviour
 
     public void DisplayValues()
     {
-        interfaceController.ChangeGUILives  (player.CurrentLives, false);
-        interfaceController.ChangeGUIScore(player.CurrentScore, false);
+        gController.ChangeGUILives(player.CurrentLives, false);
+        gController.ChangeGUIScore(player.CurrentScore, false);
     }
 
-    public void IncreaseScore(int increment)
+    // bool save -> save the score to current, false don't and just refresh the GUI
+    public void IncreaseScore(int increment, bool save)
     {
-        player.CurrentScore += increment;
-        player.LifeTimeScore += increment;
-        interfaceController.ChangeGUIScore(player.CurrentScore, false);
-        player.SavePlayer();
+        if (save)
+        {
+            //player.LifeTimeScore += increment;
+            player.CurrentScore += increment;
+            gController.ChangeGUIScore(player.CurrentScore, false);
+            player.SavePlayer();
+        }
+        else
+        {
+            gController.ChangeGUIScore(player.CurrentScore + increment, false);
+        }
     }
 
     public void UpdateLives(float change)
@@ -460,7 +467,7 @@ public class playerController : MonoBehaviour
         if(!isInvincible)
         {
             player.CurrentLives -= change;
-            interfaceController.ChangeGUILives(player.CurrentLives, false);
+            gController.ChangeGUILives(player.CurrentLives, false);
             player.SavePlayer();
         }
     }

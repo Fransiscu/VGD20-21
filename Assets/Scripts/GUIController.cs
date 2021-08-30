@@ -14,8 +14,6 @@ public class GUIController : MonoBehaviour
     
     void Start()
     {
-        currentScore = 0;
-        textcoins.SetText(currentScore.ToString());
     }
 
     public void ChangeGUILives(float newLivesValue, bool subtract)
@@ -28,7 +26,7 @@ public class GUIController : MonoBehaviour
         {
             currentLives = newLivesValue;
         }
-        lives.text = currentLives.ToString();
+        lives.SetText(currentLives.ToString());
     }
 
     public void ChangeGUIScore(int newScoreValue, bool add)
@@ -41,7 +39,7 @@ public class GUIController : MonoBehaviour
         {
             currentScore = newScoreValue;
         }
-        textcoins.text = currentScore.ToString();
+        textcoins.SetText(currentScore.ToString());
     }
 
     void Update()

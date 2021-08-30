@@ -55,15 +55,12 @@ public class gameController : MonoBehaviour
         gController = GUIController.gameObject.GetComponent<GUIController>();
 
         if (gameSettings.Music) music.volume = SETTINGS.musicVolume; else music.Stop();
-    }
 
-    private void Start()
-    {
         /*
-         * If player at checkpoint at the start of the *current* level, move the position to the appropriate sign post
-         * Else just set the entities up the normal way and delete temporary points (Player.CurrentScore) from previous save
-         * as well as eventual checkpoint (Player.AtCheckPoint)
-         */
+        * If player at checkpoint at the start of the *current* level, move the position to the appropriate sign post
+        * Else just set the entities up the normal way and delete temporary points (Player.CurrentScore) from previous save
+        * as well as eventual checkpoint or other bool values
+        */
 
         Debug.LogWarning(playerObject.ToString());
 
@@ -71,10 +68,11 @@ public class gameController : MonoBehaviour
         if (playerObject.CurrentLevel != gameController.GetCurrentGameLevel())
         {
             SaveSceneSystem.DeleteSceneSave();  // deleting potential leftover saved scenes
-            playerObject.currentLevel = gameController.GetCurrentGameLevel();
+            playerObject.CurrentLevel = gameController.GetCurrentGameLevel();
             playerObject.AtCheckpoint = false;
-            playerObject.currentScore = 0;
+            playerObject.CurrentScore = 0;
             playerObject.SavePlayer();
+
             StartCoroutine("SetupEntities");
         }
         // if we are at the checkpoint of the current level
@@ -84,33 +82,40 @@ public class gameController : MonoBehaviour
             SaveSceneSystem.LoadSceneFromObject();
             player.transform.position = new Vector3(checkpoint.transform.position.x + 5, checkpoint.transform.position.y, 250);
             cygnus.transform.position = new Vector3(player.transform.position.x - 10, cygnus.transform.position.y, cygnus.transform.position.z);
-            playerObject.SavePlayer();
+
             StartCoroutine("SetupEntities");
         }
         // spawning after bonus level
         else if (playerObject.CurrentLevel == 2 && gameController.GetCurrentGameLevel() == 2 && playerObject.ComingFromBonusLevel)
         {
-            // spawning after portal
             SaveSceneSystem.LoadSceneFromObject();
-            playerObject.ComingFromBonusLevel = false;
+            playerObject.ComingFromBonusLevel = true;
+            playerObject.InBonusLevel = false;
             player.transform.position = new Vector3(bonusPortal.transform.position.x + 5, bonusPortal.transform.position.y, 250);
             cygnus.transform.position = new Vector3(player.transform.position.x - 15, cygnus.transform.position.y, cygnus.transform.position.z);
             playerObject.SavePlayer();
-            StartCoroutine("SetupEntities");
 
+            StartCoroutine("SetupEntities");
         }
         // same level no checkpoint no bonus no nothing
         else
         {
+            Debug.LogWarning("in else");
             SaveSceneSystem.DeleteSceneSave();  // deleting potential leftover saved scenes
-            playerObject.currentLevel = gameController.GetCurrentGameLevel();
+            playerObject.CurrentLevel = gameController.GetCurrentGameLevel();
             playerObject.AtCheckpoint = false;
-            playerObject.currentScore = 0;
+            playerObject.ComingFromBonusLevel = false;
+            playerObject.InBonusLevel = false;
+            playerObject.CurrentScore = 0;
             playerObject.SavePlayer();
+
             StartCoroutine("SetupEntities");
         }
-    }
 
+        gController.ChangeGUILives(playerObject.CurrentLives, false);
+        gController.ChangeGUIScore(playerObject.CurrentScore, false);
+
+    }
     IEnumerator SetupEntities()
     {
         pController.PlayerInvincibleToggle(true);    // freezing player

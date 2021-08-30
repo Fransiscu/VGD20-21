@@ -38,11 +38,13 @@ public class savePointsController : MonoBehaviour
             if (gameObject.tag == "CheckPoint") // check if at checkpoint or finishline
             {
                 Debug.LogWarning("at checkpoint");
+                player.LifeTimeScore += player.CurrentScore;
+                player.ComingFromBonusLevel = false;
                 player.CurrentLevel = currentLevel;
                 player.AtCheckpoint = true;
+                player.SavePlayer();
 
                 AudioSource.PlayClipAtPoint(checkpointSound, transform.position);   // checkpoint sound
-                player.SavePlayer();
             }
             else if (gameObject.tag == "Finishline")
             {
@@ -55,6 +57,8 @@ public class savePointsController : MonoBehaviour
                         fadeToColor = Color.white
                     };
                     TransitionKit.instance.transitionWithDelegate(fadeToLevel);
+
+                    player.LifeTimeScore += player.CurrentScore;
                     player.InBonusLevel = false;
                     player.ComingFromBonusLevel = true;
                     player.SavePlayer();
@@ -74,21 +78,19 @@ public class savePointsController : MonoBehaviour
                 }
 
                 player.LifeTimeScore += player.CurrentScore;
-                player.CurrentScore = 0;    // resetting current score
+                player.CurrentScore = 0;    // resetting current score for next level
                 player.AtCheckpoint = false;
                 player.InBonusLevel = false;
                 player.ComingFromBonusLevel = false;
                 player.currentLives = SETTINGS.startingLives;   // resetting total lives for next level
                 SaveSceneSystem.DeleteSceneSave();  // deleting any save file for the current level
+                player.SavePlayer();
 
                 AudioSource.PlayClipAtPoint(victorySound, transform.position);  // finishline sound
 
-                player.SavePlayer();
-
+                SceneManager.LoadScene(1);
                 fadeToLevel = new FadeTransition()   // returning to level selection menu
                 {
-                    nextScene = 1,
-                    fadedDelay = 1.5f,
                     duration = 1.5f,
                     fadeToColor = Color.white
                 };
