@@ -37,8 +37,10 @@ public class GUIController : MonoBehaviour
         }
         else
         {
-            currentScore = newScoreValue;
+            currentScore = int.Parse(textcoins.text);
+            currentScore += newScoreValue;
         }
+
         textcoins.SetText(currentScore.ToString());
     }
 

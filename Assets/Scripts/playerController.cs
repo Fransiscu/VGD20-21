@@ -468,7 +468,7 @@ public class playerController : MonoBehaviour
         }
         else
         {
-            guiController.ChangeGUIScore(player.CurrentScore + increment, false);
+            guiController.ChangeGUIScore(increment, false);
         }
     }
 
