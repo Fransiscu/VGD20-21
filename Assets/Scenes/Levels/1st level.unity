@@ -14798,7 +14798,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maleCharacterAnimatorController: {fileID: 9100000, guid: fb0c461e4a020f94fbf68b831118ad79, type: 2}
   femaleCharacterAnimatorController: {fileID: 9100000, guid: 00cf48c077172984193e25f901d32edf, type: 2}
-  gController: {fileID: 1860570474}
+  guiController: {fileID: 1860570474}
   jumpSound: {fileID: 8300000, guid: 95e7a5b4aacdb594ea476b78b75a121c, type: 3}
   doubleJumpSound: {fileID: 8300000, guid: b4c809d42a1c85a45849663d43e6f47b, type: 3}
   hitSound: {fileID: 8300000, guid: bf2e527ec9e2dcd4885fa9ef4e33faa4, type: 3}

@@ -69,7 +69,6 @@ public class cygnusController : MonoBehaviour
         }
     }
 
-
     public IEnumerator RiseAndShine()
     {
         cygnusSpeed = 50f;

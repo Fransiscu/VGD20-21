@@ -51,6 +51,11 @@ public class menuController : MonoBehaviour
         }
     }
 
+    private void Awake()
+    {
+        Time.timeScale = 1f;    // make sure the game is running at its normal  time when back to the menu
+    }
+
     void Start()
     {
         inSettingsMenu = false;

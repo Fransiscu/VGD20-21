@@ -1,3 +1,4 @@
+using Prime31.TransitionKit;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,6 +14,8 @@ public class gameController : MonoBehaviour
     private playerController pController;
     private cygnusController cController;
     private GUIController gController;
+
+    public GameObject deathScene;
 
     public AudioSource music;
 
@@ -42,8 +45,14 @@ public class gameController : MonoBehaviour
 
     private void Awake()
     {
+        // make sure the game is running at its normal  time when back to the menu
+        Time.timeScale = 1f;    
+
         // loading player object for use
         playerObject = Player.LoadPlayer();
+
+        // setting death scene off by default
+        deathScene.SetActive(false);
 
         // setting up music according to the game settings
         gameSettings = new GameSettings();
@@ -55,14 +64,15 @@ public class gameController : MonoBehaviour
         gController = GUIController.gameObject.GetComponent<GUIController>();
 
         if (gameSettings.Music) music.volume = SETTINGS.musicVolume; else music.Stop();
+    }
 
+    private void Start()
+    {
         /*
         * If player at checkpoint at the start of the *current* level, move the position to the appropriate sign post
         * Else just set the entities up the normal way and delete temporary points (Player.CurrentScore) from previous save
         * as well as eventual checkpoint or other bool values
         */
-
-        Debug.LogWarning(playerObject.ToString());
 
         // if we're starting a brand new level
         if (playerObject.CurrentLevel != gameController.GetCurrentGameLevel())
@@ -79,28 +89,27 @@ public class gameController : MonoBehaviour
         else if (playerObject.CurrentLevel == gameController.GetCurrentGameLevel() && playerObject.AtCheckpoint)
         {
             Debug.LogWarning("at checkpoint rn spawning");
-            SaveSceneSystem.LoadSceneFromObject();
             player.transform.position = new Vector3(checkpoint.transform.position.x + 5, checkpoint.transform.position.y, 250);
             cygnus.transform.position = new Vector3(player.transform.position.x - 10, cygnus.transform.position.y, cygnus.transform.position.z);
 
+            SaveSceneSystem.LoadSceneFromObject();
             StartCoroutine("SetupEntities");
         }
         // spawning after bonus level
         else if (playerObject.CurrentLevel == 2 && gameController.GetCurrentGameLevel() == 2 && playerObject.ComingFromBonusLevel)
         {
-            SaveSceneSystem.LoadSceneFromObject();
             playerObject.ComingFromBonusLevel = true;
             playerObject.InBonusLevel = false;
             player.transform.position = new Vector3(bonusPortal.transform.position.x + 5, bonusPortal.transform.position.y, 250);
             cygnus.transform.position = new Vector3(player.transform.position.x - 15, cygnus.transform.position.y, cygnus.transform.position.z);
             playerObject.SavePlayer();
 
+            SaveSceneSystem.LoadSceneFromObject();
             StartCoroutine("SetupEntities");
         }
         // same level no checkpoint no bonus no nothing
         else
         {
-            Debug.LogWarning("in else");
             SaveSceneSystem.DeleteSceneSave();  // deleting potential leftover saved scenes
             playerObject.CurrentLevel = gameController.GetCurrentGameLevel();
             playerObject.AtCheckpoint = false;
@@ -114,7 +123,6 @@ public class gameController : MonoBehaviour
 
         gController.ChangeGUILives(playerObject.CurrentLives, false);
         gController.ChangeGUIScore(playerObject.CurrentScore, false);
-
     }
     IEnumerator SetupEntities()
     {
@@ -133,9 +141,24 @@ public class gameController : MonoBehaviour
         return SceneManager.GetActiveScene().buildIndex - 1; // 2 scenes before the actual levels, so we subtract 1
     }
 
-    public static float GetCurrentLevelDamage()
+    public void DeathHandler()
     {
-        throw new NotImplementedException();
+        Debug.LogWarning("Dead");
+        StartCoroutine("DeathSceneTransition");
+    }
+
+    private IEnumerator DeathSceneTransition()
+    {
+        yield return new WaitForSeconds(.5f);
+        FadeTransition fadeToDeahScreen = new FadeTransition()
+        {
+            duration = 3f,
+            fadeToColor = Color.black
+        };
+        TransitionKit.instance.transitionWithDelegate(fadeToDeahScreen);
+        yield return new WaitForSeconds(1f);
+        deathScene.SetActive(true);
+        Time.timeScale = 0;
     }
 
     private void SetUpConsumables() 

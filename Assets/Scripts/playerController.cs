@@ -6,11 +6,13 @@ using UnityEngine;
 
 public class playerController : MonoBehaviour
 {
+    gameController gController;
+
     private Animator playerAnimator;
     public RuntimeAnimatorController maleCharacterAnimatorController;
     public RuntimeAnimatorController femaleCharacterAnimatorController;
     private SpriteRenderer characterSprite;
-    public GUIController gController;
+    public GUIController guiController;
 
     public AudioClip jumpSound;
     public AudioClip doubleJumpSound;
@@ -409,11 +411,18 @@ public class playerController : MonoBehaviour
 
     public Player GetPlayer()
     {
+        player = Player.LoadPlayer();
         return player;
     }
 
     public void SetupCurrentPlayer()
     {
+        // if we are not in bonus level
+        if (gameController.GetCurrentGameLevel() != 4)
+        {
+            gController = GameObject.Find("GameController").GetComponent<gameController>();
+        }
+
         characterSprite = GetComponent<SpriteRenderer>();
         playerAnimator = GetComponent<Animator>();
 
@@ -442,23 +451,24 @@ public class playerController : MonoBehaviour
 
     public void DisplayValues()
     {
-        gController.ChangeGUILives(player.CurrentLives, false);
-        gController.ChangeGUIScore(player.CurrentScore, false);
+        guiController.ChangeGUILives(player.CurrentLives, false);
+        guiController.ChangeGUIScore(player.CurrentScore, false);
     }
 
     // bool save -> save the score to current, false don't and just refresh the GUI
     public void IncreaseScore(int increment, bool save)
     {
+        player = Player.LoadPlayer();
         if (save)
         {
             //player.LifeTimeScore += increment;
             player.CurrentScore += increment;
-            gController.ChangeGUIScore(player.CurrentScore, false);
+            guiController.ChangeGUIScore(player.CurrentScore, false);
             player.SavePlayer();
         }
         else
         {
-            gController.ChangeGUIScore(player.CurrentScore + increment, false);
+            guiController.ChangeGUIScore(player.CurrentScore + increment, false);
         }
     }
 
@@ -466,9 +476,15 @@ public class playerController : MonoBehaviour
     {
         if(!isInvincible)
         {
+            player = Player.LoadPlayer();
             player.CurrentLives -= change;
-            gController.ChangeGUILives(player.CurrentLives, false);
+            guiController.ChangeGUILives(player.CurrentLives, false);
             player.SavePlayer();
+            if (player.CurrentLives <= 0)
+            {
+                guiController.ChangeGUILives(0, false);
+                gController.DeathHandler();
+            }
         }
     }
 

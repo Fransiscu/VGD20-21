@@ -14,7 +14,6 @@ public class enemyController : MonoBehaviour
     public Rigidbody2D rigidBody;
     private Animator animator;
     private bool needsFlipping;
-    GUIController interfaceController;
     public bool onPatrolDuty;
     public float enemySpeed;
     public bool facingRight;

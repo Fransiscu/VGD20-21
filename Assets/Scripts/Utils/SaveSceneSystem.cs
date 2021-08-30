@@ -59,7 +59,7 @@ public class SaveSceneSystem : MonoBehaviour
 
     public static void LoadSceneFromObject()
     {
-        ItemsIDs idsObject = LoadSceneDetailsFromJson(PlayerPrefs.GetString(idPrefName));   // ok
+        ItemsIDs idsObject = LoadSceneDetailsFromJson(PlayerPrefs.GetString(idPrefName));
         object[] objectsInScene = GameObject.FindObjectsOfType(typeof(GameObject));
         
         if (idsObject != null)  // if we do have a save
@@ -76,7 +76,6 @@ public class SaveSceneSystem : MonoBehaviour
                     case "BiggerCoin":
                         coinController coin = currentGameObject.GetComponent<coinController>();
                         Debug.Log("value = " + coin.coinValue + " - ID = " + coin.iD);
-                    
                         try
                         {
                             if (idsObject.Ids.Contains(coin.iD))
