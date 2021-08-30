@@ -461,7 +461,6 @@ public class playerController : MonoBehaviour
         player = Player.LoadPlayer();
         if (save)
         {
-            //player.LifeTimeScore += increment;
             player.CurrentScore += increment;
             guiController.ChangeGUIScore(player.CurrentScore, false);
             player.SavePlayer();
