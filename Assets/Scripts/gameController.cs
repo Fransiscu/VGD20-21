@@ -91,7 +91,12 @@ public class gameController : MonoBehaviour
             Debug.LogWarning("at checkpoint rn spawning");
             player.transform.position = new Vector3(checkpoint.transform.position.x + 5, checkpoint.transform.position.y, 250);
             cygnus.transform.position = new Vector3(player.transform.position.x - 10, cygnus.transform.position.y, cygnus.transform.position.z);
-
+            // if the player died
+            if (playerObject.currentLives <= 0)
+            {
+                playerObject.currentLives = SETTINGS.startingLives;
+                playerObject.SavePlayer();
+            }
             SaveSceneSystem.LoadSceneFromObject();
             StartCoroutine("SetupEntities");
         }
