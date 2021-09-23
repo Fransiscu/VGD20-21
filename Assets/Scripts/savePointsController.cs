@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class savePointsController : MonoBehaviour
+public class SavePointsController : MonoBehaviour
 {
     public RaycastHit2D raycastHit2D;
     public Transform milestonePoint;
@@ -22,7 +22,7 @@ public class savePointsController : MonoBehaviour
 
     private void Awake()
     {
-        currentLevel = gameController.GetCurrentGameLevel(); // 2 scenes before the actual levels, so we subtract 1
+        currentLevel = GameController.GetCurrentGameLevel(); // 2 scenes before the actual levels, so we subtract 1
         milestoneReached = false;  // player can only reach checkpoint once
     }
 
@@ -66,7 +66,7 @@ public class savePointsController : MonoBehaviour
                 }
                 
                 // if last level, trigger the Player.FinishedGame boolean
-                if (gameController.GetCurrentGameLevel() == 3)
+                if (GameController.GetCurrentGameLevel() == 3)
                 {
                     player.FinishedGame = true;
                 }

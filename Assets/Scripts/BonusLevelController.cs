@@ -13,7 +13,7 @@ public class BonusLevelController : MonoBehaviour
 
     public TextMeshProUGUI textOnScreen;
     
-    private playerController pController;
+    private PlayerController pController;
     private GUIController gController;
 
     Player playerObject;
@@ -26,7 +26,7 @@ public class BonusLevelController : MonoBehaviour
 
     void Start()
     {
-        pController = player.gameObject.GetComponent<playerController>();
+        pController = player.gameObject.GetComponent<PlayerController>();
         gController = GUIController.gameObject.GetComponent<GUIController>();
 
         playerObject = Player.LoadPlayer();
@@ -43,7 +43,7 @@ public class BonusLevelController : MonoBehaviour
 
     private IEnumerator SetUp()
     {
-        gController.ChangeGUIScore(playerObject.CurrentScore, false);
+        gController.ChangeGUIScore(playerObject.CurrentScore);
         gController.ChangeGUILives(playerObject.CurrentLives, false);
         pController.PlayerInvincibleToggle(true);    // freezing player
         pController.PlayerFreezeToggle(true);    // freezing player
@@ -97,7 +97,7 @@ public class BonusLevelController : MonoBehaviour
                 case "BiggerCoin":
                     try
                     {
-                        coinController coin = currentGameObject.GetComponent<coinController>();
+                        CoinController coin = currentGameObject.GetComponent<CoinController>();
                         coin.SetUp();
                     }
                     catch (Exception) { }
@@ -106,7 +106,7 @@ public class BonusLevelController : MonoBehaviour
                 case "DoubleJump":
                     try
                     {
-                        doubleJumpController doubleJump = currentGameObject.GetComponent<doubleJumpController>();
+                        DoubleJumpController doubleJump = currentGameObject.GetComponent<DoubleJumpController>();
                         doubleJump.SetUp();
                     }
                     catch (Exception) { }
@@ -115,7 +115,7 @@ public class BonusLevelController : MonoBehaviour
                 case "SpeedUp":
                     try
                     {
-                        speedModifierController speedModifier = currentGameObject.GetComponent<speedModifierController>();
+                        SpeedModifierController speedModifier = currentGameObject.GetComponent<SpeedModifierController>();
                         speedModifier.SetUp();
                     }
                     catch (Exception) { }

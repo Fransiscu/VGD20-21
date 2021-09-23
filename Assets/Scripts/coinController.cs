@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class coinController : MonoBehaviour
+public class CoinController : MonoBehaviour
 {
     public int coinValue;
     public string iD;

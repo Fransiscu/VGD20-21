@@ -68,7 +68,7 @@ public class PauseMenuController : MonoBehaviour
     
     public void OnLastSaveButtonPress()
     {
-        int currentLevel = gameController.GetCurrentGameLevel();
+        int currentLevel = GameController.GetCurrentGameLevel();
         StartCoroutine("StartLevel", currentLevel);
     }
 

@@ -5,7 +5,7 @@ using System.Threading;
 using UnityEngine;
 using Random = System.Random;
 
-public class enemyController : MonoBehaviour
+public class EnemyController : MonoBehaviour
 {
     public Transform groundPresenceChecker;
     public LayerMask groundLayerMask;
@@ -121,7 +121,7 @@ public class enemyController : MonoBehaviour
         onPatrolDuty = true;
 
         // calculating enemy stats for the correct level
-        switch (gameController.GetCurrentGameLevel())
+        switch (GameController.GetCurrentGameLevel())
         {
             case 1:
                 hitDamage = SETTINGS.level1EnemyDamage;

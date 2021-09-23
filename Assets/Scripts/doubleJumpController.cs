@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class doubleJumpController : MonoBehaviour
+public class DoubleJumpController : MonoBehaviour
 {
     public string iD;
 

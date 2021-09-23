@@ -74,7 +74,7 @@ public class SaveSceneSystem : MonoBehaviour
                 {
                     case "Coin":
                     case "BiggerCoin":
-                        coinController coin = currentGameObject.GetComponent<coinController>();
+                        CoinController coin = currentGameObject.GetComponent<CoinController>();
                         Debug.Log("value = " + coin.coinValue + " - ID = " + coin.iD);
                         try
                         {
@@ -87,7 +87,7 @@ public class SaveSceneSystem : MonoBehaviour
                         break;
 
                     case "DoubleJump":
-                        doubleJumpController doubleJump = currentGameObject.GetComponent<doubleJumpController>();
+                        DoubleJumpController doubleJump = currentGameObject.GetComponent<DoubleJumpController>();
 
                         try
                         {
@@ -101,7 +101,7 @@ public class SaveSceneSystem : MonoBehaviour
 
                     case "SpeedUp":
                     case "SpeedDown":
-                        speedModifierController speedModifier = currentGameObject.GetComponent<speedModifierController>();
+                        SpeedModifierController speedModifier = currentGameObject.GetComponent<SpeedModifierController>();
                         
                         try
                         {

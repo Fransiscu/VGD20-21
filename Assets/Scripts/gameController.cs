@@ -5,14 +5,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class gameController : MonoBehaviour
+public class GameController : MonoBehaviour
 {
     public GameObject cygnus;
     public GameObject player;
     public GameObject GUIController;
     
-    private playerController pController;
-    private cygnusController cController;
+    private PlayerController pController;
+    private CygnusController cController;
     private GUIController gController;
 
     public GameObject deathScene;
@@ -59,8 +59,8 @@ public class gameController : MonoBehaviour
         gameSettings = GameSettings.LoadSettings();
 
         // setting up controllers
-        pController = player.gameObject.GetComponent<playerController>();
-        cController = cygnus.gameObject.GetComponent<cygnusController>();
+        pController = player.gameObject.GetComponent<PlayerController>();
+        cController = cygnus.gameObject.GetComponent<CygnusController>();
         gController = GUIController.gameObject.GetComponent<GUIController>();
 
         if (gameSettings.Music) music.volume = SETTINGS.musicVolume; else music.Stop();
@@ -75,10 +75,10 @@ public class gameController : MonoBehaviour
         */
 
         // if we're starting a brand new level
-        if (playerObject.CurrentLevel != gameController.GetCurrentGameLevel())
+        if (playerObject.CurrentLevel != GameController.GetCurrentGameLevel())
         {
             SaveSceneSystem.DeleteSceneSave();  // deleting potential leftover saved scenes
-            playerObject.CurrentLevel = gameController.GetCurrentGameLevel();
+            playerObject.CurrentLevel = GameController.GetCurrentGameLevel();
             playerObject.AtCheckpoint = false;
             playerObject.CurrentScore = 0;
             playerObject.SavePlayer();
@@ -86,7 +86,7 @@ public class gameController : MonoBehaviour
             StartCoroutine("SetupEntities");
         }
         // if we are at the checkpoint of the current level
-        else if (playerObject.CurrentLevel == gameController.GetCurrentGameLevel() && playerObject.AtCheckpoint)
+        else if (playerObject.CurrentLevel == GameController.GetCurrentGameLevel() && playerObject.AtCheckpoint)
         {
             Debug.LogWarning("at checkpoint rn spawning");
             player.transform.position = new Vector3(checkpoint.transform.position.x + 5, checkpoint.transform.position.y, 250);
@@ -101,7 +101,7 @@ public class gameController : MonoBehaviour
             StartCoroutine("SetupEntities");
         }
         // spawning after bonus level
-        else if (playerObject.CurrentLevel == 2 && gameController.GetCurrentGameLevel() == 2 && playerObject.ComingFromBonusLevel)
+        else if (playerObject.CurrentLevel == 2 && GameController.GetCurrentGameLevel() == 2 && playerObject.ComingFromBonusLevel)
         {
             playerObject.ComingFromBonusLevel = true;
             playerObject.InBonusLevel = false;
@@ -116,7 +116,7 @@ public class gameController : MonoBehaviour
         else
         {
             SaveSceneSystem.DeleteSceneSave();  // deleting potential leftover saved scenes
-            playerObject.CurrentLevel = gameController.GetCurrentGameLevel();
+            playerObject.CurrentLevel = GameController.GetCurrentGameLevel();
             playerObject.AtCheckpoint = false;
             playerObject.ComingFromBonusLevel = false;
             playerObject.InBonusLevel = false;
@@ -127,7 +127,7 @@ public class gameController : MonoBehaviour
         }
 
         gController.ChangeGUILives(playerObject.CurrentLives, false);
-        gController.ChangeGUIScore(playerObject.CurrentScore, false);
+        gController.ChangeGUIScore(playerObject.CurrentScore);
     }
     IEnumerator SetupEntities()
     {
@@ -181,7 +181,7 @@ public class gameController : MonoBehaviour
                 case "BiggerCoin":
                     try
                     {
-                        coinController coin = currentGameObject.GetComponent<coinController>();
+                        CoinController coin = currentGameObject.GetComponent<CoinController>();
                         coin.SetUp();
                     }
                     catch (Exception) { }
@@ -190,7 +190,7 @@ public class gameController : MonoBehaviour
                 case "DoubleJump":
                     try
                     {
-                        doubleJumpController doubleJump = currentGameObject.GetComponent<doubleJumpController>();
+                        DoubleJumpController doubleJump = currentGameObject.GetComponent<DoubleJumpController>();
                         doubleJump.SetUp();
                     }
                     catch (Exception) { }
@@ -200,7 +200,7 @@ public class gameController : MonoBehaviour
                 case "SpeedDown":
                     try
                     {
-                        speedModifierController speedModifier = currentGameObject.GetComponent<speedModifierController>();
+                        SpeedModifierController speedModifier = currentGameObject.GetComponent<SpeedModifierController>();
                         speedModifier.SetUp();
                     }
                     catch (Exception) { }

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class cygnusController : MonoBehaviour
+public class CygnusController : MonoBehaviour
 {
     public Transform player;
     Animator cygnusAnimator;

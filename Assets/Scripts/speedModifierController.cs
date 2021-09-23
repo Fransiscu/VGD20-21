@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class speedModifierController : MonoBehaviour
+public class SpeedModifierController : MonoBehaviour
 {
     public string iD;
 

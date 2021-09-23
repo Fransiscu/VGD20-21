@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 
-public class consumablesPicker : MonoBehaviour
+public class ConsumablesPicker : MonoBehaviour
 {
-    coinController coin;
-    playerController playerController;
-    doubleJumpController doubleJumpController;
-    speedModifierController speedModifierController;
+    CoinController coin;
+    PlayerController playerController;
+    DoubleJumpController doubleJumpController;
+    SpeedModifierController speedModifierController;
     public GUIController GUIController;
 
     private GameSettings gameSettings;
@@ -26,18 +26,18 @@ public class consumablesPicker : MonoBehaviour
         gameSettings = GameSettings.LoadSettings();
         volume = gameSettings.Sound ? SETTINGS.soundVolume : 0f;
 
-        playerController = gameObject.GetComponent<playerController>();
+        playerController = gameObject.GetComponent<PlayerController>();
         string consumableTag = col.gameObject.tag;
         Destroy(col.gameObject);
 
         switch (consumableTag)
         {
-            case "Coin" when !col.GetComponent<coinController>().pickedUp:
-                Debug.Log("Picked coin's value = " + col.GetComponent<coinController>().coinValue);
+            case "Coin" when !col.GetComponent<CoinController>().pickedUp:
+                Debug.Log("Picked coin's value = " + col.GetComponent<CoinController>().coinValue);
 
                 AudioSource.PlayClipAtPoint(coinPickupSound, transform.position, volume);
 
-                coin = col.GetComponent<coinController>();
+                coin = col.GetComponent<CoinController>();
                 coin.pickedUp = true;
 
                 if (playerController.player.AtCheckpoint)
@@ -57,12 +57,12 @@ public class consumablesPicker : MonoBehaviour
 
                 break;
 
-            case "BiggerCoin" when !col.GetComponent<coinController>().pickedUp:
-                Debug.Log("Picked bigger coin! value * 3 " + col.GetComponent<coinController>().coinValue * 3);
+            case "BiggerCoin" when !col.GetComponent<CoinController>().pickedUp:
+                Debug.Log("Picked bigger coin! value * 3 " + col.GetComponent<CoinController>().coinValue * 3);
 
                 AudioSource.PlayClipAtPoint(coinPickupSound, transform.position, volume);
 
-                coin = col.GetComponent<coinController>();
+                coin = col.GetComponent<CoinController>();
                 coin.pickedUp = true;
 
                 //GUIController.ChangeGUIScore(coin.coinValue * 3, true);
@@ -83,12 +83,12 @@ public class consumablesPicker : MonoBehaviour
 
                 break;
 
-            case "DoubleJump" when !col.GetComponent<doubleJumpController>().pickedUp:
+            case "DoubleJump" when !col.GetComponent<DoubleJumpController>().pickedUp:
                 AudioSource.PlayClipAtPoint(doubleJumpPickupSound, transform.position, volume);
 
                 playerController.DoubleJumpEnabler();
 
-                doubleJumpController = col.GetComponent<doubleJumpController>();
+                doubleJumpController = col.GetComponent<DoubleJumpController>();
                 doubleJumpController.pickedUp = true;
 
                 // if the player is in the first half of the level, save the pickup progression
@@ -99,12 +99,12 @@ public class consumablesPicker : MonoBehaviour
 
                 break;
 
-            case "SpeedUp" when !col.GetComponent<speedModifierController>().pickedUp:
+            case "SpeedUp" when !col.GetComponent<SpeedModifierController>().pickedUp:
                 AudioSource.PlayClipAtPoint(speedUpPickupSound, transform.position, volume);
 
                 playerController.SpeedEditEnabler(true);  // speed up -> true
 
-                speedModifierController = col.GetComponent<speedModifierController>();
+                speedModifierController = col.GetComponent<SpeedModifierController>();
                 speedModifierController.pickedUp = true;
 
                 // if the player is in the first half of the level and didn't reach the checkpoint, save the pickup progression
@@ -115,12 +115,12 @@ public class consumablesPicker : MonoBehaviour
 
                 break;
 
-            case "SpeedDown" when !col.GetComponent<speedModifierController>().pickedUp:
+            case "SpeedDown" when !col.GetComponent<SpeedModifierController>().pickedUp:
                 AudioSource.PlayClipAtPoint(speedDownPickupSound, transform.position, volume);
 
                 playerController.SpeedEditEnabler(false);  // speed down -> false
 
-                speedModifierController = col.GetComponent<speedModifierController>();
+                speedModifierController = col.GetComponent<SpeedModifierController>();
                 speedModifierController.pickedUp = true;
 
                 // if the player is in the first half of the level, save the pickup progression

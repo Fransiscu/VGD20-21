@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class menuController : MonoBehaviour
+public class MenuController : MonoBehaviour
 {
     public GameObject gameStatsResetMenu;
     public GameObject nameInputMenu;
@@ -18,7 +18,7 @@ public class menuController : MonoBehaviour
     public GameObject cygnus;
 
     public TMP_InputField newPlayerNameInputField;
-    public TextMeshProUGUI playerNameScore;
+    public TextMeshProUGUI playerInterfaceName;
     public Button soundSettingToggle;
     public Button musicSettingToggle;
 
@@ -112,7 +112,7 @@ public class menuController : MonoBehaviour
         genderPicker.SetActive(true);
         mainMenu.SetActive(false);
 
-        playerNameScore.enabled = false;
+        playerInterfaceName.enabled = false;
 
         // show name input menu at first start
         nameInputMenu.SetActive(true);
@@ -135,8 +135,8 @@ public class menuController : MonoBehaviour
         cygnusAnimator.SetBool("cygnus_wakeup", true); // setting up main menu cygnus animations 
         cygnusAnimator.SetBool("cygnus_stand", true);
 
-        playerNameScore.enabled = true;
-        playerNameScore.SetText(player.Name + " - " + player.LifeTimeScore); 
+        playerInterfaceName.enabled = true;
+        playerInterfaceName.SetText(player.Name); 
 
     }
 

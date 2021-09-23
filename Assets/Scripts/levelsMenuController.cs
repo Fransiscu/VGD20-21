@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class levelsMenuController : MonoBehaviour
+public class LevelsMenuController : MonoBehaviour
 {
     public GameObject cygnus;
     public TextMeshProUGUI playerNameScore;

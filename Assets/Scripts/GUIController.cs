@@ -29,19 +29,9 @@ public class GUIController : MonoBehaviour
         lives.SetText(currentLives.ToString());
     }
 
-    public void ChangeGUIScore(int newScoreValue, bool add)
+    public void ChangeGUIScore(int newScoreValue)
     {
-        if (add)
-        {
-            currentScore += newScoreValue;
-        }
-        else
-        {
-            currentScore = int.Parse(textcoins.text);
-            currentScore += newScoreValue;
-        }
-
-        textcoins.SetText(currentScore.ToString());
+        textcoins.SetText(newScoreValue.ToString());
     }
 
     void Update()

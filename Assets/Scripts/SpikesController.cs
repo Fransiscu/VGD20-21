@@ -8,7 +8,7 @@ public class SpikesController : MonoBehaviour
 
     private void Awake()
     {
-        switch (gameController.GetCurrentGameLevel())
+        switch (GameController.GetCurrentGameLevel())
         {
             case 1:
                 hitDamage = SETTINGS.level1EnemyDamage;

@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 
-public class playerController : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
-    gameController gController;
+    GameController gController;
 
     private Animator playerAnimator;
     public RuntimeAnimatorController maleCharacterAnimatorController;
@@ -185,7 +185,7 @@ public class playerController : MonoBehaviour
                 if (!isInvincible)
                 {
                     AudioSource.PlayClipAtPoint(hitSound, transform.position, volume);  // playing sound on hit
-                    UpdateLives(col.gameObject.GetComponent<enemyController>().hitDamage);   
+                    UpdateLives(col.gameObject.GetComponent<EnemyController>().hitDamage);   
                     knockBackPlayer(col, false);
                 }
                 break;
@@ -193,7 +193,7 @@ public class playerController : MonoBehaviour
                 if (!isInvincible)
                 {
                     AudioSource.PlayClipAtPoint(hitSound, transform.position, volume);  // playing sound on hit
-                    UpdateLives(col.gameObject.GetComponent<cygnusController>().hitDamage);
+                    UpdateLives(col.gameObject.GetComponent<CygnusController>().hitDamage);
                     knockBackPlayer(col, true);   // knocking always to the right
                 }
                 break;
@@ -418,9 +418,9 @@ public class playerController : MonoBehaviour
     public void SetupCurrentPlayer()
     {
         // if we are not in bonus level
-        if (gameController.GetCurrentGameLevel() != 4)
+        if (GameController.GetCurrentGameLevel() != 4)
         {
-            gController = GameObject.Find("GameController").GetComponent<gameController>();
+            gController = GameObject.Find("GameController").GetComponent<GameController>();
         }
 
         characterSprite = GetComponent<SpriteRenderer>();
@@ -452,23 +452,16 @@ public class playerController : MonoBehaviour
     public void DisplayValues()
     {
         guiController.ChangeGUILives(player.CurrentLives, false);
-        guiController.ChangeGUIScore(player.CurrentScore, false);
+        guiController.ChangeGUIScore(player.CurrentScore);
     }
 
     // bool save -> save the score to current, false don't and just refresh the GUI
     public void IncreaseScore(int increment, bool save)
     {
         player = Player.LoadPlayer();
-        if (save)
-        {
-            player.CurrentScore += increment;
-            guiController.ChangeGUIScore(player.CurrentScore, false);
-            player.SavePlayer();
-        }
-        else
-        {
-            guiController.ChangeGUIScore(increment, false);
-        }
+        player.CurrentScore += increment;
+        player.SavePlayer();
+        guiController.ChangeGUIScore(player.CurrentScore);
     }
 
     public void UpdateLives(float change)
