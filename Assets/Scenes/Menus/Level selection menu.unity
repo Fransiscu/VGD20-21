@@ -1215,7 +1215,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cygnus: {fileID: 371687970}
-  playerNameScore: {fileID: 320573866}
+  playerInterfaceName: {fileID: 320573866}
+  menuController: {fileID: 0}
   continueButton: {fileID: 1168628663}
   level1Button: {fileID: 911312274}
   level2Button: {fileID: 1353122064}

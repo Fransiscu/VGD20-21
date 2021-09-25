@@ -10,7 +10,7 @@ using UnityEngine.UI;
 public class LevelsMenuController : MonoBehaviour
 {
     public GameObject cygnus;
-    public TextMeshProUGUI playerNameScore;
+    public TextMeshProUGUI playerInterfaceName;
     public GameObject menuController;
     
     Animator cygnusAnimator;
@@ -52,8 +52,8 @@ public class LevelsMenuController : MonoBehaviour
 
         cygnusAnimator.Play("cygnus_stand");
 
-        playerNameScore.enabled = true;
-        playerNameScore.SetText(player.Name + " - " + player.LifeTimeScore);
+        playerInterfaceName.enabled = true;
+        playerInterfaceName.SetText(player.Name);
     }
 
     public void OnContinueButtonPress()

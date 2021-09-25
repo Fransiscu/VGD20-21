@@ -79,6 +79,7 @@ public class GameController : MonoBehaviour
         {
             SaveSceneSystem.DeleteSceneSave();  // deleting potential leftover saved scenes
             playerObject.CurrentLevel = GameController.GetCurrentGameLevel();
+            playerObject.CurrentLives = SETTINGS.startingLives;
             playerObject.AtCheckpoint = false;
             playerObject.CurrentScore = 0;
             playerObject.SavePlayer();
@@ -117,6 +118,7 @@ public class GameController : MonoBehaviour
         {
             SaveSceneSystem.DeleteSceneSave();  // deleting potential leftover saved scenes
             playerObject.CurrentLevel = GameController.GetCurrentGameLevel();
+            playerObject.CurrentLives = SETTINGS.startingLives;
             playerObject.AtCheckpoint = false;
             playerObject.ComingFromBonusLevel = false;
             playerObject.InBonusLevel = false;

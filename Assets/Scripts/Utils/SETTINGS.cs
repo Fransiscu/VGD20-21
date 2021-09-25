@@ -55,7 +55,7 @@ public class SETTINGS
     public static readonly float speedBoostBuffDuration = 3f;
 
     // powedowns
-    public static readonly float speedDeficit = .2f;
+    public static readonly float speedDeficit = .7f;
 
     // levels
     public static readonly float soundVolume = 1f;
