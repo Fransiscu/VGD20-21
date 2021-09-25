@@ -31,8 +31,6 @@ public class BonusLevelController : MonoBehaviour
 
         playerObject = Player.LoadPlayer();
 
-        Debug.LogWarning(player.ToString());
-
         SetupBonusLevel();
     }
 
@@ -71,7 +69,7 @@ public class BonusLevelController : MonoBehaviour
             playerObject.InBonusLevel = false;
             playerObject.ComingFromBonusLevel = true;
             playerObject.SavePlayer();
-            Debug.LogWarning("dentro " + playerObject.ToString());
+
             SceneManager.LoadScene(3);  // instant transition 
             FadeTransition fadeToLevel = new FadeTransition()
             {

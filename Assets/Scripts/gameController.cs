@@ -74,6 +74,8 @@ public class GameController : MonoBehaviour
         * as well as eventual checkpoint or other bool values
         */
 
+        playerObject = Player.LoadPlayer();
+
         // if we're starting a brand new level
         if (playerObject.CurrentLevel != GameController.GetCurrentGameLevel())
         {
@@ -90,28 +92,30 @@ public class GameController : MonoBehaviour
         else if (playerObject.CurrentLevel == GameController.GetCurrentGameLevel() && playerObject.AtCheckpoint)
         {
             Debug.LogWarning("at checkpoint rn spawning");
-            player.transform.position = new Vector3(checkpoint.transform.position.x + 5, checkpoint.transform.position.y, 250);
-            cygnus.transform.position = new Vector3(player.transform.position.x - 10, cygnus.transform.position.y, cygnus.transform.position.z);
+            StartCoroutine("SetupEntities");
+            player.transform.position = new Vector3(checkpoint.transform.position.x + 5, checkpoint.transform.position.y + 1, 250);
+            cygnus.transform.position = new Vector3(player.transform.position.x - 10, cygnus.transform.position.y + 1, cygnus.transform.position.z);
+            
             // if the player died
             if (playerObject.currentLives <= 0)
             {
                 playerObject.currentLives = SETTINGS.startingLives;
+                gController.ChangeGUILives(5, false);
                 playerObject.SavePlayer();
             }
             SaveSceneSystem.LoadSceneFromObject();
-            StartCoroutine("SetupEntities");
         }
         // spawning after bonus level
         else if (playerObject.CurrentLevel == 2 && GameController.GetCurrentGameLevel() == 2 && playerObject.ComingFromBonusLevel)
         {
+            StartCoroutine("SetupEntities");
             playerObject.ComingFromBonusLevel = true;
             playerObject.InBonusLevel = false;
-            player.transform.position = new Vector3(bonusPortal.transform.position.x + 5, bonusPortal.transform.position.y, 250);
-            cygnus.transform.position = new Vector3(player.transform.position.x - 15, cygnus.transform.position.y, cygnus.transform.position.z);
+            player.transform.position = new Vector3(bonusPortal.transform.position.x + 5, bonusPortal.transform.position.y + 1, 250);
+            cygnus.transform.position = new Vector3(player.transform.position.x - 10, cygnus.transform.position.y, cygnus.transform.position.z);
             playerObject.SavePlayer();
 
             SaveSceneSystem.LoadSceneFromObject();
-            StartCoroutine("SetupEntities");
         }
         // same level no checkpoint no bonus no nothing
         else

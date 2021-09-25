@@ -74,7 +74,6 @@ public class PauseMenuController : MonoBehaviour
 
     public IEnumerator StartLevel(int sceneNumber)
     {
-        Debug.LogWarning("startin " + sceneNumber + " level");
         SceneManager.LoadScene(sceneNumber + 1);
         yield return new WaitForSeconds(1f);
     }
