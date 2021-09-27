@@ -1,12 +1,10 @@
 using Prime31.TransitionKit;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+// Controller for the main menu
 public class MenuController : MonoBehaviour
 {
     public GameObject gameStatsResetMenu;
@@ -38,12 +36,14 @@ public class MenuController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            // if in settings menu we go back to main menu
             if (inSettingsMenu)
             {
                 mainMenu.SetActive(true);
                 settingsMenu.SetActive(false);
                 inSettingsMenu = false;
             }
+            // else quit game
             else
             {
                 QuitGame();
@@ -53,7 +53,7 @@ public class MenuController : MonoBehaviour
 
     private void Awake()
     {
-        Time.timeScale = 1f;    // make sure the game is running at its normal  time when back to the menu
+        Time.timeScale = 1f;    // Making sure the game is running at its normal  time when back to the menu
     }
 
     void Start()
@@ -63,7 +63,7 @@ public class MenuController : MonoBehaviour
         {
             FirstStart();
         }
-        else
+        else // else load current player
         {
             gameSettings = new GameSettings();
             gameSettings = GameSettings.LoadSettings();
@@ -78,6 +78,7 @@ public class MenuController : MonoBehaviour
         SetupMusic();
     }
 
+    // Method to handle player creation
     public void SetupNewPlayer()
     {
         string selectedGender = PlayerPrefs.GetString(gender);
@@ -99,6 +100,7 @@ public class MenuController : MonoBehaviour
         SetupInterface(player, gameSettings);   // setting up the rest of the interface 
     }
 
+    // Method to handle first time start GUI
     private void FirstStart()
     {
         // setting up game settings at first start 
@@ -118,6 +120,7 @@ public class MenuController : MonoBehaviour
         nameInputMenu.SetActive(true);
     }
 
+    // Method to setup normal interface
     private void SetupInterface(Player player, GameSettings gameSettings)
     {
         cygnusAnimator = cygnus.GetComponentInChildren<Animator>();
@@ -140,6 +143,7 @@ public class MenuController : MonoBehaviour
 
     }
 
+    // Showing a fade before quitting game
     public void QuitGame()
     {
         FadeTransition fadeToLevel = new FadeTransition()
@@ -162,10 +166,6 @@ public class MenuController : MonoBehaviour
     public void OnPlayButtonPress()
     {
         SceneManager.LoadScene(1);
-        /*
-        StartCoroutine("FadeToLevelMenu");
-        StartCoroutine("FadeToMenu");
-    */
     }
 
     public void OnSoundToggleButtonPress()
@@ -175,6 +175,7 @@ public class MenuController : MonoBehaviour
         gameSettings.SaveSettings();
     }
 
+    // Method to handle sound and music toggle
     public void OnMusicToggleButtonPress()
     {
         gameSettings.Music = !gameSettings.Music;
@@ -217,35 +218,4 @@ public class MenuController : MonoBehaviour
             music.Stop();
         }
     }
-
-    private IEnumerator FadeToLevelMenu()
-    {
-        for (float i = 0; i < 1.5f; i += 1f)
-        {
-
-            if (musicFadeTimer > 0)
-            {
-                music.volume -= 0.015f;
-                musicFadeTimer -= Time.deltaTime;
-            }
-            if (music.volume == 0)
-            {
-                break;
-            }
-            yield return new WaitForSeconds(.5f);
-        }
-        SceneManager.LoadScene(1);
-    }
-
-    private IEnumerator FadeToMenu()
-    {
-        yield return new WaitForSeconds(.1f);
-        FadeTransition fadeToLevel = new FadeTransition()
-        {
-            duration = .8f,
-            fadeToColor = Color.white
-        };
-        TransitionKit.instance.transitionWithDelegate(fadeToLevel);
-    }
-
 }

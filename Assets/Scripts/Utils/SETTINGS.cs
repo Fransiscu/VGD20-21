@@ -26,6 +26,10 @@ public class SETTINGS
     public static readonly float knockBackStrength = 700.0f;
     public static readonly float knockBackDistance = 450.0f;
 
+    // spikes
+
+    public static readonly float disablingTime = 2.0f;
+
     // status' duration
     public static readonly float invincibilityFramesDurationSeconds = 1.5f;
     public static readonly float invincibilityFramesDeltaTime = 0.15f;
@@ -49,6 +53,8 @@ public class SETTINGS
 
     public static readonly int bonusLevelMinCoinScore = 5;
     public static readonly int bonusLevelMaxCoinScore = 10;
+
+    public static readonly int biggerCoinMultiplier = 2;
 
     // powerups
     public static readonly float speedBoost = 1.3f;

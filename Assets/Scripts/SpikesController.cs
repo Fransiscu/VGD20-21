@@ -1,13 +1,14 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+// Controller for the spikes 
 public class SpikesController : MonoBehaviour
 {
     public float hitDamage;
 
     private void Awake()
     {
+        // Setting up their damage for the current level 
         switch (GameController.GetCurrentGameLevel())
         {
             case 1:
@@ -30,10 +31,11 @@ public class SpikesController : MonoBehaviour
         StartCoroutine("DisableColliderMomentarily");
     }
 
+    // Disable collisions for x seconds coroutine method
     private IEnumerator DisableColliderMomentarily()
     {
         gameObject.GetComponent<Collider2D>().enabled = false;
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(SETTINGS.disablingTime);
         gameObject.GetComponent<Collider2D>().enabled = true;
     }
 }

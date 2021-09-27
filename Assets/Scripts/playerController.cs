@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Threading;
 using UnityEngine;
 
+// Controller for the player character in game
 public class PlayerController : MonoBehaviour
 {
     GameController gController;
@@ -32,14 +31,14 @@ public class PlayerController : MonoBehaviour
     public bool touchingGround;
 
     private int jumpCounter;
-    private float lives;
-
+    
     private bool isFlashing = false;
     public bool doubleJumpActive;
     public bool isInvincible;
     public bool inputFrozen = true;
     public bool knockedBack;
 
+    // Setting up current player
     private void Awake()
     {
         player = LoadPlayer();
@@ -48,12 +47,14 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        // Allowing the player to move only if not frozen
         if (!inputFrozen)
         {
             MovePlayer();
         }
     }
 
+    // Player movement, handling every single case
     public void MovePlayer()
     {
         playerMovementDirection = 0;
@@ -145,6 +146,7 @@ public class PlayerController : MonoBehaviour
         transform.localScale = localScale;
     }
 
+    // Collisions handler
     void OnCollisionEnter2D(Collision2D col)
     {
         switch (col.gameObject.tag)
@@ -177,6 +179,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    // Entities collision handler
     private void EntitiesCollisionHandler(Collision2D col)
     {
         switch (col.gameObject.tag)
@@ -217,6 +220,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    // Knock back handler
     // bool knockForward is used for some cases in which we force a forward knock, ignoring the direction of the hit
     public void knockBackPlayer(Collision2D col, bool knockForward)
     {
@@ -258,6 +262,7 @@ public class PlayerController : MonoBehaviour
         knockedBack = false;
     }
 
+    // Player jump handler
     public void PlayerJump()
     {
         // checking if the jump counter is < 1 in case of a double jump active buff
@@ -276,6 +281,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    // Invincibility frames coroutine method
     private IEnumerator GiveInvincibilityFrames()
     {
         new WaitForSeconds(.1f);
@@ -295,6 +301,7 @@ public class PlayerController : MonoBehaviour
         inputFrozen = frozen;
     }
 
+    // Freezing input coroutine method
     private IEnumerator FreezeInput()
     {
         inputFrozen = true;
@@ -307,6 +314,7 @@ public class PlayerController : MonoBehaviour
         inputFrozen = false;
     }
 
+    // Character flash coroutine method
     private IEnumerator CharacterFlash(String trigger)
     {
         Color startingColor = characterSprite.material.color;
@@ -349,6 +357,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    // Speed modifier coroutine method
     private IEnumerator EnableSpeedBoost(bool speedModifier)
     {
         if (speedModifier)  // true -> speed up
@@ -415,6 +424,7 @@ public class PlayerController : MonoBehaviour
         return player;
     }
 
+    // Method to setup current player
     public void SetupCurrentPlayer()
     {
         // if we are not in bonus level
@@ -449,6 +459,7 @@ public class PlayerController : MonoBehaviour
         volume = gameSettings.Sound ? SETTINGS.soundVolume : 0f;
     }
 
+    // Showing values on screen GUI
     public void DisplayValues()
     {
         guiController.ChangeGUILives(player.CurrentLives, false);
@@ -464,6 +475,7 @@ public class PlayerController : MonoBehaviour
         guiController.ChangeGUIScore(player.CurrentScore);
     }
 
+    // Method to update player lives
     public void UpdateLives(float change)
     {
         if(!isInvincible)

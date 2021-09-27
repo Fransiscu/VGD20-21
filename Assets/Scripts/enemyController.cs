@@ -1,10 +1,6 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Threading;
 using UnityEngine;
-using Random = System.Random;
 
+// Controller for the enemies
 public class EnemyController : MonoBehaviour
 {
     public Transform groundPresenceChecker;
@@ -26,6 +22,7 @@ public class EnemyController : MonoBehaviour
 
     void Update()
     {
+        // if on patrol
         if (onPatrolDuty)
         {
             Patrol();
@@ -44,6 +41,7 @@ public class EnemyController : MonoBehaviour
         {
             animator.SetBool("isWalking", true);
             animator.SetBool("isIdle", false);
+            // calculating if needs to be flipped
             needsFlipping = !Physics2D.OverlapCircle(groundPresenceChecker.position, 0.1f, groundLayerMask);
         }
         else if (!onPatrolDuty)
@@ -59,10 +57,11 @@ public class EnemyController : MonoBehaviour
         {
             FlipEnemy();
         }
-
+        // make enemies move
         rigidBody.velocity = new Vector2(enemySpeed * Time.fixedDeltaTime, rigidBody.velocity.y);
     }
 
+    // Method to flip the enemies
     private void FlipEnemy()
     {
         onPatrolDuty = false;
@@ -83,6 +82,7 @@ public class EnemyController : MonoBehaviour
         EntitiesCollisionHandler(col);
     }
 
+    // Collisions handler
     private void EntitiesCollisionHandler(Collision2D col)
     {
         if (col.gameObject.tag == "Player")
@@ -103,6 +103,7 @@ public class EnemyController : MonoBehaviour
                 needsFlipping = true;
             }
         }
+        // If colliding with obstacles or other enemies, simply ignore them
         else if (col.gameObject.tag == "Obstacle")
         {
             Physics2D.IgnoreCollision(enemyCollider, col.collider);
@@ -113,6 +114,7 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    // Method to setup enemies in the level
     private void SetupEnemy()
     {
         facingRight = true;
@@ -120,7 +122,7 @@ public class EnemyController : MonoBehaviour
         transform.localScale = new Vector2(transform.localScale.x * -1, transform.localScale.y); // flipping default enemy at start 
         onPatrolDuty = true;
 
-        // calculating enemy stats for the correct level
+        // Calculating enemy stats for the correct level
         switch (GameController.GetCurrentGameLevel())
         {
             case 1:

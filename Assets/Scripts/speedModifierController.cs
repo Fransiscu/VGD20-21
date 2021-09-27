@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Controller for the speed modifiers in game
 public class SpeedModifierController : MonoBehaviour
 {
     public string iD;

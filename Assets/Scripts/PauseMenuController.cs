@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+// Controller for the pause menu
 public class PauseMenuController : MonoBehaviour
 {
     private bool gamePaused = false;
@@ -16,6 +17,7 @@ public class PauseMenuController : MonoBehaviour
 
     private void Update()
     {
+        // Keep listening for ESC key 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (!gamePaused)

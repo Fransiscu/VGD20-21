@@ -1,8 +1,7 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+// Controller for the Cygnus boss in game
 public class CygnusController : MonoBehaviour
 {
     public Transform player;
@@ -26,9 +25,9 @@ public class CygnusController : MonoBehaviour
         KeepCygnusOnPlayersYAxis();
     }
 
+    // Method to make cygnus follow our player in its y axis but at the same time never get under the ground level
     private void KeepCygnusOnPlayersYAxis()
     {
-        // making the cygnus follow our player in its y axis but at the same time never get under the ground level
         float y = Mathf.Clamp(player.transform.position.y, yMin, yMax);
         gameObject.transform.position = new Vector3(gameObject.transform.position.x, y, gameObject.transform.position.z);
     }
@@ -69,6 +68,7 @@ public class CygnusController : MonoBehaviour
         }
     }
 
+    // Cygnus setup coroutine method
     public IEnumerator RiseAndShine()
     {
         cygnusSpeed = 50f;
@@ -82,6 +82,7 @@ public class CygnusController : MonoBehaviour
         FreezeCygnus();
     }
 
+    // Cygnus attack animation coroutine method
     private IEnumerator AttackPlayerAnimationHandler()
     {
         cygnusAnimator.SetBool("cygnus_move", false);

@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Threading;
 using UnityEngine;
 
+// Script to handle the pick up of consumables
 public class ConsumablesPicker : MonoBehaviour
 {
     CoinController coin;
@@ -30,6 +28,7 @@ public class ConsumablesPicker : MonoBehaviour
         string consumableTag = col.gameObject.tag;
         Destroy(col.gameObject);
 
+        // handling the different kind of pickups
         switch (consumableTag)
         {
             case "Coin" when !col.GetComponent<CoinController>().pickedUp:
@@ -58,21 +57,23 @@ public class ConsumablesPicker : MonoBehaviour
                 break;
 
             case "BiggerCoin" when !col.GetComponent<CoinController>().pickedUp:
-                Debug.Log("Picked bigger coin! value * 3 " + col.GetComponent<CoinController>().coinValue * 3);
+                Debug.Log("Picked bigger coin! value = " + col.GetComponent<CoinController>().coinValue * SETTINGS.biggerCoinMultiplier);
 
                 AudioSource.PlayClipAtPoint(coinPickupSound, transform.position, volume);
 
                 coin = col.GetComponent<CoinController>();
                 coin.pickedUp = true;
 
-                //GUIController.ChangeGUIScore(coin.coinValue * 3, true);
+                // if player already at checkpoint we don't save the score.
+                // In case of death the checkpoint saved score will be restored.
                 if (playerController.player.AtCheckpoint)
                 {
-                    playerController.IncreaseScore(coin.coinValue * 3, false);
+                    playerController.IncreaseScore(coin.coinValue * SETTINGS.biggerCoinMultiplier, false);
                 }
+                // else we save it
                 else
                 {
-                    playerController.IncreaseScore(coin.coinValue * 3, true);
+                    playerController.IncreaseScore(coin.coinValue * SETTINGS.biggerCoinMultiplier, true);
                 }
 
                 // if the player is in the first half of the level, save the pickup progression

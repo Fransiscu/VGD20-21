@@ -1,10 +1,10 @@
 using Prime31.TransitionKit;
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+// Game controller for all levels except the bonus one
 public class GameController : MonoBehaviour
 {
     public GameObject cygnus;
@@ -63,11 +63,14 @@ public class GameController : MonoBehaviour
         cController = cygnus.gameObject.GetComponent<CygnusController>();
         gController = GUIController.gameObject.GetComponent<GUIController>();
 
+        // setting up music
         if (gameSettings.Music) music.volume = SETTINGS.musicVolume; else music.Stop();
     }
 
     private void Start()
     {
+        // Handling spawn position of the player
+
         /*
         * If player at checkpoint at the start of the *current* level, move the position to the appropriate sign post
         * Else just set the entities up the normal way and delete temporary points (Player.CurrentScore) from previous save
@@ -99,7 +102,7 @@ public class GameController : MonoBehaviour
             // if the player died
             if (playerObject.currentLives <= 0)
             {
-                playerObject.currentLives = SETTINGS.startingLives;
+                playerObject.currentLives = SETTINGS.startingLives; // give 5 lives back
                 gController.ChangeGUILives(5, false);
                 playerObject.SavePlayer();
             }
@@ -121,6 +124,7 @@ public class GameController : MonoBehaviour
         else
         {
             SaveSceneSystem.DeleteSceneSave();  // deleting potential leftover saved scenes
+            // various set ups
             playerObject.CurrentLevel = GameController.GetCurrentGameLevel();
             playerObject.CurrentLives = SETTINGS.startingLives;
             playerObject.AtCheckpoint = false;
@@ -132,9 +136,12 @@ public class GameController : MonoBehaviour
             StartCoroutine("SetupEntities");
         }
 
+        // change gui score and lives
         gController.ChangeGUILives(playerObject.CurrentLives, false);
         gController.ChangeGUIScore(playerObject.CurrentScore);
     }
+
+    // Entities setup coroutine method
     IEnumerator SetupEntities()
     {
         pController.PlayerInvincibleToggle(true);    // freezing player
@@ -147,17 +154,19 @@ public class GameController : MonoBehaviour
         cController.UnFreezeCygnus();    // unfreezing cygnus
     }
 
+    // Returns current game level
     public static int GetCurrentGameLevel()
     {
         return SceneManager.GetActiveScene().buildIndex - 1; // 2 scenes before the actual levels, so we subtract 1
     }
 
+    // Death handler
     public void DeathHandler()
     {
-        Debug.LogWarning("Dead");
         StartCoroutine("DeathSceneTransition");
     }
 
+    // Death animation coroutine method
     private IEnumerator DeathSceneTransition()
     {
         yield return new WaitForSeconds(.5f);
@@ -172,6 +181,7 @@ public class GameController : MonoBehaviour
         Time.timeScale = 0;
     }
 
+    // Method to setup the consumables in the level
     private void SetUpConsumables() 
     {
         object[] objectsInScene = GameObject.FindObjectsOfType(typeof(GameObject));

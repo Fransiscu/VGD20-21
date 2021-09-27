@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+// Controller for the save points in game
 public class SavePointsController : MonoBehaviour
 {
     public RaycastHit2D raycastHit2D;
@@ -22,12 +23,13 @@ public class SavePointsController : MonoBehaviour
 
     private void Awake()
     {
-        currentLevel = GameController.GetCurrentGameLevel(); // 2 scenes before the actual levels, so we subtract 1
+        currentLevel = GameController.GetCurrentGameLevel(); 
         milestoneReached = false;  // player can only reach checkpoint once
     }
 
     void Update()
     {
+        // setting up a raycast to detect player walking over it
         raycastHit2D = Physics2D.Raycast(milestonePoint.position, Vector2.up, distance);
 
         if (raycastHit2D.collider == true && raycastHit2D.collider.tag == "Player" && !milestoneReached)
@@ -50,6 +52,7 @@ public class SavePointsController : MonoBehaviour
             {
                 if (player.InBonusLevel)
                 {
+                    // if in bonus level go back to level 2
                     SceneManager.LoadScene(3); // instant load and fade transition
                     fadeToLevel = new FadeTransition()   
                     {

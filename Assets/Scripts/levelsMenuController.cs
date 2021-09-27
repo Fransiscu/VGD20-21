@@ -1,10 +1,7 @@
 using Prime31.TransitionKit;
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class LevelsMenuController : MonoBehaviour
@@ -14,8 +11,6 @@ public class LevelsMenuController : MonoBehaviour
     public GameObject menuController;
     
     Animator cygnusAnimator;
-    AudioSource audioClip;
-
     public Button continueButton;
     public Button level1Button;
     public Button level2Button;
@@ -26,6 +21,7 @@ public class LevelsMenuController : MonoBehaviour
 
     void Start()
     {
+        // setup animation for the cygnus 
         cygnusAnimator = cygnus.GetComponentInChildren<Animator>();
         
         player = new Player();
@@ -83,6 +79,8 @@ public class LevelsMenuController : MonoBehaviour
         ResetGameInProgress();  // if there was a game in progress then delete it
         StartCoroutine("StartLevel", 4);
     }
+    
+    // Start level animation coroutine method
     public IEnumerator StartLevel(int sceneNumber)
     {
         cygnusAnimator.Play("cygnus_attack");
@@ -96,9 +94,11 @@ public class LevelsMenuController : MonoBehaviour
         TransitionKit.instance.transitionWithDelegate(fadeToLevel);
     }
 
+    // Reset current game
     private void ResetGameInProgress()
     {
-        player.AtCheckpoint = false; 
+        player.CurrentLives = SETTINGS.startingLives;
+        player.AtCheckpoint = false;
         player.CurrentScore = 0;
         player.currentLevel = 0;
         player.SavePlayer();

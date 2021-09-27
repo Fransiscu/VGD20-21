@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+// Controller for the in game GUI
 public class GUIController : MonoBehaviour
 {
     public TextMeshProUGUI textcoins;
@@ -10,11 +11,12 @@ public class GUIController : MonoBehaviour
     public TextMeshProUGUI lives;
 
     float currentLives;
-    
-    void Start()
-    {
-    }
 
+    /*  
+     *  Changes lives displayed in the GUI
+     *  Passing boolean true for subtract subtracts from current score displayed
+     *  Passing boolean false for subtract simply displays the number
+     */
     public void ChangeGUILives(float newLivesValue, bool subtract)
     {
         if (subtract)
@@ -33,11 +35,7 @@ public class GUIController : MonoBehaviour
         textcoins.SetText(" Score: " + newScoreValue.ToString());
     }
 
-    void Update()
-    {
-        
-    }
-
+    // Count down coroutine method
     public IEnumerator StartCountDown()
     {
         countDown.enabled = true;
@@ -53,6 +51,7 @@ public class GUIController : MonoBehaviour
         yield return true;
     }
 
+    // Bonus level count down coroutine method
     public IEnumerator BonusLevelIntroduction(TextMeshProUGUI textObject)
     {
         textObject.enabled = true;

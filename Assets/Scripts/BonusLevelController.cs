@@ -1,7 +1,6 @@
 using Prime31.TransitionKit;
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -89,6 +88,7 @@ public class BonusLevelController : MonoBehaviour
         }
     }
 
+    // Method to setup the consumables in the level
     private void SetUpConsumables()
     {
         object[] objectsInScene = GameObject.FindObjectsOfType(typeof(GameObject));
