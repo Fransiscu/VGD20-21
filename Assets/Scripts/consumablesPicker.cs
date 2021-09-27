@@ -39,10 +39,13 @@ public class ConsumablesPicker : MonoBehaviour
                 coin = col.GetComponent<CoinController>();
                 coin.pickedUp = true;
 
+                // if player already at checkpoint we don't save the score.
+                // In case of death the checkpoint saved score will be restored.
                 if (playerController.player.AtCheckpoint)
                 {
                     playerController.IncreaseScore(coin.coinValue, false);
                 }
+                // else we save it
                 else
                 {
                     playerController.IncreaseScore(coin.coinValue, true);

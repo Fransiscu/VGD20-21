@@ -471,7 +471,10 @@ public class PlayerController : MonoBehaviour
     {
         player = Player.LoadPlayer();
         player.CurrentScore += increment;
-        player.SavePlayer();
+        if (save)
+        {
+            player.SavePlayer();
+        }
         guiController.ChangeGUIScore(player.CurrentScore);
     }
 
