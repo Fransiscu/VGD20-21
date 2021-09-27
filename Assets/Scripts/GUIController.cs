@@ -9,7 +9,6 @@ public class GUIController : MonoBehaviour
     public TextMeshProUGUI countDown;
     public TextMeshProUGUI lives;
 
-    int currentScore;
     float currentLives;
     
     void Start()
@@ -26,12 +25,12 @@ public class GUIController : MonoBehaviour
         {
             currentLives = newLivesValue;
         }
-        lives.SetText(currentLives.ToString());
+        lives.SetText(" Lives: " + currentLives.ToString());
     }
 
     public void ChangeGUIScore(int newScoreValue)
     {
-        textcoins.SetText(newScoreValue.ToString());
+        textcoins.SetText(" Score: " + newScoreValue.ToString());
     }
 
     void Update()

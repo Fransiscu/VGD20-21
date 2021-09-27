@@ -28,17 +28,21 @@ public class BonusLevelController : MonoBehaviour
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-    private void Awake()
+    void Start()
     {
-        if (gameSettings.Music) music.volume = SETTINGS.musicVolume; else music.Stop();
-
         pController = player.gameObject.GetComponent<PlayerController>();
         gController = GUIController.gameObject.GetComponent<GUIController>();
+
+        gameSettings = new GameSettings();
+        gameSettings = GameSettings.LoadSettings();
 
         playerObject = Player.LoadPlayer();
 
         SetupBonusLevel();
+
+        if (gameSettings.Music) music.volume = SETTINGS.musicVolume; else music.Stop();
     }
+
     public void SetupBonusLevel()
     {
         StartCoroutine("SetUp");

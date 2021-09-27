@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+// Settings class to handle settings menu in game
 [Serializable]
 public class GameSettings
 {

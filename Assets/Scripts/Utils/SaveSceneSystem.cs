@@ -1,15 +1,11 @@
 using UnityEngine;
-using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using System;
-using System.Threading;
-using System.Linq;
 
 public class SaveSceneSystem : MonoBehaviour
 {
-    private static readonly string idPrefName = PlayerPrefsKey.idPrefName;
+    private static readonly string idPrefName = PlayerPrefsKey.itemsIdPrefName;
 
     /*
      *  I'll be saving a list of items ids to a json array, storing it in PlayerPrefs
@@ -47,8 +43,6 @@ public class SaveSceneSystem : MonoBehaviour
         idsObject.Ids.Add(id);  // add id to the list 
         jsonIdsString = JsonConvert.SerializeObject(idsObject);  // serialize to json
 
-        Debug.LogWarning(jsonIdsString);
-
         PlayerPrefs.SetString(idPrefName, jsonIdsString); // save to playerprefs
     }
 
@@ -59,6 +53,7 @@ public class SaveSceneSystem : MonoBehaviour
 
     public static void LoadSceneFromObject()
     {
+        // get all objects in the current scene
         ItemsIDs idsObject = LoadSceneDetailsFromJson(PlayerPrefs.GetString(idPrefName));
         object[] objectsInScene = GameObject.FindObjectsOfType(typeof(GameObject));
         

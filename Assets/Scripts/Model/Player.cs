@@ -1,12 +1,11 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
 public enum Gender {MALE, FEMALE};
     
-
+// Player class to handle player object in game
 [System.Serializable]
 public class Player
 {
@@ -57,13 +56,14 @@ public class Player
     /*
      *  https://forum.unity.com/threads/how-would-i-do-the-following-in-playerprefs.397516/#post-2595609 
      *  Saving player data as a json string and loading it into the PlayerPrefs.
-     *  Will restore it through a jsonread
+     *  Will restore it through a jsonread method
      */
     public void SavePlayer()
     {
         PlayerPrefs.SetString(saveData, JsonUtility.ToJson(this));
     }
 
+    // Reading player save from json string
     public static Player LoadPlayer()
     {
         return JsonUtility.FromJson<Player>(PlayerPrefs.GetString(saveData));
