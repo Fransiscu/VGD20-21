@@ -190,7 +190,10 @@ public class GameController : MonoBehaviour
                         CoinController coin = currentGameObject.GetComponent<CoinController>();
                         coin.SetUp();
                     }
-                    catch (Exception) { }
+                    catch (Exception)
+                    {
+                        Debug.LogWarning("Error setting up consumable");
+                    }
                     break;
 
                 case "DoubleJump":
@@ -199,7 +202,10 @@ public class GameController : MonoBehaviour
                         DoubleJumpController doubleJump = currentGameObject.GetComponent<DoubleJumpController>();
                         doubleJump.SetUp();
                     }
-                    catch (Exception) { }
+                    catch (Exception)
+                    {
+                        Debug.LogWarning("Error setting up consumable");
+                    }
                     break;
 
                 case "SpeedUp":
@@ -209,7 +215,10 @@ public class GameController : MonoBehaviour
                         SpeedModifierController speedModifier = currentGameObject.GetComponent<SpeedModifierController>();
                         speedModifier.SetUp();
                     }
-                    catch (Exception) { }
+                    catch (Exception)
+                    {
+                        Debug.LogWarning("Error setting up consumable");
+                    }
                     break;
             }
         }
