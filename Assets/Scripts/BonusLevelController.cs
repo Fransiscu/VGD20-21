@@ -16,6 +16,10 @@ public class BonusLevelController : MonoBehaviour
     private PlayerController pController;
     private GUIController gController;
 
+    public AudioSource music;
+
+    GameSettings gameSettings;
+
     Player playerObject;
 
     void OnEnable()
@@ -24,8 +28,10 @@ public class BonusLevelController : MonoBehaviour
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-    void Start()
+    private void Awake()
     {
+        if (gameSettings.Music) music.volume = SETTINGS.musicVolume; else music.Stop();
+
         pController = player.gameObject.GetComponent<PlayerController>();
         gController = GUIController.gameObject.GetComponent<GUIController>();
 
@@ -33,7 +39,6 @@ public class BonusLevelController : MonoBehaviour
 
         SetupBonusLevel();
     }
-
     public void SetupBonusLevel()
     {
         StartCoroutine("SetUp");
