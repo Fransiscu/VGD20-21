@@ -32,9 +32,10 @@ public class EnemyController : MonoBehaviour
             animator.SetBool("isWalking", false);
             animator.SetBool("isIdle", true);
         }
-
     }
 
+    // FixedUpdate can happen 0, 1 or several times per frame
+    // Reason why we check for needsFlipping here
     void FixedUpdate()
     {
         if (onPatrolDuty)
@@ -72,14 +73,15 @@ public class EnemyController : MonoBehaviour
         needsFlipping = false;
     }
 
+    // Handling collisions
     private void OnCollisionEnter2D(Collision2D col)
     {
-        EntitiesCollisionHandler(col);
+        EntitiesCollisionHandler(col);  // falling to EntitiesCollisionHandler method
     }
 
     private void OnCollisionStay2D(Collision2D col)
     {
-        EntitiesCollisionHandler(col);
+        EntitiesCollisionHandler(col);  // falling to EntitiesCollisionHandler method
     }
 
     // Collisions handler
@@ -123,7 +125,7 @@ public class EnemyController : MonoBehaviour
         onPatrolDuty = true;
 
         // Calculating enemy stats for the correct level
-        switch (GameController.GetCurrentGameLevel())
+        switch (GameController.CurrentGameLevel)
         {
             case 1:
                 hitDamage = SETTINGS.level1EnemyDamage;
@@ -138,7 +140,7 @@ public class EnemyController : MonoBehaviour
                 enemySpeed = SETTINGS.level3EnemySpeed;
                 break;
             default:
-                Debug.LogWarning("???");
+                Debug.LogWarning("Should never get here");
                 break;
         }
     }

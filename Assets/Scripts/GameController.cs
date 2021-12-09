@@ -80,10 +80,10 @@ public class GameController : MonoBehaviour
         playerObject = Player.LoadPlayer();
 
         // if we're starting a brand new level
-        if (playerObject.CurrentLevel != GameController.GetCurrentGameLevel())
+        if (playerObject.CurrentLevel != GameController.CurrentGameLevel)
         {
             SaveSceneSystem.DeleteSceneSave();  // deleting potential leftover saved scenes
-            playerObject.CurrentLevel = GameController.GetCurrentGameLevel();
+            playerObject.CurrentLevel = GameController.CurrentGameLevel;
             playerObject.CurrentLives = SETTINGS.startingLives;
             playerObject.AtCheckpoint = false;
             playerObject.CurrentScore = 0;
@@ -92,7 +92,7 @@ public class GameController : MonoBehaviour
             StartCoroutine("SetupEntities");
         }
         // if we are at the checkpoint of the current level
-        else if (playerObject.CurrentLevel == GameController.GetCurrentGameLevel() && playerObject.AtCheckpoint)
+        else if (playerObject.CurrentLevel == GameController.CurrentGameLevel && playerObject.AtCheckpoint)
         {
             Debug.LogWarning("at checkpoint rn spawning");
             StartCoroutine("SetupEntities");
@@ -109,7 +109,7 @@ public class GameController : MonoBehaviour
             SaveSceneSystem.LoadSceneFromObject();
         }
         // spawning after bonus level
-        else if (playerObject.CurrentLevel == 2 && GameController.GetCurrentGameLevel() == 2 && playerObject.ComingFromBonusLevel)
+        else if (playerObject.CurrentLevel == 2 && GameController.CurrentGameLevel == 2 && playerObject.ComingFromBonusLevel)
         {
             StartCoroutine("SetupEntities");
             playerObject.ComingFromBonusLevel = true;
@@ -125,7 +125,7 @@ public class GameController : MonoBehaviour
         {
             SaveSceneSystem.DeleteSceneSave();  // deleting potential leftover saved scenes
             // various set ups
-            playerObject.CurrentLevel = GameController.GetCurrentGameLevel();
+            playerObject.CurrentLevel = GameController.CurrentGameLevel;
             playerObject.CurrentLives = SETTINGS.startingLives;
             playerObject.AtCheckpoint = false;
             playerObject.ComingFromBonusLevel = false;
@@ -152,12 +152,6 @@ public class GameController : MonoBehaviour
         pController.PlayerInvincibleToggle(false);    // freezing player
         pController.PlayerFreezeToggle(false);    // unfreezing player
         cController.UnFreezeCygnus();    // unfreezing cygnus
-    }
-
-    // Returns current game level
-    public static int GetCurrentGameLevel()
-    {
-        return SceneManager.GetActiveScene().buildIndex - 1; // 2 scenes before the actual levels, so we subtract 1
     }
 
     // Death handler
@@ -233,4 +227,7 @@ public class GameController : MonoBehaviour
             }
         }
     }
+
+    // Returns current game level
+    public static int CurrentGameLevel => SceneManager.GetActiveScene().buildIndex - 1; // 2 scenes before the actual levels, so we subtract 1
 }

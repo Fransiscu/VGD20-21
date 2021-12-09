@@ -61,6 +61,6 @@ public class SETTINGS
     public static readonly float doubleJumpBuffDuration = 3f;
     public static readonly float speedBoostBuffDuration = 3f;
 
-    // powedowns
+    // powerdowns
     public static readonly float speedDeficit = .7f;
 }

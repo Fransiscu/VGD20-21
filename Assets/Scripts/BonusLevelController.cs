@@ -46,19 +46,6 @@ public class BonusLevelController : MonoBehaviour
     {
         StartCoroutine("SetUp");
     }
-
-    private IEnumerator SetUp()
-    {
-        gController.ChangeGUIScore(playerObject.CurrentScore);
-        gController.ChangeGUILives(playerObject.CurrentLives, false);
-        pController.PlayerInvincibleToggle(true);    // freezing player
-        pController.PlayerFreezeToggle(true);    // freezing player
-        yield return new WaitForSeconds(2f); // waiting for fade effect to finish before loading the entities
-        yield return gController.BonusLevelIntroduction(textOnScreen);   // displaying countdown
-        pController.PlayerInvincibleToggle(false);    // freezing player
-        pController.PlayerFreezeToggle(false);    // unfreezing player
-    }
-
     void OnDisable()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
@@ -66,7 +53,6 @@ public class BonusLevelController : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-
     }
 
     void Update()
@@ -86,6 +72,18 @@ public class BonusLevelController : MonoBehaviour
             };
             TransitionKit.instance.transitionWithDelegate(fadeToLevel);
         }
+    }
+
+    private IEnumerator SetUp()
+    {
+        gController.ChangeGUIScore(playerObject.CurrentScore);
+        gController.ChangeGUILives(playerObject.CurrentLives, false);
+        pController.PlayerInvincibleToggle(true);    // freezing player
+        pController.PlayerFreezeToggle(true);    // freezing player
+        yield return new WaitForSeconds(2f); // waiting for fade effect to finish before loading the entities
+        yield return gController.BonusLevelIntroduction(textOnScreen);   // displaying countdown
+        pController.PlayerInvincibleToggle(false);    // freezing player
+        pController.PlayerFreezeToggle(false);    // unfreezing player
     }
 
     // Method to setup the consumables in the level

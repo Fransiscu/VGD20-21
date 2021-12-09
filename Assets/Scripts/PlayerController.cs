@@ -26,12 +26,11 @@ public class PlayerController : MonoBehaviour
     private float playerMovementDirection;
     public float playerMovementSpeed;
     public int playerJumpPower;
+    private int jumpCounter;
 
     private bool facingRight = true;
     public bool touchingGround;
 
-    private int jumpCounter;
-    
     private bool isFlashing = false;
     public bool doubleJumpActive;
     public bool isInvincible;
@@ -130,12 +129,6 @@ public class PlayerController : MonoBehaviour
         Vector2 movement = new Vector2(playerMovementDirection * playerMovementSpeed, gameObject.GetComponent<Rigidbody2D>().velocity.y);
 
         gameObject.GetComponent<Rigidbody2D>().velocity = movement;
-
-    }
-
-    public void PlayerInvincibleToggle(bool invincible)
-    {
-        isInvincible = invincible;
     }
 
     public void FlipPlayer()
@@ -146,7 +139,9 @@ public class PlayerController : MonoBehaviour
         transform.localScale = localScale;
     }
 
-    // Collisions handler
+    /*
+    / Collisions handling
+    */
     void OnCollisionEnter2D(Collision2D col)
     {
         switch (col.gameObject.tag)
@@ -220,8 +215,10 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // Knock back handler
-    // bool knockForward is used for some cases in which we force a forward knock, ignoring the direction of the hit
+    /*
+    /  Knock back handler
+    /  bool knockForward is used for some cases in which we force a forward knock, ignoring the direction of the hit
+    */
     public void knockBackPlayer(Collision2D col, bool knockForward)
     {
         float approachDirection = col.gameObject.transform.position.x - transform.position.x;
@@ -294,24 +291,6 @@ public class PlayerController : MonoBehaviour
         }
 
         isInvincible = false;
-    }
-
-    public void PlayerFreezeToggle(bool frozen)
-    {
-        inputFrozen = frozen;
-    }
-
-    // Freezing input coroutine method
-    private IEnumerator FreezeInput()
-    {
-        inputFrozen = true;
-
-        for (float i = 0; i < SETTINGS.playerHitInputFreezeDuration; i += SETTINGS.playerHitInputFreezeFramesDeltaTime)
-        {
-            yield return new WaitForSeconds(SETTINGS.playerHitInputFreezeFramesDeltaTime);
-        }
-
-        inputFrozen = false;
     }
 
     // Character flash coroutine method
@@ -412,7 +391,45 @@ public class PlayerController : MonoBehaviour
         StartCoroutine("CharacterFlash", "doubleJump");
         StartCoroutine("EnableDoubleJump");
     }
+  
+    // GUI methods
+    // Showing values on screen GUI
+    public void DisplayValues()
+    {
+        guiController.ChangeGUILives(player.CurrentLives, false);
+        guiController.ChangeGUIScore(player.CurrentScore);
+    }
 
+    // bool save -> save the score to current, false don't and just refresh the GUI
+    public void IncreaseScore(int increment, bool save)
+    {
+        player = Player.LoadPlayer();
+        player.CurrentScore += increment;
+        if (save)
+        {
+            player.SavePlayer();
+        }
+        guiController.ChangeGUIScore(player.CurrentScore);
+    }
+
+    // Method to update player lives
+    public void UpdateLives(float change)
+    {
+        if(!isInvincible)
+        {
+            player = Player.LoadPlayer();
+            player.CurrentLives -= change;
+            guiController.ChangeGUILives(player.CurrentLives, false);
+            player.SavePlayer();
+            if (player.CurrentLives <= 0)
+            {
+                guiController.ChangeGUILives(0, false);
+                gController.DeathHandler();
+            }
+        }
+    }
+
+    // Player methods
     private Player LoadPlayer()
     {
         return Player.LoadPlayer();
@@ -459,45 +476,31 @@ public class PlayerController : MonoBehaviour
         volume = gameSettings.Sound ? SETTINGS.soundVolume : 0f;
     }
 
-    // Showing values on screen GUI
-    public void DisplayValues()
-    {
-        guiController.ChangeGUILives(player.CurrentLives, false);
-        guiController.ChangeGUIScore(player.CurrentScore);
-    }
-
-    // bool save -> save the score to current, false don't and just refresh the GUI
-    public void IncreaseScore(int increment, bool save)
-    {
-        player = Player.LoadPlayer();
-        player.CurrentScore += increment;
-        if (save)
-        {
-            player.SavePlayer();
-        }
-        guiController.ChangeGUIScore(player.CurrentScore);
-    }
-
-    // Method to update player lives
-    public void UpdateLives(float change)
-    {
-        if(!isInvincible)
-        {
-            player = Player.LoadPlayer();
-            player.CurrentLives -= change;
-            guiController.ChangeGUILives(player.CurrentLives, false);
-            player.SavePlayer();
-            if (player.CurrentLives <= 0)
-            {
-                guiController.ChangeGUILives(0, false);
-                gController.DeathHandler();
-            }
-        }
-    }
-
     public Boolean IsPlayerInvincible()
     {
         return isInvincible;
     }
 
+    public void PlayerInvincibleToggle(bool invincible)
+    {
+        isInvincible = invincible;
+    }
+
+    public void PlayerFreezeToggle(bool frozen)
+    {
+        inputFrozen = frozen;
+    }
+
+    // Freezing input coroutine method
+    private IEnumerator FreezeInput()
+    {
+        inputFrozen = true;
+
+        for (float i = 0; i < SETTINGS.playerHitInputFreezeDuration; i += SETTINGS.playerHitInputFreezeFramesDeltaTime)
+        {
+            yield return new WaitForSeconds(SETTINGS.playerHitInputFreezeFramesDeltaTime);
+        }
+
+        inputFrozen = false;
+    }
 }

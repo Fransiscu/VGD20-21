@@ -19,6 +19,7 @@ public class CygnusController : MonoBehaviour
     {
         setupCygnus();
     }
+    
     void Update()
     {
         MoveCygnus();
@@ -91,6 +92,7 @@ public class CygnusController : MonoBehaviour
         cygnusAnimator.ResetTrigger("cygnus_attack");
         cygnusAnimator.SetBool("cygnus_move", true);
     }
+
     public void FreezeCygnus()
     {
         cygnusSpeed = 0f;

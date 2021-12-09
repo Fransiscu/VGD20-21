@@ -156,6 +156,9 @@ public class MenuController : MonoBehaviour
         Application.Quit();
     }
 
+    /*
+    / On button press listener methods
+    */
     public void OnSettingsButtonPress()
     {
         mainMenu.SetActive(false);
